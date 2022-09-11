@@ -52,14 +52,14 @@ p.enlarge span { color: #000 }
 a#pdf { display: block; float: left; background: #666; color: white; padding: 6px 50px 6px 12px; margin-bottom: 6px; text-decoration: none;  }
 a#pdf:hover { background: #222; }
 
-.job { position: relative; margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc; }
+.job { position: relative; margin-bottom: 2em; padding-bottom: 1em; border-bottom: 1px solid #ccc; }
 .job h4 { position: absolute; top: 0.35em; right: 0 }
-.job p { margin: 0.75em 0 3em 0; }
+.job p { margin: 1em 0 3em 0; }
 
 .last { border: none; }
 .skills-list {  }
 .skills-list ul { margin: 0; }
-.skills-list li { margin: 3px 0; padding: 3px 0; }
+.skills-list li { margin: 10px 0; padding: 3px 0; }
 .skills-list li span { font-size: 152%; display: block; margin-bottom: -2px; padding: 0 }
 .talent { width: 100%; float: left }
 .talent h2 { margin-bottom: 6px; }
@@ -68,7 +68,7 @@ a#pdf:hover { background: #222; }
 #srt-ttab img.last { margin-top: 20px }
 
 /* --// override to force 1/8th width grids -- */
-.yui-gf .yui-u{width:80.2%;}
+.yui-gf .yui-u{width:70.2%;}
 .yui-gf div.first{width:12.3%;text-align: center; color: darkcyan;}
 
 
