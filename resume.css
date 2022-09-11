@@ -59,7 +59,7 @@ a#pdf:hover { background: #222; }
 .last { border: none; }
 .skills-list {  }
 .skills-list ul { margin: 0; }
-.skills-list li { margin: 20px 0; padding: 5px 0; }
+.skills-list li { width: 80%; margin: 5px 0; padding: 3px 0; }
 .skills-list li span { font-size: 152%; display: block; margin-bottom: 5px; padding: 0 }
 .talent { width: 80%; float: left }
 .talent h2 { margin-bottom: 6px; }
