@@ -7,12 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchData() {
     try {
         const response = await fetch('data.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
         const data = await response.json();
         renderData(data);
-        if (data.theme) applyTheme(data.theme);
+
+        if (data.theme) {
+            try {
+                applyTheme(data.theme);
+            } catch (themeErr) {
+                console.error('Error applying theme:', themeErr);
+            }
+        }
     } catch (error) {
         console.error('Error fetching data:', error);
-        document.querySelector('.content-area').innerHTML = '<p>Error loading data.json. Please ensure it exists.</p>';
+        document.querySelector('.content-area').innerHTML = `<p>Error loading data.json: ${error.message}</p>`;
     }
 }
 
