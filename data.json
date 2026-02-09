@@ -290,5 +290,12 @@
       "period": "Autumn 2018",
       "institution": "University of Tehran"
     }
-  ]
+  ],
+  "theme": {
+    "primaryColor": "#6366f1",
+    "secondaryColor": "#8b5cf6",
+    "backgroundColor": "#0f172a",
+    "textColor": "#f1f5f9",
+    "sidebarColor": "rgba(30, 41, 59, 0.7)"
+  }
 }

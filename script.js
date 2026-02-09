@@ -9,6 +9,7 @@ async function fetchData() {
         const response = await fetch('data.json');
         const data = await response.json();
         renderData(data);
+        if (data.theme) applyTheme(data.theme);
     } catch (error) {
         console.error('Error fetching data:', error);
         document.querySelector('.content-area').innerHTML = '<p>Error loading data.json. Please ensure it exists.</p>';

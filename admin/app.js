@@ -108,6 +108,9 @@ function renderTabs() {
         { key: 'period', label: 'Period' },
         { key: 'institution', label: 'Institution' }
     ]));
+
+    // Theme
+    createTabPane('theme', createThemeForm());
 }
 
 function createTabPane(id, content) {
@@ -336,6 +339,42 @@ function createObjectArrayForm(key, fields) {
     };
 
     render();
+    return container;
+}
+
+function createThemeForm() {
+    const container = document.createElement('div');
+    if (!siteData.theme) siteData.theme = {};
+
+    const fields = [
+        { key: 'primaryColor', label: 'Primary Color (Accent)', type: 'color' },
+        { key: 'secondaryColor', label: 'Secondary Color (Gradient)', type: 'color' },
+        { key: 'backgroundColor', label: 'Background Color', type: 'color' },
+        { key: 'textColor', label: 'Text Color', type: 'color' },
+        { key: 'sidebarColor', label: 'Sidebar Background (RGBA for transparency)', type: 'text' }
+    ];
+
+    fields.forEach(f => {
+        const group = document.createElement('div');
+        group.className = 'form-group';
+
+        const label = document.createElement('label');
+        label.textContent = f.label;
+        group.appendChild(label);
+
+        const input = document.createElement('input');
+        input.type = f.type;
+        input.value = siteData.theme[f.key] || '#000000';
+        // For text inputs or missing defaults
+        if (f.type === 'text' && !siteData.theme[f.key]) input.value = '';
+
+        input.onchange = (e) => {
+            siteData.theme[f.key] = e.target.value;
+        };
+        group.appendChild(input);
+        container.appendChild(group);
+    });
+
     return container;
 }
 

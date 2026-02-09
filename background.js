@@ -111,36 +111,71 @@ uniform vec2 u_resolution;
 uniform float u_time;
 uniform vec2 u_mouse;
 uniform float u_scroll;
+uniform vec3 u_color1;
+uniform vec3 u_color2;
+uniform vec3 u_bg_color;
 
 void main() {
     vec2 st = gl_FragCoord.xy / u_resolution.xy;
     
     // Liquid/Ripple effect
-    float time = u_time * 0.5;
+    float time = u_time * 0.2; // Slower, more elegant
     
-    // Distance from mouse
+    // Smooth distorted gradient
     float dist = distance(st, u_mouse);
+    float ripple = sin(dist * 15.0 - time * 3.0) * 0.02; // More subtle ripple
     
-    // Ripple based on distance and time
-    float ripple = sin(dist * 20.0 - time * 2.0) * 0.01;
+    // Organic wave movement
+    float wave = sin(st.x * 3.0 + time) * cos(st.y * 2.0 + time * 0.5) * 0.2;
     
-    // Add scroll influence
-    float scrollWave = sin(st.y * 10.0 + u_scroll * 0.1) * 0.005;
+    // Combine for a mesh distortion feel
+    vec2 pos = st + vec2(wave);
     
-    // Color gradient background
-    vec3 color1 = vec3(0.1, 0.4, 0.9); // Blue
-    vec3 color2 = vec3(0.6, 0.1, 0.8); // Purple
-    vec3 bg = mix(color1, color2, st.y + st.x + sin(time));
+    // Gradient mix
+    vec3 color = mix(u_color1, u_color2, pos.y + pos.x);
     
-    // Apply ripple to color
-    bg += ripple + scrollWave;
+    // Add background color influence (so it matches the site theme base)
+    color = mix(u_bg_color, color, 0.6); 
     
-    // Darken for better text contrast
-    bg *= 0.15; // Very dark background
+    // Apply subtle ripple highlight
+    color += ripple * 0.1;
     
-    gl_FragColor = vec4(bg, 1.0);
+    // Vignette for depth
+    float vignette = 1.0 - length(st - 0.5) * 0.5;
+    color *= vignette;
+    
+    gl_FragColor = vec4(color, 1.0);
 }
 `;
+
+// Default colors (will be overridden by site data)
+let configColors = {
+    color1: [0.1, 0.4, 0.9], // Blue
+    color2: [0.6, 0.1, 0.8], // Purple
+    bgColor: [0.05, 0.05, 0.1] // Dark BG
+};
+
+// Global function to update colors from script.js
+window.updateFluidColors = (c1, c2, bg) => {
+    // Helper to hex to normalized vec3
+    const hexToVec3 = (hex) => {
+        let r = 0, g = 0, b = 0;
+        if (hex.length === 4) {
+            r = parseInt(hex[1] + hex[1], 16);
+            g = parseInt(hex[2] + hex[2], 16);
+            b = parseInt(hex[3] + hex[3], 16);
+        } else if (hex.length === 7) {
+            r = parseInt(hex.slice(1, 3), 16);
+            g = parseInt(hex.slice(3, 5), 16);
+            b = parseInt(hex.slice(5, 7), 16);
+        }
+        return [r / 255, g / 255, b / 255];
+    };
+
+    if (c1) configColors.color1 = hexToVec3(c1);
+    if (c2) configColors.color2 = hexToVec3(c2);
+    if (bg) configColors.bgColor = hexToVec3(bg);
+};
 
 function createShader(gl, type, source) {
     const shader = gl.createShader(type);
@@ -235,6 +270,10 @@ function render(time) {
     gl.uniform1f(gl.getUniformLocation(program, "u_time"), time);
     gl.uniform2f(gl.getUniformLocation(program, "u_mouse"), mouseX, mouseY);
     gl.uniform1f(gl.getUniformLocation(program, "u_scroll"), scrollY);
+
+    gl.uniform3fv(gl.getUniformLocation(program, "u_color1"), configColors.color1);
+    gl.uniform3fv(gl.getUniformLocation(program, "u_color2"), configColors.color2);
+    gl.uniform3fv(gl.getUniformLocation(program, "u_bg_color"), configColors.bgColor);
 
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 
