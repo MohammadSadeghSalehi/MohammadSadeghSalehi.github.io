@@ -41,15 +41,31 @@ body {
     transition: background-color var(--transition), color var(--transition);
 }
 
+#fluid-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    /* Let clicks pass through */
+}
+
+/* Ensure background transparency for content */
 .app-container {
     display: flex;
     min-height: 100vh;
+    background: transparent;
+    /* Changed from default */
 }
 
 /* Sidebar */
 .sidebar {
     width: 300px;
-    background-color: var(--sidebar-bg);
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Use semi-transparent background */
+    backdrop-filter: blur(10px);
     border-right: 1px solid var(--border-color);
     padding: 2rem;
     position: fixed;
@@ -59,6 +75,11 @@ body {
     flex-direction: column;
     transition: background-color var(--transition), border-color var(--transition);
     z-index: 100;
+}
+
+/* Dark mode adjust for sidebar */
+[data-theme="dark"] .sidebar {
+    background-color: rgba(30, 41, 59, 0.9);
 }
 
 .profile-section {
@@ -128,7 +149,8 @@ body {
     text-align: center;
 }
 
-.main-nav a:hover, .main-nav a.active {
+.main-nav a:hover,
+.main-nav a.active {
     background-color: rgba(37, 99, 235, 0.1);
     color: var(--primary-color);
 }
@@ -175,8 +197,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .section-title {
@@ -249,7 +278,11 @@ body {
 }
 
 /* Cards (News, Projects, Talks, Teaching) */
-.news-grid, .projects-grid, .talks-list, .teaching-list, .publications-list {
+.news-grid,
+.projects-grid,
+.talks-list,
+.teaching-list,
+.publications-list {
     display: grid;
     gap: 1.5rem;
 }
@@ -322,6 +355,36 @@ body {
     background-color: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+}
+
+/* Contact List */
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-list li {
+    margin-bottom: 0.75rem;
+}
+
+.contact-list a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: color var(--transition);
+}
+
+.contact-list a:hover {
+    color: var(--primary-color);
+}
+
+.contact-list i {
+    width: 24px;
+    text-align: center;
+    color: var(--primary-color);
 }
 
 /* Mobile */

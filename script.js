@@ -148,6 +148,29 @@ function renderData(data) {
             </div>
         `).join('');
     }
+
+    // Contact
+    const contactContainer = document.getElementById('contact-list');
+    if (contactContainer && data.profile && data.profile.socials) {
+        contactContainer.innerHTML = data.profile.socials.map(link => `
+            <li>
+                <a href="${link.url}" target="_blank">
+                    <i class="${link.icon}"></i> ${link.name}
+                </a>
+            </li>
+        `).join('');
+        // Add location and email directly if they exist
+        if (data.profile.email) {
+            const emailLi = document.createElement('li');
+            emailLi.innerHTML = `<a href="mailto:${data.profile.email}"><i class="fas fa-envelope"></i> ${data.profile.email}</a>`;
+            contactContainer.prepend(emailLi);
+        }
+        if (data.profile.location) {
+            const locLi = document.createElement('li');
+            locLi.innerHTML = `<span><i class="fas fa-map-marker-alt"></i> ${data.profile.location}</span>`;
+            contactContainer.prepend(locLi);
+        }
+    }
 }
 
 function setupNavigation() {
