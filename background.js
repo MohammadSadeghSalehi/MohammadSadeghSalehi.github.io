@@ -115,69 +115,77 @@ uniform vec3 u_color1;
 uniform vec3 u_color2;
 uniform vec3 u_bg_color;
 
-// Simplex 2D noise
-vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
-float snoise(vec2 v){
-  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
-           -0.577350269189626, 0.024390243902439);
-  vec2 i  = floor(v + dot(v, C.yy) );
-  vec2 x0 = v -   i + dot(i, C.xx);
-  vec2 i1;
-  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-  vec4 x12 = x0.xyxy + C.xxzz;
-  x12.xy -= i1;
-  i = mod(i, 289.0);
-  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
-  + i.x + vec3(0.0, i1.x, 1.0 ));
-  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-  m = m*m ;
-  return 105.0 * dot( m*m, vec3( dot(p.x,x0), dot(p.y,x12.xy), dot(p.z,x12.zw) ) );
+// Cellular Noise (Voronoi)
+vec2 random2( vec2 p ) {
+    return fract(sin(vec2(dot(p,vec2(127.1,311.7)),dot(p,vec2(269.5,183.3))))*43758.5453);
 }
 
 void main() {
     vec2 st = gl_FragCoord.xy / u_resolution.xy;
-    st.x *= u_resolution.x / u_resolution.y; // Aspect ratio fix (makes scale consistent)
+    st.x *= u_resolution.x / u_resolution.y;
     
-    float time = u_time * 0.2;
-    
-    // Scale up for detail
-    vec2 p = st * 3.0; // Zoom out
-    
-    // Domain Warping for Liquid/Reptile effect
-    vec2 q = vec2(0.);
-    q.x = snoise(p + vec2(time * 0.5, time * 0.5));
-    q.y = snoise(p + vec2(1.0));
-
-    vec2 r = vec2(0.);
-    r.x = snoise(p + 1.0 * q + vec2(1.7, 9.2) + 0.15 * time);
-    r.y = snoise(p + 1.0 * q + vec2(8.3, 2.8) + 0.126 * time);
-
-    float f = snoise(p + r);
-
-    // Mix colors based on noise value 'f'
-    // Map f (-1, 1) to (0, 1)
-    f = f * 0.5 + 0.5;
-    
-    // Make the pattern more distinct
-    f = pow(f, 0.8); 
-
-    // Base background
     vec3 color = u_bg_color;
     
-    // Mix in the dynamic colors
-    // We use the warped coordinates 'r' to create swirling interactions
-    float mixAmount1 = smoothstep(0.2, 0.8, f + r.x * 0.5);
-    float mixAmount2 = smoothstep(0.2, 0.8, f - r.y * 0.5);
+    // Scale for cells
+    float scale = 6.0;
+    st *= scale;
     
-    color = mix(color, u_color1, mixAmount1 * 0.6); // 0.6 opacity
-    color = mix(color, u_color2, mixAmount2 * 0.5); 
+    // Tile the space
+    vec2 i_st = floor(st);
+    vec2 f_st = fract(st);
+    
+    float m_dist = 1.0;  // Minimum distance
+    
+    float time = u_time * 0.3;
 
-    // Mouse Interaction: Ripples
+    // Iterate through neighbors for Voronoi
+    for (int y= -1; y <= 1; y++) {
+        for (int x= -1; x <= 1; x++) {
+            vec2 neighbor = vec2(float(x),float(y));
+            vec2 point = random2(i_st + neighbor);
+            
+            // Animate points
+            point = 0.5 + 0.5*sin(time + 6.2831*point);
+            
+            // Vector between pixel and point
+            vec2 diff = neighbor + point - f_st;
+            
+            // Distance
+            float dist = length(diff);
+            
+            // Keep the closer distance
+            m_dist = min(m_dist, dist);
+        }
+    }
+    
+    // "Reptile/Cell" effect using the distance field
+    // m_dist goes from 0 (center of cell) to 0.5+ (edge)
+    
+    // Invert for "cells"
+    float cells = 1.0 - m_dist;
+    
+    // Sharpen edges
+    cells = pow(cells, 3.0);
+    
+    // Dynamic coloring based on cell intensity
+    float mix1 = smoothstep(0.1, 0.9, cells);
+    
+    // Interaction
     vec2 mouseUV = u_mouse;
     mouseUV.x *= u_resolution.x / u_resolution.y;
-    float dist = distance(st, mouseUV);
-    float interaction = smoothstep(0.3, 0.0, dist);
-    color += interaction * 0.15 * u_color1; // Add glow near mouse
+    float mouseDist = distance(gl_FragCoord.xy / u_resolution.xy * vec2(u_resolution.x/u_resolution.y, 1.0) * scale, mouseUV * scale); 
+    
+    // Mouse ripples distorts intensity
+    cells += smoothstep(2.0, 0.0, mouseDist) * 0.3 * sin(time * 5.0);
+
+    // Color Blending
+    vec3 c1 = mix(u_bg_color, u_color2, cells * 0.4); // Edges/Base
+    vec3 c2 = mix(c1, u_color1, smoothstep(0.4, 1.0, cells)); // Centers/Highlights
+    
+    color = c2;
+    
+    // Add subtle scanline/texture
+    color += (random2(st).x * 0.05);
 
     gl_FragColor = vec4(color, 1.0);
 }
