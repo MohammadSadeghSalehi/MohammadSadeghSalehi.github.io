@@ -15,14 +15,11 @@
     <div class="app-container">
         <header class="top-bar">
             <div class="top-bar-content">
-                <div class="profile-summary">
-                    <img src="" alt="Profile" id="profile-image" class="profile-image-sm">
-                    <div class="profile-text">
-                        <h1 id="profile-name"></h1>
-                        <p id="profile-role"></p>
-                    </div>
+                <div class="logo-container">
+                    <!-- Placeholder for user Logo -->
+                    <a href="#" class="site-logo">MSS</a>
                 </div>
-                
+
                 <button class="menu-toggle" aria-label="Toggle Menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -36,15 +33,23 @@
                         <li><a href="#talks">Talks</a></li>
                         <li><a href="#teaching">Teaching</a></li>
                     </ul>
-                    <div class="social-links-header" id="social-links"></div>
+                    <div class="social-links-header" id="social-links-nav"></div>
                     <button id="theme-btn" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
-                         <i class="fas fa-moon"></i>
+                        <i class="fas fa-moon"></i>
                     </button>
                 </nav>
             </div>
         </header>
 
         <main class="content-area">
+            <section class="profile-header-section">
+                <img src="" alt="Profile" id="profile-image" class="profile-image-lg">
+                <div class="profile-intro">
+                    <h1 id="profile-name"></h1>
+                    <p id="profile-role"></p>
+                    <div class="social-links-main" id="social-links-main"></div>
+                </div>
+            </section>
             <section id="about" class="section active">
                 <h2 class="section-title">Biography</h2>
                 <div class="bio-content">

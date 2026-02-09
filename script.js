@@ -72,14 +72,28 @@ function renderData(data) {
 
     // Profile
     if (data.profile) {
-        document.getElementById('profile-image').src = data.profile.image || '';
-        setHtml('profile-name', data.profile.name); // Using innerHTML to allow links in name if desired
+        // Main Body Profile
+        const profileImg = document.getElementById('profile-image');
+        if (profileImg) profileImg.src = data.profile.image || '';
+
+        setHtml('profile-name', data.profile.name);
         setText('profile-role', data.profile.role);
 
-        // Social Links
-        const socialContainer = document.getElementById('social-links');
-        if (socialContainer && data.profile.socials) {
-            socialContainer.innerHTML = data.profile.socials.map(link => `
+        // Social Links (Main Section)
+        const socialMain = document.getElementById('social-links-main');
+        if (socialMain && data.profile.socials) {
+            socialMain.innerHTML = data.profile.socials.map(link => `
+                <a href="${link.url}" target="_blank" aria-label="${link.name}" title="${link.name}">
+                    <i class="${link.icon}"></i>
+                </a>
+            `).join('');
+        }
+
+        // Social Links (Nav Bar - Optional, keep valid if exists)
+        const socialNav = document.getElementById('social-links-nav');
+        if (socialNav && data.profile.socials) {
+            // Maybe render just a few or all smaller? Rendering all for now.
+            socialNav.innerHTML = data.profile.socials.map(link => `
                 <a href="${link.url}" target="_blank" aria-label="${link.name}" title="${link.name}">
                     <i class="${link.icon}"></i>
                 </a>

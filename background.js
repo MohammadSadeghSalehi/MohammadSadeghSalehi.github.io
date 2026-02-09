@@ -115,9 +115,8 @@ uniform vec3 u_color1;
 uniform vec3 u_color2;
 uniform vec3 u_bg_color;
 
-// Simplex noise function
+// Simplex 2D noise
 vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
-
 float snoise(vec2 v){
   const vec4 C = vec4(0.211324865405187, 0.366025403784439,
            -0.577350269189626, 0.024390243902439);
@@ -137,36 +136,49 @@ float snoise(vec2 v){
 
 void main() {
     vec2 st = gl_FragCoord.xy / u_resolution.xy;
-    float time = u_time * 0.15;
+    st.x *= u_resolution.x / u_resolution.y; // Aspect ratio fix (makes scale consistent)
     
-    // Mouse influence
-    float dist = distance(st, u_mouse);
-    float mouseWave = smoothstep(0.4, 0.0, dist) * 0.1;
+    float time = u_time * 0.2;
     
-    // Organic Flow
-    float n1 = snoise(st * 3.0 + time + u_scroll * 0.05);
-    float n2 = snoise(st * 6.0 - time * 0.5);
+    // Scale up for detail
+    vec2 p = st * 3.0; // Zoom out
     
-    // Distorted coordinate for color mixing
-    vec2 pos = st + vec2(n1, n2) * 0.2;
-    pos += mouseWave;
+    // Domain Warping for Liquid/Reptile effect
+    vec2 q = vec2(0.);
+    q.x = snoise(p + vec2(time * 0.5, time * 0.5));
+    q.y = snoise(p + vec2(1.0));
+
+    vec2 r = vec2(0.);
+    r.x = snoise(p + 1.0 * q + vec2(1.7, 9.2) + 0.15 * time);
+    r.y = snoise(p + 1.0 * q + vec2(8.3, 2.8) + 0.126 * time);
+
+    float f = snoise(p + r);
+
+    // Mix colors based on noise value 'f'
+    // Map f (-1, 1) to (0, 1)
+    f = f * 0.5 + 0.5;
     
-    // Antigravity style blending
-    // Core background
+    // Make the pattern more distinct
+    f = pow(f, 0.8); 
+
+    // Base background
     vec3 color = u_bg_color;
     
-    // Flowing blobs
-    float blob1 = smoothstep(0.3, 0.7, n1 * 0.5 + 0.5);
-    float blob2 = smoothstep(0.3, 0.7, n2 * 0.5 + 0.5);
+    // Mix in the dynamic colors
+    // We use the warped coordinates 'r' to create swirling interactions
+    float mixAmount1 = smoothstep(0.2, 0.8, f + r.x * 0.5);
+    float mixAmount2 = smoothstep(0.2, 0.8, f - r.y * 0.5);
     
-    // Mix colors dynamically
-    color = mix(color, u_color1, blob1);
-    color = mix(color, u_color2, blob2 * 0.8);
-    
-    // Soft light/glow
-    float glow = 1.0 - length(st - 0.5);
-    color += glow * 0.1;
-    
+    color = mix(color, u_color1, mixAmount1 * 0.6); // 0.6 opacity
+    color = mix(color, u_color2, mixAmount2 * 0.5); 
+
+    // Mouse Interaction: Ripples
+    vec2 mouseUV = u_mouse;
+    mouseUV.x *= u_resolution.x / u_resolution.y;
+    float dist = distance(st, mouseUV);
+    float interaction = smoothstep(0.3, 0.0, dist);
+    color += interaction * 0.15 * u_color1; // Add glow near mouse
+
     gl_FragColor = vec4(color, 1.0);
 }
 `;
