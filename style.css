@@ -36,9 +36,11 @@
 body {
     font-family: 'Inter', sans-serif;
     color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: transparent;
+    /* Changed from var(--bg-color) to reveal canvas */
     line-height: 1.6;
-    transition: background-color var(--transition), color var(--transition);
+    transition: color var(--transition);
+    min-height: 100vh;
 }
 
 #fluid-canvas {
@@ -66,10 +68,12 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    /* Slightly more visible */
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    /* Stronger border */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     z-index: 1000;
     padding: 0.5rem 2rem;
