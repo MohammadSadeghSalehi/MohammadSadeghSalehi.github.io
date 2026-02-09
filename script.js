@@ -229,3 +229,22 @@ function setupThemeToggle() {
         }
     });
 }
+
+function applyTheme(theme) {
+    const root = document.documentElement;
+
+    // Apply CSS Variables
+    if (theme.primaryColor) root.style.setProperty('--primary-color', theme.primaryColor);
+    if (theme.backgroundColor) root.style.setProperty('--bg-color', theme.backgroundColor);
+    if (theme.textColor) root.style.setProperty('--text-color', theme.textColor);
+    if (theme.sidebarColor) root.style.setProperty('--sidebar-bg', theme.sidebarColor);
+
+    // Update Fluid Background
+    if (window.updateFluidColors) {
+        window.updateFluidColors(
+            theme.primaryColor,
+            theme.secondaryColor || '#8b5cf6',
+            theme.backgroundColor
+        );
+    }
+}
