@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupMobileMenu() {
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('main-nav');
-    
-    if(toggle && nav) {
+
+    if (toggle && nav) {
         toggle.addEventListener('click', () => {
             nav.classList.toggle('open');
             const icon = toggle.querySelector('i');
-            if(nav.classList.contains('open')) {
+            if (nav.classList.contains('open')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
             } else {
@@ -35,10 +35,12 @@ function setupMobileMenu() {
 
 async function fetchData() {
     try {
-        const response = await fetch('data.json');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        // Use global variable from data.js
+        if (typeof SITE_DATA === 'undefined') {
+            throw new Error('SITE_DATA is not defined. Ensure data.js is loaded.');
+        }
 
-        const data = await response.json();
+        const data = SITE_DATA;
         renderData(data);
 
         if (data.theme) {
@@ -49,8 +51,11 @@ async function fetchData() {
             }
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
-        document.querySelector('.content-area').innerHTML = `<p>Error loading data.json: ${error.message}</p>`;
+        console.error('Error loading data:', error);
+        document.querySelector('.content-area').innerHTML = `<div style="text-align:center; padding:2rem;">
+            <h2>Error Loading Content</h2>
+            <p>${error.message}</p>
+        </div>`;
     }
 }
 

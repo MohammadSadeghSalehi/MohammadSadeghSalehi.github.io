@@ -460,21 +460,4 @@ body {
 }
 
 /* Mobile */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .content-area {
-        margin-left: 0;
-        padding: 2rem;
-    }
-
-    .app-container {
-        flex-direction: column;
-    }
-}
+/* Mobile adjustments for Top Bar are already handled above */
