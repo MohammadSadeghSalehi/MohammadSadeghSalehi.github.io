@@ -97,11 +97,8 @@ const advectionShader = `
 
 const vertexShaderSrc = `
 attribute vec2 a_position;
-attribute vec2 a_texCoord;
-varying vec2 v_texCoord;
 void main() {
    gl_Position = vec4(a_position, 0, 1);
-   v_texCoord = a_texCoord;
 }
 `;
 
@@ -165,19 +162,19 @@ void main() {
     float mix1 = smoothstep(0.0, 1.0, f);
     float mix2 = smoothstep(0.0, 1.0, r.y);
     
-    // Lower opacity for the dynamic colors to keep text readable
+    // Higher opacity for visibility
     // Mix u_color1 (Primary)
-    color = mix(color, u_color1, mix1 * 0.25); 
+    color = mix(color, u_color1, mix1 * 0.5); 
     
     // Mix u_color2 (Secondary)
-    color = mix(color, u_color2, mix2 * 0.2); 
+    color = mix(color, u_color2, mix2 * 0.4); 
 
-    // Mouse Interaction (Soft glow)
+    // Mouse Interaction (Stronger glow)
     vec2 mouseUV = u_mouse;
     mouseUV.x *= u_resolution.x / u_resolution.y;
     float dist = distance(st, mouseUV);
     float hover = smoothstep(0.4, 0.0, dist);
-    color += hover * 0.1 * u_color1;
+    color += hover * 0.3 * u_color1;
 
     gl_FragColor = vec4(color, 1.0);
 }
@@ -241,7 +238,6 @@ const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSrc);
 const program = createProgram(gl, vertexShader, fragmentShader);
 
 const positionAttributeLocation = gl.getAttribLocation(program, "a_position");
-const texCoordAttributeLocation = gl.getAttribLocation(program, "a_texCoord");
 
 const positionBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -254,16 +250,7 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
     1, 1,
 ]), gl.STATIC_DRAW);
 
-const texCoordBuffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    0.0, 0.0,
-    1.0, 0.0,
-    0.0, 1.0,
-    0.0, 1.0,
-    1.0, 0.0,
-    1.0, 1.0,
-]), gl.STATIC_DRAW);
+/* Unused texture coords removed to prevent optimization errors */
 
 let mouseX = 0;
 let mouseY = 0;
@@ -295,10 +282,6 @@ function render(time) {
     gl.enableVertexAttribArray(positionAttributeLocation);
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
-
-    gl.enableVertexAttribArray(texCoordAttributeLocation);
-    gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-    gl.vertexAttribPointer(texCoordAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 
     // Uniforms
     gl.uniform2f(gl.getUniformLocation(program, "u_resolution"), gl.canvas.width, gl.canvas.height);

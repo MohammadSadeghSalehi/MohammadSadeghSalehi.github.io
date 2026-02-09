@@ -27,6 +27,14 @@
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
 }
 
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: transparent;
+}
+
 * {
     margin: 0;
     padding: 0;
