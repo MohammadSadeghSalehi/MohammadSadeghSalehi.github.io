@@ -69,6 +69,8 @@ body {
     border-right: 1px solid var(--border-color);
     padding: 2rem;
     position: fixed;
+    top: 0;
+    left: 0;
     height: 100vh;
     overflow-y: auto;
     display: flex;

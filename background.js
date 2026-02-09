@@ -6,6 +6,13 @@
 
 const canvas = document.createElement('canvas');
 canvas.id = 'fluid-canvas';
+canvas.style.position = 'fixed';
+canvas.style.top = '0';
+canvas.style.left = '0';
+canvas.style.width = '100%';
+canvas.style.height = '100vh';
+canvas.style.zIndex = '-1';
+canvas.style.pointerEvents = 'none';
 document.body.prepend(canvas);
 
 // Configuration
