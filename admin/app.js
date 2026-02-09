@@ -12,13 +12,24 @@ openBtn.addEventListener('click', async () => {
     try {
         [fileHandle] = await window.showOpenFilePicker({
             types: [{
-                description: 'JSON Files',
-                accept: { 'application/json': ['.json'] }
+                description: 'JS Data File',
+                accept: { 'text/javascript': ['.js'] }
             }]
         });
         const file = await fileHandle.getFile();
         const text = await file.text();
-        siteData = JSON.parse(text);
+
+        // Remove "const SITE_DATA = " and trailing ";"
+        // Handle potential newlines or spaces
+        let jsonStr = text.trim();
+        if (jsonStr.startsWith('const SITE_DATA =')) {
+            jsonStr = jsonStr.replace(/^const SITE_DATA\s*=\s*/, '');
+        }
+        if (jsonStr.endsWith(';')) {
+            jsonStr = jsonStr.slice(0, -1);
+        }
+
+        siteData = JSON.parse(jsonStr);
 
         initEditor();
         editorArea.classList.remove('hidden');
@@ -26,23 +37,26 @@ openBtn.addEventListener('click', async () => {
         showStatus('File loaded successfully', 'success');
     } catch (err) {
         console.error(err);
-        showStatus('Failed to open file', 'error');
+        showStatus('Failed to open file: ' + err.message, 'error');
     }
 });
 
 saveBtn.addEventListener('click', async () => {
     if (!fileHandle) return;
     try {
-        // Sync all Quill instances content back to siteData before saving
-        // (Though we also attach on-text-change listeners, this is a safety net)
+        // Sync all Quill instances content back to siteData
+        // (already handled by listeners but good to be safe if we added manual sync later)
 
         const writable = await fileHandle.createWritable();
-        await writable.write(JSON.stringify(siteData, null, 2));
+        const jsonStr = JSON.stringify(siteData, null, 2);
+        const jsContent = `const SITE_DATA = ${jsonStr};`;
+
+        await writable.write(jsContent);
         await writable.close();
         showStatus('Changes saved!', 'success');
     } catch (err) {
         console.error(err);
-        showStatus('Failed to save changes', 'error');
+        showStatus('Failed to save changes: ' + err.message, 'error');
     }
 });
 
