@@ -115,34 +115,57 @@ uniform vec3 u_color1;
 uniform vec3 u_color2;
 uniform vec3 u_bg_color;
 
+// Simplex noise function
+vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
+
+float snoise(vec2 v){
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+           -0.577350269189626, 0.024390243902439);
+  vec2 i  = floor(v + dot(v, C.yy) );
+  vec2 x0 = v -   i + dot(i, C.xx);
+  vec2 i1;
+  i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
+  + i.x + vec3(0.0, i1.x, 1.0 ));
+  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  return 105.0 * dot( m*m, vec3( dot(p.x,x0), dot(p.y,x12.xy), dot(p.z,x12.zw) ) );
+}
+
 void main() {
     vec2 st = gl_FragCoord.xy / u_resolution.xy;
+    float time = u_time * 0.15;
     
-    // Liquid/Ripple effect
-    float time = u_time * 0.2; // Slower, more elegant
-    
-    // Smooth distorted gradient
+    // Mouse influence
     float dist = distance(st, u_mouse);
-    float ripple = sin(dist * 15.0 - time * 3.0) * 0.02; // More subtle ripple
+    float mouseWave = smoothstep(0.4, 0.0, dist) * 0.1;
     
-    // Organic wave movement
-    float wave = sin(st.x * 3.0 + time) * cos(st.y * 2.0 + time * 0.5) * 0.2;
+    // Organic Flow
+    float n1 = snoise(st * 3.0 + time + u_scroll * 0.05);
+    float n2 = snoise(st * 6.0 - time * 0.5);
     
-    // Combine for a mesh distortion feel
-    vec2 pos = st + vec2(wave);
+    // Distorted coordinate for color mixing
+    vec2 pos = st + vec2(n1, n2) * 0.2;
+    pos += mouseWave;
     
-    // Gradient mix
-    vec3 color = mix(u_color1, u_color2, pos.y + pos.x);
+    // Antigravity style blending
+    // Core background
+    vec3 color = u_bg_color;
     
-    // Add background color influence (so it matches the site theme base)
-    color = mix(u_bg_color, color, 0.6); 
+    // Flowing blobs
+    float blob1 = smoothstep(0.3, 0.7, n1 * 0.5 + 0.5);
+    float blob2 = smoothstep(0.3, 0.7, n2 * 0.5 + 0.5);
     
-    // Apply subtle ripple highlight
-    color += ripple * 0.1;
+    // Mix colors dynamically
+    color = mix(color, u_color1, blob1);
+    color = mix(color, u_color2, blob2 * 0.8);
     
-    // Vignette for depth
-    float vignette = 1.0 - length(st - 0.5) * 0.5;
-    color *= vignette;
+    // Soft light/glow
+    float glow = 1.0 - length(st - 0.5);
+    color += glow * 0.1;
     
     gl_FragColor = vec4(color, 1.0);
 }

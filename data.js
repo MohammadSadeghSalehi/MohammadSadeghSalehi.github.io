@@ -293,9 +293,9 @@ const SITE_DATA = {
     ],
     "theme": {
         "primaryColor": "#6366f1",
-        "secondaryColor": "#8b5cf6",
-        "backgroundColor": "#0f172a",
-        "textColor": "#f1f5f9",
-        "sidebarColor": "rgba(30, 41, 59, 0.7)"
+        "secondaryColor": "#a5b4fc",
+        "backgroundColor": "#f8fafc",
+        "textColor": "#1e293b",
+        "sidebarColor": "rgba(255, 255, 255, 0.8)"
     }
 };

@@ -13,27 +13,34 @@
 
 <body>
     <div class="app-container">
-        <header class="sidebar">
-            <div class="profile-section">
-                <img src="" alt="Profile" id="profile-image" class="profile-image">
-                <h1 id="profile-name"></h1>
-                <p id="profile-role"></p>
-                <div class="social-links" id="social-links"></div>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#about" class="active"><i class="fas fa-user"></i> About</a></li>
-                    <li><a href="#news"><i class="fas fa-newspaper"></i> News</a></li>
-                    <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
-                    <li><a href="#publications"><i class="fas fa-file-alt"></i> Publications</a></li>
-                    <li><a href="#talks"><i class="fas fa-microphone"></i> Talks</a></li>
-                    <li><a href="#teaching"><i class="fas fa-chalkboard-teacher"></i> Teaching</a></li>
-                </ul>
-            </nav>
-            <div class="theme-toggle">
-                <button id="theme-btn" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
+        <header class="top-bar">
+            <div class="top-bar-content">
+                <div class="profile-summary">
+                    <img src="" alt="Profile" id="profile-image" class="profile-image-sm">
+                    <div class="profile-text">
+                        <h1 id="profile-name"></h1>
+                        <p id="profile-role"></p>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
                 </button>
+
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li><a href="#about" class="active">About</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#talks">Talks</a></li>
+                        <li><a href="#teaching">Teaching</a></li>
+                    </ul>
+                    <div class="social-links-header" id="social-links"></div>
+                    <button id="theme-btn" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                         <i class="fas fa-moon"></i>
+                    </button>
+                </nav>
             </div>
         </header>
 

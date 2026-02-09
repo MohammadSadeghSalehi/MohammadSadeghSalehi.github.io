@@ -20,13 +20,13 @@ openBtn.addEventListener('click', async () => {
         const text = await file.text();
 
         // Remove "const SITE_DATA = " and trailing ";"
-        // Handle potential newlines or spaces
         let jsonStr = text.trim();
+        // Naive clean up, robust enough for our file
         if (jsonStr.startsWith('const SITE_DATA =')) {
-            jsonStr = jsonStr.replace(/^const SITE_DATA\s*=\s*/, '');
+            jsonStr = jsonStr.substring('const SITE_DATA ='.length);
         }
         if (jsonStr.endsWith(';')) {
-            jsonStr = jsonStr.slice(0, -1);
+            jsonStr = jsonStr.substring(0, jsonStr.length - 1);
         }
 
         siteData = JSON.parse(jsonStr);
@@ -44,10 +44,8 @@ openBtn.addEventListener('click', async () => {
 saveBtn.addEventListener('click', async () => {
     if (!fileHandle) return;
     try {
-        // Sync all Quill instances content back to siteData
-        // (already handled by listeners but good to be safe if we added manual sync later)
-
         const writable = await fileHandle.createWritable();
+
         const jsonStr = JSON.stringify(siteData, null, 2);
         const jsContent = `const SITE_DATA = ${jsonStr};`;
 
