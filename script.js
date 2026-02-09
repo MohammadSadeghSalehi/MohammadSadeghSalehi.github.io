@@ -11,114 +11,143 @@ async function fetchData() {
         renderData(data);
     } catch (error) {
         console.error('Error fetching data:', error);
+        document.querySelector('.content-area').innerHTML = '<p>Error loading data.json. Please ensure it exists.</p>';
     }
 }
 
 function renderData(data) {
-    // Profile
-    document.getElementById('profile-image').src = data.profile.image;
-    document.getElementById('profile-name').textContent = data.profile.name;
-    document.getElementById('profile-role').textContent = data.profile.role;
-    
-    // Social Links
-    const socialContainer = document.getElementById('social-links');
-    socialContainer.innerHTML = data.profile.socials.map(link => `
-        <a href="${link.url}" target="_blank" aria-label="${link.name}" title="${link.name}">
-            <i class="${link.icon}"></i>
-        </a>
-    `).join('');
+    const setHtml = (id, content) => {
+        const el = document.getElementById(id);
+        if (el && content) el.innerHTML = content;
+    };
 
-    // Bio
-    document.getElementById('bio-text').textContent = data.biography;
+    const setText = (id, content) => {
+        const el = document.getElementById(id);
+        if (el && content) el.textContent = content;
+    };
+
+    // Profile
+    if (data.profile) {
+        document.getElementById('profile-image').src = data.profile.image || '';
+        setHtml('profile-name', data.profile.name); // Using innerHTML to allow links in name if desired
+        setText('profile-role', data.profile.role);
+
+        // Social Links
+        const socialContainer = document.getElementById('social-links');
+        if (socialContainer && data.profile.socials) {
+            socialContainer.innerHTML = data.profile.socials.map(link => `
+                <a href="${link.url}" target="_blank" aria-label="${link.name}" title="${link.name}">
+                    <i class="${link.icon}"></i>
+                </a>
+            `).join('');
+        }
+    }
+
+    // Bio - Supports HTML
+    if (data.biography) {
+        setHtml('bio-text', data.biography);
+    }
 
     // Interests
     const interestsContainer = document.getElementById('interests-list');
-    interestsContainer.innerHTML = data.interests.map(item => `
-        <span class="tag">${item}</span>
-    `).join('');
+    if (interestsContainer && data.interests) {
+        interestsContainer.innerHTML = data.interests.map(item => `
+            <span class="tag">${item}</span>
+        `).join('');
+    }
 
     // Education
     const educationContainer = document.getElementById('education-list');
-    educationContainer.innerHTML = data.education.map(item => `
-        <div class="timeline-item">
-            <div class="timeline-degree">${item.degree}</div>
-            <div class="timeline-institution">${item.institution}</div>
-            <div class="timeline-period">${item.period}</div>
-        </div>
-    `).join('');
+    if (educationContainer && data.education) {
+        educationContainer.innerHTML = data.education.map(item => `
+            <div class="timeline-item">
+                <div class="timeline-degree">${item.degree}</div>
+                <div class="timeline-institution">${item.institution}</div>
+                <div class="timeline-period">${item.period}</div>
+            </div>
+        `).join('');
+    }
 
     // News
     const newsContainer = document.getElementById('news-list');
-    newsContainer.innerHTML = data.news.map(item => `
-        <div class="card">
-            <div class="card-header">
-                <span class="card-date">${item.date}</span>
+    if (newsContainer && data.news) {
+        newsContainer.innerHTML = data.news.map(item => `
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-date">${item.date}</span>
+                </div>
+                <!-- Title supports links -->
+                <h3 class="card-title">${item.title}</h3>
+                <!-- Description supports Rich Text -->
+                <div class="card-description">${item.description}</div>
             </div>
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-description">${item.description}</p>
-        </div>
-    `).join('');
+        `).join('');
+    }
 
     // Projects
     const projectsContainer = document.getElementById('projects-list');
-    projectsContainer.innerHTML = data.projects.map(item => `
-        <div class="card">
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-description">
-                <strong>Supervisors:</strong> ${item.supervisors}<br>
-                ${item.partnership ? `<strong>Partnership:</strong> ${item.partnership}` : ''}
-            </p>
-            ${item.link ? `
-                <div class="card-links">
-                    <a href="${item.link}" target="_blank" class="btn-sm">More Info</a>
-                </div>
-            ` : ''}
-        </div>
-    `).join('');
+    if (projectsContainer && data.projects) {
+        projectsContainer.innerHTML = data.projects.map(item => `
+            <div class="card">
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-description">
+                    ${item.supervisors ? `<strong>Supervisors:</strong> ${item.supervisors}<br>` : ''}
+                    ${item.partnership ? `<strong>Partnership:</strong> ${item.partnership}` : ''}
+                </p>
+                ${item.description ? `<div class="card-description rich-text mt-2">${item.description}</div>` : ''}
+                ${item.link ? `
+                    <div class="card-links">
+                        <a href="${item.link}" target="_blank" class="btn-sm">More Info</a>
+                    </div>
+                ` : ''}
+            </div>
+        `).join('');
+    }
 
     // Publications
     const pubsContainer = document.getElementById('publications-list');
-    pubsContainer.innerHTML = data.publications.map(item => `
-        <div class="card">
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-description">
-                <strong>Authors:</strong> ${item.authors}<br>
-                <strong>Year:</strong> ${item.year}
-            </p>
-            <div class="card-links">
-                ${item.links.map(link => `
-                    <a href="${link.url}" target="_blank" class="btn-sm">${link.label}</a>
-                `).join('')}
+    if (pubsContainer && data.publications) {
+        pubsContainer.innerHTML = data.publications.map(item => `
+            <div class="card">
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-description">
+                    <strong>Authors:</strong> ${item.authors}<br>
+                    <strong>Year:</strong> ${item.year}
+                </p>
+                <div class="card-links">
+                    ${item.links && Array.isArray(item.links) ? item.links.map(link => `
+                        <a href="${link.url}" target="_blank" class="btn-sm">${link.label}</a>
+                    `).join('') : ''}
+                </div>
             </div>
-        </div>
-    `).join('');
+        `).join('');
+    }
 
     // Talks
     const talksContainer = document.getElementById('talks-list');
-    talksContainer.innerHTML = data.talks.map(item => `
-        <div class="card">
-            <h3 class="card-title">${item.title}</h3>
-            <p class="card-description">${item.event}</p>
-        </div>
-    `).join('');
+    if (talksContainer && data.talks) {
+        talksContainer.innerHTML = data.talks.map(item => `
+            <div class="card">
+                <h3 class="card-title">${item.title}</h3>
+                <p class="card-description">${item.event}</p>
+            </div>
+        `).join('');
+    }
 
     // Teaching
     const teachingContainer = document.getElementById('teaching-list');
-    teachingContainer.innerHTML = data.teaching.map(item => `
-        <div class="card">
-            <h3 class="card-title">${item.role}</h3>
-            <p class="card-description">
-                <strong>Course:</strong> ${item.course}<br>
-                <strong>Period:</strong> ${item.period}<br>
-                <strong>Institution:</strong> ${item.institution}
-            </p>
-        </div>
-    `).join('');
-
-    // Contact
-    const contactContainer = document.getElementById('contact-list');
-    // Using profile info for contact
-    // You could also iterate over profile.socials here if desired or specific contact entries
+    if (teachingContainer && data.teaching) {
+        teachingContainer.innerHTML = data.teaching.map(item => `
+            <div class="card">
+                <h3 class="card-title">${item.role}</h3>
+                <p class="card-description">
+                    <strong>Course:</strong> ${item.course}<br>
+                    <strong>Period:</strong> ${item.period}<br>
+                    <strong>Institution:</strong> ${item.institution}
+                </p>
+            </div>
+        `).join('');
+    }
 }
 
 function setupNavigation() {
@@ -140,10 +169,10 @@ function setupNavigation() {
                     section.classList.add('active');
                 }
             });
-            
+
             // Scroll to top of content on mobile
-            if(window.innerWidth <= 768) {
-                document.querySelector('.content-area').scrollIntoView({behavior: 'smooth'});
+            if (window.innerWidth <= 768) {
+                document.querySelector('.content-area').scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
@@ -152,7 +181,7 @@ function setupNavigation() {
 function setupThemeToggle() {
     const btn = document.getElementById('theme-btn');
     const icon = btn.querySelector('i');
-    
+
     // Check saved theme
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {

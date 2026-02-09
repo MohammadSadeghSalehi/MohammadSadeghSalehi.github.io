@@ -1,5 +1,6 @@
 let fileHandle;
 let siteData = {};
+let quillInstances = []; // Track editors to update data on save/change
 
 const openBtn = document.getElementById('open-btn');
 const saveBtn = document.getElementById('save-btn');
@@ -32,6 +33,9 @@ openBtn.addEventListener('click', async () => {
 saveBtn.addEventListener('click', async () => {
     if (!fileHandle) return;
     try {
+        // Sync all Quill instances content back to siteData before saving
+        // (Though we also attach on-text-change listeners, this is a safety net)
+
         const writable = await fileHandle.createWritable();
         await writable.write(JSON.stringify(siteData, null, 2));
         await writable.close();
@@ -43,6 +47,7 @@ saveBtn.addEventListener('click', async () => {
 });
 
 function initEditor() {
+    quillInstances = []; // Reset instances
     renderTabs();
     setupTabSwitching();
 }
@@ -53,8 +58,8 @@ function renderTabs() {
     // Profile Tab
     createTabPane('profile', createProfileForm());
 
-    // Bio Tab
-    createTabPane('biography', createTextareaForm('biography', 'Biography'));
+    // Bio Tab - RICH TEXT
+    createTabPane('biography', createRichTextForm('biography', 'Biography'));
 
     // Interests
     createTabPane('interests', createSimpleArrayForm('interests', 'Interest'));
@@ -66,19 +71,20 @@ function renderTabs() {
         { key: 'period', label: 'Period' }
     ]));
 
-    // News
+    // News - RICH TEXT for Description
     createTabPane('news', createObjectArrayForm('news', [
         { key: 'date', label: 'Date' },
-        { key: 'title', label: 'Title' },
-        { key: 'description', label: 'Description', type: 'textarea' }
+        { key: 'title', label: 'Title (supports simple HTML like links)' },
+        { key: 'description', label: 'Description', type: 'richtext' }
     ]));
 
-    // Projects
+    // Projects - RICH TEXT for Description/Title
     createTabPane('projects', createObjectArrayForm('projects', [
-        { key: 'title', label: 'Title' },
+        { key: 'title', label: 'Title (supports links like <a href="...">...</a>)' },
         { key: 'supervisors', label: 'Supervisors' },
         { key: 'partnership', label: 'Partnership' },
-        { key: 'link', label: 'Link' }
+        { key: 'link', label: 'Link' },
+        { key: 'description', label: 'Description', type: 'richtext' } // Optional description field if needed
     ]));
 
     // Publications
@@ -86,8 +92,7 @@ function renderTabs() {
         { key: 'title', label: 'Title' },
         { key: 'authors', label: 'Authors' },
         { key: 'year', label: 'Year' },
-        // Simple link handler for now
-        { key: 'id', label: 'ID' }
+        { key: 'links', label: 'Links (JSON format)', type: 'textarea' } // Keeping simple for now
     ]));
 
     // Talks
@@ -125,7 +130,7 @@ function setupTabSwitching() {
     });
 }
 
-// Form Generators
+// --- Form Generators ---
 
 function createProfileForm() {
     const container = document.createElement('div');
@@ -147,14 +152,65 @@ window.updateProfileField = (field, value) => {
     siteData.profile[field] = value;
 };
 
-function createTextareaForm(key, label) {
+// --- Quill Helper ---
+function initQuill(container, initialContent, callback) {
+    // Basic toolbar configuration
+    const toolbarOptions = [
+        [{ 'header': [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['link', 'image'],
+        ['clean']                                         // remove formatting button
+    ];
+
+    const quill = new Quill(container, {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOptions
+        }
+    });
+
+    // Set initial content
+    if (initialContent) {
+        quill.root.innerHTML = initialContent;
+    }
+
+    // Listener
+    quill.on('text-change', () => {
+        const html = quill.root.innerHTML;
+        callback(html);
+    });
+
+    quillInstances.push(quill);
+    return quill;
+}
+
+function createRichTextForm(key, label) {
     const container = document.createElement('div');
-    container.innerHTML = `
-        <div class="form-group">
-            <label>${label}</label>
-            <textarea onchange="siteData['${key}'] = this.value">${siteData[key] || ''}</textarea>
-        </div>
-    `;
+    const group = document.createElement('div');
+    group.className = 'form-group';
+
+    const labelEl = document.createElement('label');
+    labelEl.textContent = label;
+    group.appendChild(labelEl);
+
+    // Quill container
+    const editorDiv = document.createElement('div');
+    editorDiv.style.height = '200px';
+    group.appendChild(editorDiv);
+
+    container.appendChild(group);
+
+    // Init Quill after appending to DOM is safer, but here we depend on it being in the flow
+    // We put it in a timeout to ensure it renders correctly if hidden initially (tabs)
+    setTimeout(() => {
+        initQuill(editorDiv, siteData[key] || '', (html) => {
+            siteData[key] = html;
+        });
+    }, 0);
+
     return container;
 }
 
@@ -189,13 +245,9 @@ function createSimpleArrayForm(key, itemLabel) {
     container.appendChild(list);
     container.appendChild(addBtn);
 
-    // Bind global helpers
     window.updateSimpleArray = (k, i, v) => siteData[k][i] = v;
     window.removeSimpleArrayItem = (k, i) => {
         siteData[k].splice(i, 1);
-        // re-render needed to fix indices
-        // Ideally we'd have a better framework but this works for simple cases
-        // Re-triggering tab click to refresh (lazy hack)
         document.querySelector(`.tab-btn[data-tab="${k}"]`).click();
     };
 
@@ -212,17 +264,58 @@ function createObjectArrayForm(key, fields) {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'array-item';
 
-            let html = `<div class="array-header"><strong>Item ${index + 1}</strong> <button class="btn danger" onclick="removeObjectArrayItem('${key}', ${index})">Remove</button></div>`;
+            let header = `<div class="array-header"><strong>Item ${index + 1}</strong> <button class="btn danger" onclick="removeObjectArrayItem('${key}', ${index})">Remove</button></div>`;
+            itemDiv.innerHTML = header;
 
             fields.forEach(f => {
                 const val = item[f.key] || '';
-                if (f.type === 'textarea') {
-                    html += `<div class="form-group"><label>${f.label}</label><textarea onchange="updateObjectArray('${key}', ${index}, '${f.key}', this.value)">${val}</textarea></div>`;
+                const formGroup = document.createElement('div');
+                formGroup.className = 'form-group';
+
+                const label = document.createElement('label');
+                label.textContent = f.label;
+                formGroup.appendChild(label);
+
+                if (f.type === 'richtext') {
+                    const editorContainer = document.createElement('div');
+                    formGroup.appendChild(editorContainer);
+                    itemDiv.appendChild(formGroup);
+
+                    setTimeout(() => {
+                        initQuill(editorContainer, val, (html) => {
+                            siteData[key][index][f.key] = html;
+                        });
+                    }, 0);
+
+                } else if (f.type === 'textarea') {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = typeof val === 'object' ? JSON.stringify(val) : val;
+                    textarea.onchange = (e) => {
+                        // Special handling for links (JSON)
+                        if (f.key === 'links') {
+                            try {
+                                siteData[key][index][f.key] = JSON.parse(e.target.value);
+                            } catch (err) {
+                                console.error("Invalid JSON");
+                            }
+                        } else {
+                            siteData[key][index][f.key] = e.target.value;
+                        }
+                    };
+                    formGroup.appendChild(textarea);
+                    itemDiv.appendChild(formGroup);
                 } else {
-                    html += `<div class="form-group"><label>${f.label}</label><input type="text" value="${val}" onchange="updateObjectArray('${key}', ${index}, '${f.key}', this.value)"></div>`;
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = val;
+                    input.onchange = (e) => {
+                        siteData[key][index][f.key] = e.target.value;
+                    };
+                    formGroup.appendChild(input);
+                    itemDiv.appendChild(formGroup);
                 }
             });
-            itemDiv.innerHTML = html;
+
             container.appendChild(itemDiv);
         });
 
@@ -237,11 +330,9 @@ function createObjectArrayForm(key, fields) {
         container.appendChild(addBtn);
     };
 
-    // Bind helpers
-    window.updateObjectArray = (k, i, field, v) => siteData[k][i][field] = v;
     window.removeObjectArrayItem = (k, i) => {
         siteData[k].splice(i, 1);
-        render(); // re-render immediate
+        render();
     };
 
     render();

@@ -33,7 +33,7 @@
       }
     ]
   },
-  "biography": "I am a researcher and engineer working at the intersection of computer vision, 3D AI, generative modelling, optimisation, and machine learning. My work spans both academic research and industrial R&D, with a focus on developing algorithms for hyperparameter learning, 3D semantic modelling, vision-language models, diffusion models, and test-time adaptation. These methods underpin applications in image reconstruction, image processing, machine vision, implicit neural networks, and data-driven modelling.\n\nI currently work on generative 3D and AI systems at Zero One Creative, contributing to the development of Amara, an AI platform designed to generate and iterate full 3D environments from simple prompts for creative and production workflows.\n\nI did PhD studies and hold an MRes in Statistical Applied Mathematics, where I was supervised by Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee. Previously, I earned an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris. My research interests continue to centre on bridging rigorous mathematical methods with practical machine learning systems for large-scale visual and generative modelling.",
+  "biography": "<p>I am a <strong>researcher </strong>and <strong>engineer </strong>working at the intersection of <strong>computer vision, 3D AI, generative modelling, optimisation, and machine learning</strong>. My work spans both academic research and industrial R&amp;D, with a focus on developing algorithms for hyperparameter learning, 3D semantic modelling, vision-language models, diffusion models, and test-time adaptation. These methods underpin applications in image reconstruction, image processing, machine vision, implicit neural networks, and data-driven modelling.\n\nI currently work on generative 3D and AI systems at <a href=\"https://amara.01c.ai/\" target=\"_blank\"><strong>Zero One Creative</strong></a>, contributing to the development of Amara, an AI platform designed to generate and iterate full 3D environments from simple prompts for creative and production workflows.\n\nI did PhD studies and hold an MRes in Statistical Applied Mathematics, where I was supervised by Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee. Previously, I earned an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris. My research interests continue to centre on bridging rigorous mathematical methods with practical machine learning systems for large-scale visual and generative modelling.</p>",
   "interests": [
     "Computer Vision ",
     "Generative Modelling",
@@ -63,42 +63,42 @@
     {
       "date": "Apr-25",
       "title": "Papers accepted to SIMODS",
-      "description": "Our paper “An Adaptively Inexact First-Order Method for Bilevel Optimization with Application to Hyperparameter Learning” has been accepted to the SIAM Journal on Mathematics of Data Science (SIMODS)."
+      "description": "<p>Our paper “An Adaptively Inexact First-Order Method for Bilevel Optimization with Application to Hyperparameter Learning” has been accepted to the SIAM Journal on Mathematics of Data Science (SIMODS).</p>"
     },
     {
       "date": "Feb-25",
       "title": "Papers accepted to SSVM 2025",
-      "description": "Our papers \"Bilevel Learning with Inexact Stochastic Gradients\" and \"Fast Inexact Bilevel Optimization for Analytical Deep Image Priors\" accepted to 10th International Conference on Scale Space and Variational Methods in Computer Vision (SSVM 2025)."
+      "description": "<p>Our papers \"Bilevel Learning with Inexact Stochastic Gradients\" and \"Fast Inexact Bilevel Optimization for Analytical Deep Image Priors\" accepted to 10th International Conference on Scale Space and Variational Methods in Computer Vision (SSVM 2025).</p>"
     },
     {
       "date": "Dec-24",
       "title": "New Research Preprint (ISGD)",
-      "description": "New preprint \"Bilevel Learning with Inexact Stochastic Gradients\" with Subhadip Mukherjee, Lindon Roberts, and Matthias Ehrhardt."
+      "description": "<p>New preprint \"Bilevel Learning with Inexact Stochastic Gradients\" with Subhadip Mukherjee, Lindon Roberts, and Matthias Ehrhardt.</p>"
     },
     {
       "date": "Dec-24",
       "title": "New Research Preprint (Piggy)",
-      "description": "New preprint \"An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation\" with Lea Bogensperger, Matthias Ehrhardt, Thomas Pock, and Hok Shing Wong."
+      "description": "<p>New preprint \"An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation\" with Lea Bogensperger, Matthias Ehrhardt, Thomas Pock, and Hok Shing Wong.</p>"
     },
     {
       "date": "Sep-24",
       "title": "Conference Presentation in 4th IMA Conference on Inverse Problems",
-      "description": "Presented research findings at the 4th IMA Conference on Inverse Problems from Theory to Application, Bath, UK."
+      "description": "<p>Presented research findings at the 4th IMA Conference on Inverse Problems from Theory to Application, Bath, UK.</p>"
     },
     {
       "date": "Jun-24",
       "title": "Conference Presentation in EUROPT 2024",
-      "description": "Presented research findings at the 21st Conference on Advances in Continuous Optimization, Lund, Sweden."
+      "description": "<p>Presented research findings at the 21st Conference on Advances in Continuous Optimization, Lund, Sweden.</p>"
     },
     {
       "date": "May-24",
       "title": "Conference Presentation in ICMS Big Data Inverse Problems",
-      "description": "Invited speaker at the ICMS Workshop on Big Data Inverse Problems, Edinburgh, UK, presenting MAID."
+      "description": "<p>Invited speaker at the ICMS Workshop on Big Data Inverse Problems, Edinburgh, UK, presenting MAID.</p>"
     },
     {
       "date": "Aug-23",
       "title": "Conference Presentation in ICIAM 2023",
-      "description": "Presented research findings at the minisymposium \"From model-blind to model-aware learning of inverse problems in imaging\", in ICIAM 2023, Tokyo, Japan."
+      "description": "<p>Presented research findings at the minisymposium \"From model-blind to model-aware learning of inverse problems in imaging\", in ICIAM 2023, Tokyo, Japan.</p>"
     }
   ],
   "projects": [
