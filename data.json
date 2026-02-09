@@ -1,25 +1,46 @@
 {
   "profile": {
     "name": "Mohammad Sadegh Salehi",
-    "role": "PhD Candidate in Statistical Applied Mathematics",
+    "role": "Machine Learning Researcher at Zero One Creative",
     "image": "images/admin-Avatar_huae8c6c791af52d8ef59ef9191a46750d_73274_270x270_fill_q75_lanczos_center.jpg",
     "email": "mohammad-sadegh.salehi@dauphine.eu",
-    "location": "Bath, UK",
+    "location": "London, UK",
     "socials": [
-      { "name": "Email", "icon": "fas fa-envelope", "url": "mailto:mohammad-sadegh.salehi@dauphine.eu" },
-      { "name": "Twitter", "icon": "fab fa-twitter", "url": "https://twitter.com/Sadegh_Salehi97" },
-      { "name": "Google Scholar", "icon": "fas fa-graduation-cap", "url": "https://scholar.google.com/citations?user=bunZmJsAAAAJ&hl=en" },
-      { "name": "GitHub", "icon": "fab fa-github", "url": "https://github.com/MohammadSadeghSalehi" },
-      { "name": "LinkedIn", "icon": "fab fa-linkedin", "url": "https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/" }
+      {
+        "name": "Email",
+        "icon": "fas fa-envelope",
+        "url": "mailto:mohammad-sadegh.salehi@dauphine.eu"
+      },
+      {
+        "name": "Twitter",
+        "icon": "fab fa-twitter",
+        "url": "https://twitter.com/Sadegh_Salehi97"
+      },
+      {
+        "name": "Google Scholar",
+        "icon": "fas fa-graduation-cap",
+        "url": "https://scholar.google.com/citations?user=bunZmJsAAAAJ&hl=en"
+      },
+      {
+        "name": "GitHub",
+        "icon": "fab fa-github",
+        "url": "https://github.com/MohammadSadeghSalehi"
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "fab fa-linkedin",
+        "url": "https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/"
+      }
     ]
   },
-  "biography": "My interests span research and industrial R&D in Optimisation, Machine Learning, Computer Vision, Imaging Inverse Problems, and Data Science. My work focuses on developing algorithms for learning hyperparameters, particularly in tasks modelled using variational regularisation approaches. These approaches are widely used in image reconstruction, image processing, machine vision, implicit neural network training, and data science. I hold an MRes in Statistical Applied Mathematics, where I worked under the supervision of Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee. Previously, I completed an MSc in Applied and Theoretical Mathematics at PSL Research University in Paris.",
+  "biography": "I am a researcher and engineer working at the intersection of computer vision, 3D AI, generative modelling, optimisation, and machine learning. My work spans both academic research and industrial R&D, with a focus on developing algorithms for hyperparameter learning, 3D semantic modelling, vision-language models, diffusion models, and test-time adaptation. These methods underpin applications in image reconstruction, image processing, machine vision, implicit neural networks, and data-driven modelling.\n\nI currently work on generative 3D and AI systems at Zero One Creative, contributing to the development of Amara, an AI platform designed to generate and iterate full 3D environments from simple prompts for creative and production workflows.\n\nI did PhD studies and hold an MRes in Statistical Applied Mathematics, where I was supervised by Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee. Previously, I earned an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris. My research interests continue to centre on bridging rigorous mathematical methods with practical machine learning systems for large-scale visual and generative modelling.",
   "interests": [
-    "Machine Learning",
-    "Numerical Optimisation",
-    "Computational Imaging",
-    "Variational Methods & Inverse Problems",
-    "Bilevel Optimisation"
+    "Computer Vision ",
+    "Generative Modelling",
+    "Generative Modelling",
+    "Optimisation",
+    "Inverse Problems",
+    "3D modelling"
   ],
   "education": [
     {
@@ -116,7 +137,10 @@
       "year": "2023",
       "journal": "SIMODS (Accepted)",
       "links": [
-        { "label": "Preprint", "url": "https://doi.org/10.48550/arXiv.2308.10098" }
+        {
+          "label": "Preprint",
+          "url": "https://doi.org/10.48550/arXiv.2308.10098"
+        }
       ],
       "id": "maid"
     },
@@ -125,7 +149,10 @@
       "authors": "L. Bogensperger, M. J. Ehrhardt, T. Pock, M. S. Salehi, H. S. Wong",
       "year": "2024",
       "links": [
-        { "label": "Preprint", "url": "https://arxiv.org/pdf/2412.06436" }
+        {
+          "label": "Preprint",
+          "url": "https://arxiv.org/pdf/2412.06436"
+        }
       ],
       "id": "piggy"
     },
@@ -134,7 +161,10 @@
       "authors": "M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt",
       "year": "2024",
       "links": [
-        { "label": "Preprint", "url": "https://arxiv.org/abs/2412.12049" }
+        {
+          "label": "Preprint",
+          "url": "https://arxiv.org/abs/2412.12049"
+        }
       ],
       "id": "isgd"
     },
@@ -143,8 +173,14 @@
       "authors": "M. S. Salehi, T. A. Bubba, Y. Korolev",
       "year": "2025",
       "links": [
-        { "label": "Preprint", "url": "https://arxiv.org/abs/2502.09758" },
-        { "label": "DOI", "url": "https://doi.org/10.48550/arXiv.2502.09758" }
+        {
+          "label": "Preprint",
+          "url": "https://arxiv.org/abs/2502.09758"
+        },
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.48550/arXiv.2502.09758"
+        }
       ],
       "id": "adp"
     }
