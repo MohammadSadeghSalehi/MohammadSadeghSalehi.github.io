@@ -60,6 +60,39 @@ async function fetchData() {
 }
 
 function renderData(data) {
+    // Helper to parse "MMM-YY" dates (e.g., "Apr-25")
+    const parseDate = (dateStr) => {
+        if (!dateStr) return new Date(0);
+        const months = {
+            'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+            'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+        };
+        try {
+            const parts = dateStr.split('-');
+            if (parts.length !== 2) return new Date(dateStr); // Try standard parse if not MMM-YY
+            const month = months[parts[0]];
+            const year = 2000 + parseInt(parts[1]);
+            if (isNaN(month) || isNaN(year)) return new Date(dateStr);
+            return new Date(year, month);
+        } catch (e) {
+            return new Date(0);
+        }
+    };
+
+    // Sort News: Newest first
+    if (data.news && Array.isArray(data.news)) {
+        data.news.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    }
+
+    // Sort Publications: Newest year first
+    if (data.publications && Array.isArray(data.publications)) {
+        data.publications.sort((a, b) => {
+            const yearA = parseInt(a.year) || 0;
+            const yearB = parseInt(b.year) || 0;
+            return yearB - yearA;
+        });
+    }
+
     const setHtml = (id, content) => {
         const el = document.getElementById(id);
         if (el && content) el.innerHTML = content;

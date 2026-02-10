@@ -353,6 +353,28 @@ body {
         display: none;
         /* Save space on mobile */
     }
+
+    .top-bar {
+        padding: 0.5rem 1rem;
+        /* Reduce side padding */
+    }
+
+    .site-logo-img {
+        width: 32px;
+        /* Smaller logo on mobile */
+        height: 32px;
+    }
+}
+
+/* Responsive Images in Content */
+.card-description img,
+.rich-text img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: 1rem 0;
+    display: block;
+    box-shadow: var(--shadow-sm);
 }
 
 .section {
