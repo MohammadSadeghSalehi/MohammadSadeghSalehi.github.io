@@ -269,7 +269,7 @@ body {
     flex: 1;
 
     /* Glass Effect */
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.4);
@@ -281,9 +281,24 @@ body {
 }
 
 [data-theme="dark"] .content-area {
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(15, 23, 42, 0.4);
     border-color: rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Image */
+.site-logo-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: transform var(--transition);
+}
+
+.site-logo-img:hover {
+    transform: rotate(10deg) scale(1.05);
+    border-color: var(--primary-color);
 }
 
 .profile-section {
