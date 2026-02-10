@@ -51,15 +51,51 @@ body {
     min-height: 100vh;
 }
 
-#fluid-canvas {
+#floating-container {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     z-index: -1;
+    overflow: hidden;
     pointer-events: none;
-    /* Let clicks pass through */
+    /* Allow clicks to pass through */
+}
+
+.floater {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 1rem;
+    white-space: nowrap;
+    user-select: none;
+    will-change: transform;
+    /* Glassmorphism */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.floater i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+[data-theme="dark"] .floater {
+    background: rgba(30, 41, 59, 0.6);
+    color: var(--text-muted);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Ensure background transparency for content */
