@@ -5,6 +5,58 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMobileMenu();
 });
 
+// Map publication link labels to FontAwesome icons
+const LINK_ICON_MAP = {
+    'preprint': 'fas fa-file-lines',
+    'arxiv': 'fas fa-file-lines',
+    'doi': 'fas fa-link',
+    'pdf': 'fas fa-file-pdf',
+    'code': 'fab fa-github',
+    'github': 'fab fa-github',
+    'dataset': 'fas fa-database',
+    'hugging face': 'fas fa-database',
+    'huggingface': 'fas fa-database',
+    'chapter': 'fas fa-book',
+    'book': 'fas fa-book',
+    'elsevier': 'fas fa-book',
+    'video': 'fas fa-video',
+    'slides': 'fas fa-rectangle-list',
+    'project': 'fas fa-up-right-from-square',
+    'more info': 'fas fa-up-right-from-square',
+    'website': 'fas fa-globe'
+};
+
+function iconForLink(label) {
+    if (!label) return 'fas fa-up-right-from-square';
+    const key = label.toLowerCase();
+    for (const k in LINK_ICON_MAP) {
+        if (key.includes(k)) return LINK_ICON_MAP[k];
+    }
+    return 'fas fa-up-right-from-square';
+}
+
+function setupScrollReveal() {
+    const targets = document.querySelectorAll('.reveal, .card, .timeline-item, .tag, .section-title, .subsection-title');
+    targets.forEach(el => el.classList.add('reveal'));
+
+    if (!('IntersectionObserver' in window)) {
+        targets.forEach(el => el.classList.add('is-visible'));
+        return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                entry.target.style.transitionDelay = `${Math.min(i * 40, 240)}ms`;
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    targets.forEach(el => io.observe(el));
+}
+
 function setupMobileMenu() {
     const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('main-nav');
@@ -111,6 +163,14 @@ function renderData(data) {
 
         setHtml('profile-name', data.profile.name);
         setText('profile-role', data.profile.role);
+        setText('profile-tagline', data.profile.tagline || '');
+
+        const badgesEl = document.getElementById('profile-badges');
+        if (badgesEl && Array.isArray(data.profile.badges)) {
+            badgesEl.innerHTML = data.profile.badges.map(b => `
+                <span class="badge"><i class="${b.icon}"></i>${b.label}</span>
+            `).join('');
+        }
 
         // Social Links (Main Section)
         const socialMain = document.getElementById('social-links-main');
@@ -165,11 +225,9 @@ function renderData(data) {
         newsContainer.innerHTML = data.news.map(item => `
             <div class="card">
                 <div class="card-header">
-                    <span class="card-date">${item.date}</span>
+                    <span class="card-date"><i class="far fa-calendar"></i>${item.date}</span>
                 </div>
-                <!-- Title supports links -->
                 <h3 class="card-title">${item.title}</h3>
-                <!-- Description supports Rich Text -->
                 <div class="card-description">${item.description}</div>
             </div>
         `).join('');
@@ -182,13 +240,13 @@ function renderData(data) {
             <div class="card">
                 <h3 class="card-title">${item.title}</h3>
                 <p class="card-description">
-                    ${item.supervisors ? `<strong>Supervisors:</strong> ${item.supervisors}<br>` : ''}
-                    ${item.partnership ? `<strong>Partnership:</strong> ${item.partnership}` : ''}
+                    ${item.supervisors ? `<i class="fas fa-user-tie meta-icon"></i>${item.supervisors}<br>` : ''}
+                    ${item.partnership ? `<span class="badge"><i class="fas fa-handshake"></i>${item.partnership}</span>` : ''}
                 </p>
                 ${item.description ? `<div class="card-description rich-text mt-2">${item.description}</div>` : ''}
                 ${item.link ? `
                     <div class="card-links">
-                        <a href="${item.link}" target="_blank" class="btn-sm">More Info</a>
+                        <a href="${item.link}" target="_blank" class="btn-sm"><i class="fas fa-up-right-from-square"></i>More Info</a>
                     </div>
                 ` : ''}
             </div>
@@ -200,15 +258,19 @@ function renderData(data) {
     if (pubsContainer && data.publications) {
         pubsContainer.innerHTML = data.publications.map(item => `
             <div class="card">
+                <div class="card-header">
+                    <div class="pub-badges">
+                        ${item.journal ? `<span class="badge badge-venue"><i class="fas fa-bookmark"></i>${item.journal}</span>` : ''}
+                        <span class="badge badge-year"><i class="far fa-calendar"></i>${item.year}</span>
+                    </div>
+                </div>
                 <h3 class="card-title">${item.title}</h3>
                 <p class="card-description">
-                    <strong>Authors:</strong> ${item.authors}<br>
-                    ${item.journal ? `<strong>Venue:</strong> ${item.journal}<br>` : ''}
-                    <strong>Year:</strong> ${item.year}
+                    <i class="fas fa-user-group meta-icon"></i>${item.authors}
                 </p>
                 <div class="card-links">
                     ${item.links && Array.isArray(item.links) ? item.links.map(link => `
-                        <a href="${link.url}" target="_blank" class="btn-sm">${link.label}</a>
+                        <a href="${link.url}" target="_blank" class="btn-sm"><i class="${iconForLink(link.label)}"></i>${link.label}</a>
                     `).join('') : ''}
                 </div>
             </div>
@@ -221,10 +283,13 @@ function renderData(data) {
         talksContainer.innerHTML = data.talks.map(item => `
             <div class="card">
                 <h3 class="card-title">${item.title}</h3>
-                <p class="card-description">${item.event}</p>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>${item.event}</p>
             </div>
         `).join('');
     }
+
+    // Trigger scroll-reveal after DOM is populated
+    requestAnimationFrame(setupScrollReveal);
 
     // Contact
     const contactContainer = document.getElementById('contact-list');
@@ -318,7 +383,7 @@ function setupThemeToggle() {
         setTimeout(() => updateBg(false), 100);
     }
 
-    btn.addEventListener('click', () => {
+    const applyToggle = () => {
         const currentTheme = document.body.getAttribute('data-theme');
         if (currentTheme === 'dark') {
             document.body.removeAttribute('data-theme');
@@ -332,6 +397,17 @@ function setupThemeToggle() {
             icon.classList.add('fa-sun');
             localStorage.setItem('theme', 'dark');
             updateBg(true);
+        }
+    };
+
+    btn.addEventListener('click', () => {
+        // Use View Transitions API where supported for a buttery cross-fade
+        if (document.startViewTransition) {
+            document.startViewTransition(() => applyToggle());
+        } else {
+            document.body.classList.add('theme-fading');
+            applyToggle();
+            setTimeout(() => document.body.classList.remove('theme-fading'), 320);
         }
     });
 }

@@ -2,6 +2,13 @@ const SITE_DATA = {
   "profile": {
     "name": "Mohammad Sadegh Salehi",
     "role": "Machine Learning Research Engineer at Zero One Creative",
+    "tagline": "Generative 3D · Computer Vision · Bilevel Optimisation · Inverse Problems",
+    "badges": [
+      { "icon": "fas fa-cube", "label": "Generative 3D" },
+      { "icon": "fas fa-eye", "label": "Vision" },
+      { "icon": "fas fa-wave-square", "label": "Optimisation" },
+      { "icon": "fas fa-flask", "label": "Research" }
+    ],
     "image": "images/Sadegh.jpg",
     "email": "mohammad-sadegh.salehi@dauphine.eu",
     "location": "London, UK",
