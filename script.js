@@ -5,34 +5,46 @@ document.addEventListener('DOMContentLoaded', () => {
     setupMobileMenu();
 });
 
+// Inline brand SVGs for venues that don't have FontAwesome icons
+const BRAND_SVG = {
+    arxiv: `<svg class="brand-logo" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="#b31b1b" d="M85.7 96.5h67.3l67.5 81.6 18.6 24.7 18.6-24.7 67.4-81.6h67.3L286.5 247.4l140 168.1h-67.4l-79.6-96.4-23.3-30-23.3 30-79.6 96.4H85.8l140-168.1z"/></svg>`,
+    huggingface: `<svg class="brand-logo" viewBox="0 0 95 88" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="#FFD21E" d="M47.21 76.07c19.4 0 35.13-15.73 35.13-35.13S66.61 5.81 47.21 5.81 12.08 21.54 12.08 40.94 27.81 76.07 47.21 76.07Z"/><path fill="#3A3B45" d="M81.37 41.18c0 18.6-15.27 33.7-34.13 33.7s-34.13-15.1-34.13-33.7 15.27-33.7 34.13-33.7 34.13 15.1 34.13 33.7Z" opacity=".15"/><circle cx="35" cy="42" r="5" fill="#3A3B45"/><circle cx="60" cy="42" r="5" fill="#3A3B45"/><path fill="#3A3B45" d="M37 56c0-1.1.9-2 2-2h17c1.1 0 2 .9 2 2v2c0 5.52-4.48 10-10 10s-10-4.48-10-10v-2Z"/><circle cx="22" cy="50" r="6" fill="#FF9D0B" opacity=".5"/><circle cx="73" cy="50" r="6" fill="#FF9D0B" opacity=".5"/></svg>`
+};
+
 // Map publication link labels to FontAwesome icons
 const LINK_ICON_MAP = {
-    'preprint': 'fas fa-file-lines',
-    'arxiv': 'fas fa-file-lines',
     'doi': 'fas fa-link',
     'pdf': 'fas fa-file-pdf',
     'code': 'fab fa-github',
     'github': 'fab fa-github',
     'dataset': 'fas fa-database',
-    'hugging face': 'fas fa-database',
-    'huggingface': 'fas fa-database',
     'chapter': 'fas fa-book',
     'book': 'fas fa-book',
     'elsevier': 'fas fa-book',
+    'springer': 'fas fa-book',
     'video': 'fas fa-video',
     'slides': 'fas fa-rectangle-list',
     'project': 'fas fa-up-right-from-square',
     'more info': 'fas fa-up-right-from-square',
-    'website': 'fas fa-globe'
+    'website': 'fas fa-globe',
+    'preprint': 'fas fa-file-lines'
 };
 
-function iconForLink(label) {
-    if (!label) return 'fas fa-up-right-from-square';
-    const key = label.toLowerCase();
+function iconForLink(label, url) {
+    const lbl = (label || '').toLowerCase();
+    const u = (url || '').toLowerCase();
+    if (lbl.includes('arxiv') || u.includes('arxiv.org')) return { brand: 'arxiv' };
+    if (lbl.includes('hugging') || u.includes('huggingface.co')) return { brand: 'huggingface' };
     for (const k in LINK_ICON_MAP) {
-        if (key.includes(k)) return LINK_ICON_MAP[k];
+        if (lbl.includes(k)) return { fa: LINK_ICON_MAP[k] };
     }
-    return 'fas fa-up-right-from-square';
+    return { fa: 'fas fa-up-right-from-square' };
+}
+
+function renderLinkIcon(label, url) {
+    const r = iconForLink(label, url);
+    if (r.brand) return BRAND_SVG[r.brand];
+    return `<i class="${r.fa}"></i>`;
 }
 
 function setupScrollReveal() {
@@ -270,7 +282,7 @@ function renderData(data) {
                 </p>
                 <div class="card-links">
                     ${item.links && Array.isArray(item.links) ? item.links.map(link => `
-                        <a href="${link.url}" target="_blank" class="btn-sm"><i class="${iconForLink(link.label)}"></i>${link.label}</a>
+                        <a href="${link.url}" target="_blank" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
                     `).join('') : ''}
                 </div>
             </div>

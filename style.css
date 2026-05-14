@@ -252,6 +252,27 @@ body {
     transform: translateY(-3px);
 }
 
+/* Dark-mode: brighter social/header icons for visibility */
+[data-theme="dark"] .social-links-main a,
+[data-theme="dark"] .social-links-header a {
+    color: #e2e8f0;
+    text-shadow: 0 0 12px rgba(96, 165, 250, 0.35);
+}
+
+[data-theme="dark"] .social-links-main a:hover,
+[data-theme="dark"] .social-links-header a:hover {
+    color: #93c5fd;
+    text-shadow: 0 0 18px rgba(147, 197, 253, 0.6);
+}
+
+[data-theme="dark"] .theme-toggle-btn {
+    color: #e2e8f0;
+}
+[data-theme="dark"] .theme-toggle-btn:hover {
+    color: #fbbf24;
+    text-shadow: 0 0 14px rgba(251, 191, 36, 0.6);
+}
+
 
 /* Navigation */
 .main-nav {
@@ -747,6 +768,19 @@ body {
 }
 
 .btn-sm i { font-size: 0.85em; color: var(--primary-color); transition: color 0.2s ease; }
+
+.btn-sm .brand-logo {
+    height: 1em;
+    width: auto;
+    display: inline-block;
+    flex-shrink: 0;
+    transition: filter 0.2s ease;
+}
+
+/* Keep brand logos legible on the filled hover state */
+.btn-sm:hover .brand-logo {
+    filter: brightness(0) invert(1);
+}
 
 .btn-sm:hover {
     background-color: var(--primary-color);

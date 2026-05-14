@@ -2,9 +2,9 @@ const SITE_DATA = {
   "profile": {
     "name": "Mohammad Sadegh Salehi",
     "role": "Machine Learning Research Engineer at Zero One Creative",
-    "tagline": "Generative 3D · Computer Vision · Bilevel Optimisation · Inverse Problems",
+    "tagline": "Generative Models · Computer Vision · Optimisation · Inverse Problems",
     "badges": [
-      { "icon": "fas fa-cube", "label": "Generative 3D" },
+      { "icon": "fas fa-wand-magic-sparkles", "label": "Generative Models" },
       { "icon": "fas fa-eye", "label": "Vision" },
       { "icon": "fas fa-wave-square", "label": "Optimisation" },
       { "icon": "fas fa-flask", "label": "Research" }
@@ -75,6 +75,11 @@ const SITE_DATA = {
       "date": "Apr-26",
       "title": "Book chapter published in Handbook of Numerical Analysis",
       "description": "<p>Our chapter \"Learning regularization functionals for inverse problems: a comparative study\" was published in the <em>Handbook of Numerical Analysis</em> (Elsevier). Available <a href=\"https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub\" target=\"_blank\">here</a> (DOI: <a href=\"https://doi.org/10.1016/bs.hna.2026.04.001\" target=\"_blank\">10.1016/bs.hna.2026.04.001</a>).</p>"
+    },
+    {
+      "date": "May-25",
+      "title": "SSVM 2025: oral, poster & support grant",
+      "description": "<p>Attended <strong>SSVM 2025</strong> (Scale Space and Variational Methods in Computer Vision), where I gave an <strong>oral presentation</strong> of <em>\"Fast Inexact Bilevel Optimization for Analytical Deep Image Priors\"</em> and presented a <strong>poster</strong> on <em>\"Bilevel Learning with Inexact Stochastic Gradients\"</em>. Honoured to have received an <strong>SSVM support grant</strong> to attend the conference.</p>"
     },
     {
       "date": "Apr-25",
@@ -159,7 +164,7 @@ const SITE_DATA = {
       "journal": "SIAM Journal on Mathematics of Data Science (SIMODS)",
       "links": [
         {
-          "label": "Preprint",
+          "label": "arXiv",
           "url": "https://doi.org/10.48550/arXiv.2308.10098"
         }
       ],
@@ -172,7 +177,7 @@ const SITE_DATA = {
       "journal": "Journal of Mathematical Imaging and Vision (JMIV)",
       "links": [
         {
-          "label": "Preprint",
+          "label": "arXiv",
           "url": "https://arxiv.org/pdf/2412.06436"
         }
       ],
@@ -181,10 +186,15 @@ const SITE_DATA = {
     {
       "title": "Bilevel Learning with Inexact Stochastic Gradients",
       "authors": "M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt",
-      "year": "2024",
+      "year": "2025",
+      "journal": "SSVM 2025 (Scale Space and Variational Methods in Computer Vision)",
       "links": [
         {
-          "label": "Preprint",
+          "label": "Chapter (Springer)",
+          "url": "https://doi.org/10.1007/978-3-031-92366-1_27"
+        },
+        {
+          "label": "arXiv",
           "url": "https://arxiv.org/abs/2412.12049"
         }
       ],
@@ -194,14 +204,15 @@ const SITE_DATA = {
       "title": "Fast Inexact Bilevel Optimization for Analytical Deep Image Priors",
       "authors": "M. S. Salehi, T. A. Bubba, Y. Korolev",
       "year": "2025",
+      "journal": "SSVM 2025 (Scale Space and Variational Methods in Computer Vision)",
       "links": [
         {
-          "label": "Preprint",
-          "url": "https://arxiv.org/abs/2502.09758"
+          "label": "Chapter (Springer)",
+          "url": "https://doi.org/10.1007/978-3-031-92366-1_3"
         },
         {
-          "label": "DOI",
-          "url": "https://doi.org/10.48550/arXiv.2502.09758"
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2502.09758"
         }
       ],
       "id": "adp"
@@ -221,7 +232,7 @@ const SITE_DATA = {
           "url": "https://doi.org/10.1016/bs.hna.2026.04.001"
         },
         {
-          "label": "Preprint",
+          "label": "arXiv",
           "url": "https://arxiv.org/pdf/2510.01755"
         }
       ]
@@ -233,7 +244,7 @@ const SITE_DATA = {
       "journal": "arXiv preprint",
       "links": [
         {
-          "label": "Preprint",
+          "label": "arXiv",
           "url": "https://arxiv.org/abs/2604.23018"
         },
         {
@@ -249,7 +260,7 @@ const SITE_DATA = {
       "year": "2025",
       "links": [
         {
-          "label": "Preprint",
+          "label": "arXiv",
           "url": "https://arxiv.org/pdf/2511.06774"
         },
         {
