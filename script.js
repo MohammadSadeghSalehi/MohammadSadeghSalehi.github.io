@@ -203,6 +203,7 @@ function renderData(data) {
                 <h3 class="card-title">${item.title}</h3>
                 <p class="card-description">
                     <strong>Authors:</strong> ${item.authors}<br>
+                    ${item.journal ? `<strong>Venue:</strong> ${item.journal}<br>` : ''}
                     <strong>Year:</strong> ${item.year}
                 </p>
                 <div class="card-links">
@@ -221,21 +222,6 @@ function renderData(data) {
             <div class="card">
                 <h3 class="card-title">${item.title}</h3>
                 <p class="card-description">${item.event}</p>
-            </div>
-        `).join('');
-    }
-
-    // Teaching
-    const teachingContainer = document.getElementById('teaching-list');
-    if (teachingContainer && data.teaching) {
-        teachingContainer.innerHTML = data.teaching.map(item => `
-            <div class="card">
-                <h3 class="card-title">${item.role}</h3>
-                <p class="card-description">
-                    <strong>Course:</strong> ${item.course}<br>
-                    <strong>Period:</strong> ${item.period}<br>
-                    <strong>Institution:</strong> ${item.institution}
-                </p>
             </div>
         `).join('');
     }

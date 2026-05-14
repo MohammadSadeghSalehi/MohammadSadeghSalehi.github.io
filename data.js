@@ -60,6 +60,16 @@ const SITE_DATA = {
   ],
   "news": [
     {
+      "date": "May-26",
+      "title": "AmaraSpatial-10K dataset & preprint released",
+      "description": "<p>We released <strong>AmaraSpatial-10K</strong>, a spatially and semantically aligned 3D dataset of 10,100 synthetic assets for spatial computing and embodied AI. Available on <a href=\"https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k\" target=\"_blank\">Hugging Face</a> with the accompanying <a href=\"https://arxiv.org/abs/2604.23018\" target=\"_blank\">preprint on arXiv</a>.</p>"
+    },
+    {
+      "date": "Apr-26",
+      "title": "Book chapter published in Handbook of Numerical Analysis",
+      "description": "<p>Our chapter \"Learning regularization functionals for inverse problems: a comparative study\" was published in the <em>Handbook of Numerical Analysis</em> (Elsevier). Available <a href=\"https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub\" target=\"_blank\">here</a> (DOI: <a href=\"https://doi.org/10.1016/bs.hna.2026.04.001\" target=\"_blank\">10.1016/bs.hna.2026.04.001</a>).</p>"
+    },
+    {
       "date": "Apr-25",
       "title": "Papers accepted to SIMODS",
       "description": "<p>Our paper “An Adaptively Inexact First-Order Method for Bilevel Optimization with Application to Hyperparameter Learning” has been accepted to the SIAM Journal on Mathematics of Data Science (SIMODS).</p>"
@@ -138,8 +148,8 @@ const SITE_DATA = {
     {
       "title": "An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning",
       "authors": "M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt",
-      "year": "2023",
-      "journal": "SIMODS (Accepted)",
+      "year": "2025",
+      "journal": "SIAM Journal on Mathematics of Data Science (SIMODS)",
       "links": [
         {
           "label": "Preprint",
@@ -151,7 +161,8 @@ const SITE_DATA = {
     {
       "title": "An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation",
       "authors": "L. Bogensperger, M. J. Ehrhardt, T. Pock, M. S. Salehi, H. S. Wong",
-      "year": "2024",
+      "year": "2025",
+      "journal": "Journal of Mathematical Imaging and Vision (JMIV)",
       "links": [
         {
           "label": "Preprint",
@@ -191,17 +202,39 @@ const SITE_DATA = {
     {
       "title": "Learning regularization functionals for inverse problems: A comparative study",
       "authors": "Johannes Hertrich, Hok Shing Wong, Alexander Denker, Stanislas Ducotterd, Zhenghan Fang, Markus Haltmeier, Željko Kereta, Erich Kobler, Oscar Leong, Mohammad Sadegh Salehi, Carola-Bibiane Schönlieb, Johannes Schwab, Zakhar Shumaylov, Jeremias Sulam, German Shâma Wache, Martin Zach, Yasi Zhang, Matthias J Ehrhardt, Sebastian Neumayer",
-      "year": "2025",
+      "year": "2026",
+      "journal": "Handbook of Numerical Analysis (Book Chapter, Elsevier)",
       "links": [
         {
-          "label": "Preprint",
-          "url": "https://arxiv.org/pdf/2510.01755"
+          "label": "Chapter (Elsevier)",
+          "url": "https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub"
         },
         {
           "label": "DOI",
-          "url": "https://doi.org/10.48550/arXiv.2510.01755"
+          "url": "https://doi.org/10.1016/bs.hna.2026.04.001"
+        },
+        {
+          "label": "Preprint",
+          "url": "https://arxiv.org/pdf/2510.01755"
         }
       ]
+    },
+    {
+      "title": "AmaraSpatial-10K: A Spatially and Semantically Aligned 3D Dataset for Spatial Computing and Embodied AI",
+      "authors": "M. S. Salehi, A. Perkins, I. Maurell, A. Dabbagh, R. Wong",
+      "year": "2026",
+      "journal": "arXiv preprint",
+      "links": [
+        {
+          "label": "Preprint",
+          "url": "https://arxiv.org/abs/2604.23018"
+        },
+        {
+          "label": "Dataset",
+          "url": "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k"
+        }
+      ],
+      "id": "amara-spatial"
     },
     {
       "title": "Bilevel Learning via Inexact Stochastic Gradient Descent",
@@ -243,86 +276,6 @@ const SITE_DATA = {
     {
       "title": "Mathematics of Deep Learning & ADMM Approach for Training the Neural Networks",
       "event": "University of Tehran (Online)"
-    }
-  ],
-  "teaching": [
-    {
-      "role": "Tutor",
-      "course": "MA20278: Machine Learning 1",
-      "period": "Semester 2 2022-2023",
-      "institution": "University of Bath"
-    },
-    {
-      "role": "Tutor",
-      "course": "MA10276: Programming Lab (Python)",
-      "period": "Semester 2 2022-2023",
-      "institution": "University of Bath"
-    },
-    {
-      "role": "Tutor",
-      "course": "MA10207 Analysis 1A",
-      "period": "Semester 1 2021-2022",
-      "institution": "University of Bath"
-    },
-    {
-      "role": "Tutor",
-      "course": "MA10207 Analysis 1B",
-      "period": "Semester 2 2021-2022",
-      "institution": "University of Bath"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Nonlinear Optimization",
-      "period": "Spring 2020",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Fundamental of Numerical Analysis",
-      "period": "Spring 2020",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Mathematical Analysis 2",
-      "period": "Spring 2020",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Linear Optimization 1",
-      "period": "Autumn 2019",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Mathematical Analysis 1",
-      "period": "Autumn 2019",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Mathematical Analysis 1",
-      "period": "Spring 2019",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Calculus and Differential Equations for Biology",
-      "period": "Autumn 2018",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Calculus 1",
-      "period": "Autumn 2018",
-      "institution": "University of Tehran"
-    },
-    {
-      "role": "Teaching Assistant",
-      "course": "Advanced Programming (C++)",
-      "period": "Autumn 2018",
-      "institution": "University of Tehran"
     }
   ],
   "theme": {
