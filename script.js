@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Inline brand SVGs for venues that don't have FontAwesome icons
 const BRAND_SVG = {
     arxiv: `<svg class="brand-logo" viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="#b31b1b" d="M85.7 96.5h67.3l67.5 81.6 18.6 24.7 18.6-24.7 67.4-81.6h67.3L286.5 247.4l140 168.1h-67.4l-79.6-96.4-23.3-30-23.3 30-79.6 96.4H85.8l140-168.1z"/></svg>`,
-    huggingface: `<svg class="brand-logo" viewBox="0 0 95 88" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="#FFD21E" d="M47.21 76.07c19.4 0 35.13-15.73 35.13-35.13S66.61 5.81 47.21 5.81 12.08 21.54 12.08 40.94 27.81 76.07 47.21 76.07Z"/><path fill="#3A3B45" d="M81.37 41.18c0 18.6-15.27 33.7-34.13 33.7s-34.13-15.1-34.13-33.7 15.27-33.7 34.13-33.7 34.13 15.1 34.13 33.7Z" opacity=".15"/><circle cx="35" cy="42" r="5" fill="#3A3B45"/><circle cx="60" cy="42" r="5" fill="#3A3B45"/><path fill="#3A3B45" d="M37 56c0-1.1.9-2 2-2h17c1.1 0 2 .9 2 2v2c0 5.52-4.48 10-10 10s-10-4.48-10-10v-2Z"/><circle cx="22" cy="50" r="6" fill="#FF9D0B" opacity=".5"/><circle cx="73" cy="50" r="6" fill="#FF9D0B" opacity=".5"/></svg>`
+    huggingface: `<svg class="brand-logo" viewBox="0 0 95 88" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="#FFD21E" d="M47.21 76.07c19.4 0 35.13-15.73 35.13-35.13S66.61 5.81 47.21 5.81 12.08 21.54 12.08 40.94 27.81 76.07 47.21 76.07Z"/><path fill="#3A3B45" d="M81.37 41.18c0 18.6-15.27 33.7-34.13 33.7s-34.13-15.1-34.13-33.7 15.27-33.7 34.13-33.7 34.13 15.1 34.13 33.7Z" opacity=".15"/><circle cx="35" cy="42" r="5" fill="#3A3B45"/><circle cx="60" cy="42" r="5" fill="#3A3B45"/><path fill="#3A3B45" d="M37 56c0-1.1.9-2 2-2h17c1.1 0 2 .9 2 2v2c0 5.52-4.48 10-10 10s-10-4.48-10-10v-2Z"/><circle cx="22" cy="50" r="6" fill="#FF9D0B" opacity=".5"/><circle cx="73" cy="50" r="6" fill="#FF9D0B" opacity=".5"/></svg>`,
+    x: `<svg class="brand-logo social-brand-logo" viewBox="0 0 1200 1227" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M714.2 519.3 1160.9 0h-105.9L667.2 450.9 357.3 0H0l468.5 681.8L0 1226.4h105.9l409.6-476.3 327.1 476.3h357.3L714.2 519.3Zm-145 168.5-47.5-67.9L144.1 79.7h162.5l304.9 436.2 47.5 67.9 396.1 566.9H892.6L569.2 687.8Z"/></svg>`
 };
 
 // Map publication link labels to FontAwesome icons
@@ -47,6 +48,59 @@ function renderLinkIcon(label, url) {
     const r = iconForLink(label, url);
     if (r.brand) return BRAND_SVG[r.brand];
     return `<i class="${r.fa}"></i>`;
+}
+
+function isEmailSocial(link) {
+    const name = ((link && link.name) || '').toLowerCase();
+    const url = ((link && link.url) || '').toLowerCase();
+    return name === 'email' || url.startsWith('mailto:');
+}
+
+function renderSocialIcon(link) {
+    const name = ((link && link.name) || '').toLowerCase();
+    const icon = (link && link.icon) || '';
+    const url = (link && link.url) || '';
+    if (name === 'x' || icon === 'brand-x' || url.includes('x.com/')) {
+        return BRAND_SVG.x;
+    }
+    return `<i class="${icon || 'fas fa-up-right-from-square'}"></i>`;
+}
+
+function getProfileEmail(profile) {
+    if (!profile) return '';
+    if (Array.isArray(profile.emailCodes) && profile.emailCodes.length) {
+        return profile.emailCodes.map(code => String.fromCharCode(code)).join('');
+    }
+    return '';
+}
+
+function renderEmailButton(className = 'social-email-btn') {
+    return `<button type="button" class="${className}" data-email-action aria-label="Email" title="Email">
+        <i class="fas fa-envelope"></i>
+    </button>`;
+}
+
+function renderSocialLinks(profile) {
+    const links = ((profile && profile.socials) || []).filter(link => !isEmailSocial(link));
+    const emailButton = getProfileEmail(profile) ? renderEmailButton() : '';
+    return [
+        emailButton,
+        ...links.map(link => `
+            <a href="${escapeAttr(link.url)}" target="_blank" rel="noopener" aria-label="${escapeAttr(link.name)}" title="${escapeAttr(link.name)}">
+                ${renderSocialIcon(link)}
+            </a>
+        `)
+    ].join('');
+}
+
+function setupEmailActions(profile) {
+    const email = getProfileEmail(profile);
+    if (!email) return;
+    document.querySelectorAll('[data-email-action]').forEach(button => {
+        button.addEventListener('click', () => {
+            window.location.href = `mailto:${email}`;
+        });
+    });
 }
 
 function escapeAttr(value) {
@@ -207,23 +261,14 @@ function renderData(data) {
 
         // Social Links (Main Section)
         const socialMain = document.getElementById('social-links-main');
-        if (socialMain && data.profile.socials) {
-            socialMain.innerHTML = data.profile.socials.map(link => `
-                <a href="${link.url}" target="_blank" aria-label="${link.name}" title="${link.name}">
-                    <i class="${link.icon}"></i>
-                </a>
-            `).join('');
+        if (socialMain) {
+            socialMain.innerHTML = renderSocialLinks(data.profile);
         }
 
         // Social Links (Nav Bar - Optional, keep valid if exists)
         const socialNav = document.getElementById('social-links-nav');
-        if (socialNav && data.profile.socials) {
-            // Maybe render just a few or all smaller? Rendering all for now.
-            socialNav.innerHTML = data.profile.socials.map(link => `
-                <a href="${link.url}" target="_blank" aria-label="${link.name}" title="${link.name}">
-                    <i class="${link.icon}"></i>
-                </a>
-            `).join('');
+        if (socialNav) {
+            socialNav.innerHTML = renderSocialLinks(data.profile);
         }
     }
 
@@ -355,18 +400,18 @@ function renderData(data) {
 
     // Contact
     const contactContainer = document.getElementById('contact-list');
-    if (contactContainer && data.profile && data.profile.socials) {
-        contactContainer.innerHTML = data.profile.socials.map(link => `
+    if (contactContainer && data.profile) {
+        const socialLinks = (data.profile.socials || []).filter(link => !isEmailSocial(link));
+        contactContainer.innerHTML = socialLinks.map(link => `
             <li>
-                <a href="${link.url}" target="_blank">
-                    <i class="${link.icon}"></i> ${link.name}
+                <a href="${escapeAttr(link.url)}" target="_blank" rel="noopener">
+                    ${renderSocialIcon(link)} ${link.name}
                 </a>
             </li>
         `).join('');
-        // Add location and email directly if they exist
-        if (data.profile.email) {
+        if (getProfileEmail(data.profile)) {
             const emailLi = document.createElement('li');
-            emailLi.innerHTML = `<a href="mailto:${data.profile.email}"><i class="fas fa-envelope"></i> ${data.profile.email}</a>`;
+            emailLi.innerHTML = `<button type="button" class="contact-email-btn" data-email-action><i class="fas fa-envelope"></i> Email</button>`;
             contactContainer.prepend(emailLi);
         }
         if (data.profile.location) {
@@ -375,6 +420,8 @@ function renderData(data) {
             contactContainer.prepend(locLi);
         }
     }
+
+    setupEmailActions(data.profile);
 }
 
 function renderDatasetFeature(feature) {
@@ -383,6 +430,7 @@ function renderDatasetFeature(feature) {
 
     const modes = Array.isArray(feature.modes) ? feature.modes : [];
     const activeMode = modes[0] || {};
+    const preview = feature.preview || {};
 
     container.innerHTML = `
         <div class="dataset-feature">
@@ -406,6 +454,55 @@ function renderDatasetFeature(feature) {
                     `).join('')}
                 </div>
             </div>
+
+            ${preview.localMeshUrl ? `
+                <div class="dataset-live-preview">
+                    <div class="dataset-preview-card dataset-model-card">
+                        <div class="dataset-preview-header">
+                            <span>3D mesh</span>
+                            <strong id="dataset-mesh-name">${preview.meshPath || preview.title || 'Sample mesh'}</strong>
+                        </div>
+                        <model-viewer
+                            id="dataset-sample-model"
+                            class="dataset-model-viewer"
+                            src="${escapeAttr(preview.localMeshUrl)}"
+                            alt="${escapeAttr(preview.title || 'AmaraSpatial-10K mesh preview')}"
+                            camera-controls
+                            auto-rotate
+                            interaction-prompt="none"
+                            shadow-intensity="0.75"
+                            exposure="0.9"
+                            loading="lazy">
+                            <div class="dataset-model-fallback">
+                                <i class="fas fa-cube"></i>
+                                <span>3D mesh preview</span>
+                            </div>
+                        </model-viewer>
+                        ${preview.meshSourceUrl ? `
+                            <a class="dataset-source-link" href="${escapeAttr(preview.meshSourceUrl)}" target="_blank" rel="noopener">
+                                ${renderLinkIcon('Hugging Face', preview.meshSourceUrl)}HF mesh shard
+                            </a>
+                        ` : ''}
+                    </div>
+                    <div class="dataset-preview-card dataset-seed-card">
+                        <div class="dataset-preview-header">
+                            <span>Reference seed</span>
+                            <strong id="dataset-sample-title">${preview.title || 'HF sample asset'}</strong>
+                        </div>
+                        <div class="dataset-seed-media">
+                            <img id="dataset-seed-image" class="dataset-seed-image" alt="Reference seed image from AmaraSpatial-10K" loading="lazy" hidden>
+                            <div id="dataset-seed-placeholder" class="dataset-seed-placeholder">
+                                <i class="fas fa-image"></i>
+                                <span>Fetching Hugging Face preview</span>
+                            </div>
+                        </div>
+                        <div class="dataset-sample-meta">
+                            <p id="dataset-sample-text">${preview.description || ''}</p>
+                            <div class="dataset-sample-stats" id="dataset-sample-stats"></div>
+                        </div>
+                    </div>
+                </div>
+            ` : ''}
 
             <div class="dataset-stage" data-active="${activeMode.id || ''}">
                 <div class="dataset-visual">
@@ -480,6 +577,84 @@ function renderDatasetFeature(feature) {
     buttons.forEach(button => {
         button.addEventListener('click', () => setMode(button.dataset.mode));
     });
+
+    loadDatasetSample(feature);
+}
+
+function getHfImageSrc(value) {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return value.src || value.url || '';
+}
+
+function formatDatasetNumber(value) {
+    if (value === undefined || value === null || value === '') return '';
+    if (typeof value === 'string') return value;
+    return new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(value);
+}
+
+function renderDatasetStat(label, value) {
+    if (value === undefined || value === null || value === '') return '';
+    return `<span><strong>${formatDatasetNumber(value)}</strong>${label}</span>`;
+}
+
+async function loadDatasetSample(feature) {
+    const preview = feature && feature.preview;
+    if (!preview || !preview.apiUrl) return;
+
+    const seedImage = document.getElementById('dataset-seed-image');
+    const seedPlaceholder = document.getElementById('dataset-seed-placeholder');
+    const titleEl = document.getElementById('dataset-sample-title');
+    const textEl = document.getElementById('dataset-sample-text');
+    const statsEl = document.getElementById('dataset-sample-stats');
+    const meshNameEl = document.getElementById('dataset-mesh-name');
+    const modelEl = document.getElementById('dataset-sample-model');
+
+    const applyFallback = () => {
+        if (titleEl && preview.title) titleEl.textContent = preview.title;
+        if (textEl && preview.description) textEl.textContent = preview.description;
+        if (meshNameEl && preview.meshPath) meshNameEl.textContent = preview.meshPath;
+        if (modelEl && preview.localMeshUrl) modelEl.setAttribute('src', preview.localMeshUrl);
+    };
+
+    applyFallback();
+
+    try {
+        const response = await fetch(preview.apiUrl, { mode: 'cors' });
+        if (!response.ok) throw new Error(`HF row request failed: ${response.status}`);
+        const payload = await response.json();
+        const row = payload && payload.rows && payload.rows[0] && payload.rows[0].row;
+        if (!row) return;
+
+        const imageSrc = getHfImageSrc(row.seed_image) || getHfImageSrc(row.render_perspective);
+        if (seedImage && imageSrc) {
+            seedImage.src = imageSrc;
+            seedImage.hidden = false;
+            if (seedPlaceholder) seedPlaceholder.hidden = true;
+        }
+
+        if (titleEl) {
+            titleEl.textContent = row.brief_description || row.asset_basename || row.asset_id || preview.title || 'HF sample asset';
+        }
+        if (textEl) {
+            textEl.textContent = row.full_description || preview.description || '';
+        }
+        if (meshNameEl) {
+            meshNameEl.textContent = row.mesh_path || preview.meshPath || 'Sample mesh';
+        }
+        if (statsEl) {
+            statsEl.innerHTML = [
+                renderDatasetStat('vertices', row.vertices),
+                renderDatasetStat('faces', row.decimation_faces),
+                renderDatasetStat('watertight', row.watertight_percent ? `${row.watertight_percent.toFixed(1)}%` : '')
+            ].join('');
+        }
+    } catch (error) {
+        console.warn('Could not fetch AmaraSpatial-10K sample row:', error);
+        if (seedPlaceholder) {
+            seedPlaceholder.innerHTML = '<i class="fas fa-image"></i><span>Hugging Face preview unavailable</span>';
+        }
+    }
 }
 
 function setupNavigation() {

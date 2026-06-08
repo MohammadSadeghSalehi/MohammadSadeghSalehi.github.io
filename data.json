@@ -22,17 +22,39 @@
                                    }
                                ],
                     "image":  "images/Sadegh.jpg",
-                    "email":  "sadeghsalehi1997@gmail.com",
+                    "emailCodes":  [
+                                       115,
+                                       97,
+                                       100,
+                                       101,
+                                       103,
+                                       104,
+                                       115,
+                                       97,
+                                       108,
+                                       101,
+                                       104,
+                                       105,
+                                       49,
+                                       57,
+                                       57,
+                                       55,
+                                       64,
+                                       103,
+                                       109,
+                                       97,
+                                       105,
+                                       108,
+                                       46,
+                                       99,
+                                       111,
+                                       109
+                                   ],
                     "location":  "London, UK",
                     "socials":  [
                                     {
-                                        "name":  "Email",
-                                        "icon":  "fas fa-envelope",
-                                        "url":  "mailto:sadeghsalehi1997@gmail.com"
-                                    },
-                                    {
                                         "name":  "X",
-                                        "icon":  "fab fa-x-twitter",
+                                        "icon":  "brand-x",
                                         "url":  "https://x.com/Sadegh_Salehi97"
                                     },
                                     {
@@ -52,13 +74,14 @@
                                     }
                                 ]
                 },
-    "biography":  "<p>I am a researcher and engineer working at the intersection of computer vision, 3D AI, generative modelling, optimisation, and machine learning. My work spans both academic research and industrial R&amp;D, with a focus on developing algorithms for hyperparameter learning, 3D semantic modelling, vision-language models, diffusion models, and test-time adaptation.\n\nI currently work on generative 3D and AI systems at <a href=\"https://amara.01c.ai/\" target=\"_blank\">Zero One Creative</a>, contributing to the development of Amara, an AI platform designed to generate and iterate full 3D environments from simple prompts for creative and production workflows.\n\nI did PhD studies and hold an MRes in Statistical Applied Mathematics, where I was supervised by Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee. Previously, I earned an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris. My research interests continue to centre on bridging rigorous mathematical methods with practical machine learning systems for large-scale visual and generative modelling.</p>",
+    "biography":  "<p>I am a researcher and engineer working at the intersection of computer vision, generative 3D, 3D modelling, generative models, optimisation, inverse problems, and machine learning. My work spans both academic research and industrial R&amp;D, with a focus on developing algorithms for hyperparameter learning, 3D modelling, vision-language models, diffusion models, and test-time adaptation.\n\nI currently work on generative 3D and AI systems at <a href=\"https://amara.01c.ai/\" target=\"_blank\">Zero One Creative</a>, contributing to the development of Amara, an AI platform designed to generate and iterate full 3D environments from simple prompts for creative and production workflows.\n\nI did PhD studies and hold an MRes in Statistical Applied Mathematics, where I was supervised by Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee. Previously, I earned an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris. My research interests continue to centre on vision, generative models, optimisation, inverse problems, and the bridge between rigorous mathematical methods and practical large-scale visual systems.</p>",
     "interests":  [
-                      "Computer Vision ",
-                      "Generative Modelling",
-                      "3D modelling",
+                      "Generative Models",
+                      "Computer Vision",
                       "Optimisation",
-                      "Inverse Problems"
+                      "Inverse Problems",
+                      "3D Modelling",
+                      "Vision-Language Models"
                   ],
     "education":  [
                       {
@@ -80,8 +103,8 @@
     "news":  [
                  {
                      "date":  "May-26",
-                     "title":  "AmaraSpatial-10K talk now available",
-                     "description":  "\u003cp\u003eMy talk from \u003cstrong\u003e26 May 2026\u003c/strong\u003e on \u003cstrong\u003eAmaraSpatial-10K\u003c/strong\u003e is now available on \u003ca href=\"https://www.youtube.com/watch?v=G1LUtJd8FDU\" target=\"_blank\" rel=\"noopener\"\u003eYouTube\u003c/a\u003e. The talk introduces the dataset, the motivation for deployment-ready 3D assets, and the spatial metadata behind the release.\u003c/p\u003e"
+                     "title":  "Bilevel Learning with Inexact Hypergradients talk now available",
+                     "description":  "\u003cp\u003eMy talk from \u003cstrong\u003e26 May 2026\u003c/strong\u003e on \u003cstrong\u003eBilevel Learning with Inexact Hypergradients\u003c/strong\u003e is now available on \u003ca href=\"https://www.youtube.com/watch?v=G1LUtJd8FDU\" target=\"_blank\" rel=\"noopener\"\u003eYouTube\u003c/a\u003e. The talk focuses on bilevel optimisation, inexact hypergradients, and scalable learning algorithms.\u003c/p\u003e"
                  },
                  {
                      "date":  "May-26",
@@ -289,24 +312,16 @@
                      ],
     "talks":  [
                   {
-                      "title":  "AmaraSpatial-10K: spatially aligned 3D assets for embodied AI",
+                      "title":  "Bilevel Learning with Inexact Hypergradients",
                       "event":  "Recorded talk",
                       "date":  "26 May 2026",
-                      "description":  "A talk introducing AmaraSpatial-10K, a 10.1k-asset dataset built around metric-scaled GLBs, semantic metadata, collision hulls, rendered views, and evaluation for spatial computing workflows.",
+                      "description":  "A recorded talk on bilevel learning, inexact hypergradients, and scalable optimisation methods for hyperparameter learning.",
                       "videoId":  "G1LUtJd8FDU",
                       "videoUrl":  "https://www.youtube.com/watch?v=G1LUtJd8FDU",
                       "links":  [
                                     {
                                         "label":  "Watch on YouTube",
                                         "url":  "https://www.youtube.com/watch?v=G1LUtJd8FDU"
-                                    },
-                                    {
-                                        "label":  "Dataset",
-                                        "url":  "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k"
-                                    },
-                                    {
-                                        "label":  "Preprint",
-                                        "url":  "https://arxiv.org/abs/2604.23018"
                                     }
                                 ]
                   },
@@ -356,6 +371,14 @@
                                              "url":  "https://arxiv.org/abs/2604.23018"
                                          }
                                      ],
+                           "preview":  {
+                                           "apiUrl":  "https://datasets-server.huggingface.co/rows?dataset=ZeroOneCreative%2Famara-spatial-10k&config=default&split=train&offset=0&length=1",
+                                           "localMeshUrl":  "assets/models/Animals_Basilisk_SM_MeshGen_AcidspitterMarshBasilisk.glb",
+                                           "meshSourceUrl":  "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k/resolve/main/meshes/shard-00000.tar",
+                                           "meshPath":  "Animals_Basilisk_SM_MeshGen_AcidspitterMarshBasilisk.glb",
+                                           "title":  "HF sample mesh",
+                                           "description":  "A live metadata preview from the first AmaraSpatial-10K row, paired with a GLB sample extracted from its Hugging Face mesh shard."
+                                       },
                            "stats":  [
                                          {
                                              "value":  "10.1k",
