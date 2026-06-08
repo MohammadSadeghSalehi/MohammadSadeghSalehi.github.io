@@ -18,6 +18,7 @@ const LINK_ICON_MAP = {
     'code': 'fab fa-github',
     'github': 'fab fa-github',
     'dataset': 'fas fa-database',
+    'youtube': 'fab fa-youtube',
     'chapter': 'fas fa-book',
     'book': 'fas fa-book',
     'elsevier': 'fas fa-book',
@@ -35,6 +36,7 @@ function iconForLink(label, url) {
     const u = (url || '').toLowerCase();
     if (lbl.includes('arxiv') || u.includes('arxiv.org')) return { brand: 'arxiv' };
     if (lbl.includes('hugging') || u.includes('huggingface.co')) return { brand: 'huggingface' };
+    if (lbl.includes('youtube') || u.includes('youtube.com') || u.includes('youtu.be')) return { fa: 'fab fa-youtube' };
     for (const k in LINK_ICON_MAP) {
         if (lbl.includes(k)) return { fa: LINK_ICON_MAP[k] };
     }
@@ -47,8 +49,18 @@ function renderLinkIcon(label, url) {
     return `<i class="${r.fa}"></i>`;
 }
 
+function escapeAttr(value) {
+    return String(value || '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
+}
+
 function setupScrollReveal() {
-    const targets = document.querySelectorAll('.reveal, .card, .timeline-item, .tag, .section-title, .subsection-title');
+    const targets = document.querySelectorAll('.reveal, .card, .timeline-item, .tag, .section-title, .subsection-title, .dataset-stat, .dataset-node, .dataset-mode-btn');
     targets.forEach(el => el.classList.add('reveal'));
 
     if (!('IntersectionObserver' in window)) {
@@ -293,12 +305,41 @@ function renderData(data) {
     const talksContainer = document.getElementById('talks-list');
     if (talksContainer && data.talks) {
         talksContainer.innerHTML = data.talks.map(item => `
-            <div class="card">
+            <div class="card talk-card ${item.videoId ? 'talk-card-featured' : ''}">
+                ${item.date ? `
+                    <div class="card-header">
+                        <span class="card-date"><i class="far fa-calendar"></i>${item.date}</span>
+                    </div>
+                ` : ''}
                 <h3 class="card-title">${item.title}</h3>
                 <p class="card-description"><i class="fas fa-microphone meta-icon"></i>${item.event}</p>
+                ${item.description ? `<p class="card-description talk-description">${item.description}</p>` : ''}
+                ${item.videoId ? `
+                    <div class="video-embed">
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/${encodeURIComponent(item.videoId)}"
+                            title="${escapeAttr(item.title)}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
+                ` : ''}
+                ${item.links && Array.isArray(item.links) ? `
+                    <div class="card-links">
+                        ${item.links.map(link => `
+                            <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
+                        `).join('')}
+                    </div>
+                ` : ''}
             </div>
         `).join('');
     }
+
+    renderDatasetFeature(data.datasetFeature);
 
     // Trigger scroll-reveal after DOM is populated
     requestAnimationFrame(setupScrollReveal);
@@ -325,6 +366,111 @@ function renderData(data) {
             contactContainer.prepend(locLi);
         }
     }
+}
+
+function renderDatasetFeature(feature) {
+    const container = document.getElementById('dataset-feature');
+    if (!container || !feature) return;
+
+    const modes = Array.isArray(feature.modes) ? feature.modes : [];
+    const activeMode = modes[0] || {};
+
+    container.innerHTML = `
+        <div class="dataset-feature">
+            <div class="dataset-hero">
+                <div class="dataset-copy">
+                    <span class="dataset-eyebrow">${feature.eyebrow || 'Dataset'}</span>
+                    <h3>${feature.title || ''}</h3>
+                    <p>${feature.summary || ''}</p>
+                    <div class="dataset-links">
+                        ${(feature.links || []).map(link => `
+                            <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
+                        `).join('')}
+                    </div>
+                </div>
+                <div class="dataset-stats">
+                    ${(feature.stats || []).map(stat => `
+                        <div class="dataset-stat">
+                            <strong>${stat.value}</strong>
+                            <span>${stat.label}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="dataset-stage" data-active="${activeMode.id || ''}">
+                <div class="dataset-visual">
+                    <div class="dataset-core">
+                        <i class="fas fa-cubes"></i>
+                        <span>3D asset bank</span>
+                    </div>
+                    ${modes.map((mode, index) => {
+                        const angle = ((index * 360 / Math.max(modes.length, 1)) - 90) * Math.PI / 180;
+                        const x = 50 + Math.cos(angle) * 34;
+                        const y = 50 + Math.sin(angle) * 34;
+                        return `
+                        <button class="dataset-node" type="button" data-mode="${mode.id}" aria-label="${escapeAttr(mode.label)} dataset view" title="${escapeAttr(mode.label)}" style="--node-x:${x}%; --node-y:${y}%">
+                            <i class="${mode.icon}"></i>
+                        </button>
+                    `}).join('')}
+                </div>
+
+                <div class="dataset-panel">
+                    <div class="dataset-mode-buttons">
+                        ${modes.map((mode, index) => `
+                            <button class="dataset-mode-btn ${index === 0 ? 'active' : ''}" type="button" data-mode="${mode.id}" aria-pressed="${index === 0 ? 'true' : 'false'}">
+                                <i class="${mode.icon}"></i>
+                                <span>${mode.label}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <div class="dataset-mode-copy" aria-live="polite">
+                        <h3 id="dataset-mode-heading">${activeMode.heading || ''}</h3>
+                        <p id="dataset-mode-text">${activeMode.text || ''}</p>
+                        <div class="dataset-mode-points" id="dataset-mode-points">
+                            ${(activeMode.points || []).map(point => `<span>${point}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="dataset-pipeline">
+                        ${(feature.pipeline || []).map(step => `
+                            <div class="pipeline-step">
+                                <strong>${step.label}</strong>
+                                <span>${step.value}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    const stage = container.querySelector('.dataset-stage');
+    const heading = container.querySelector('#dataset-mode-heading');
+    const text = container.querySelector('#dataset-mode-text');
+    const points = container.querySelector('#dataset-mode-points');
+    const buttons = container.querySelectorAll('[data-mode]');
+
+    const setMode = (modeId) => {
+        const mode = modes.find(item => item.id === modeId) || activeMode;
+        if (!mode) return;
+
+        stage.dataset.active = mode.id;
+        heading.textContent = mode.heading || '';
+        text.textContent = mode.text || '';
+        points.innerHTML = (mode.points || []).map(point => `<span>${point}</span>`).join('');
+
+        buttons.forEach(button => {
+            const isActive = button.dataset.mode === mode.id;
+            button.classList.toggle('active', isActive);
+            if (button.classList.contains('dataset-mode-btn')) {
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            }
+        });
+    };
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => setMode(button.dataset.mode));
+    });
 }
 
 function setupNavigation() {

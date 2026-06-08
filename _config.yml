@@ -1,1 +1,7 @@
 theme: jekyll-theme-minimal
+exclude:
+  - _backup
+  - admin
+  - index.md
+  - index.html.save
+  - Readme.md

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /_backup/
+Disallow: /index.md
+Disallow: /index.html.save
+Disallow: /Readme.md
+
+Sitemap: https://mohammadsadeghsalehi.github.io/sitemap.xml
