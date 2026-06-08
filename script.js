@@ -59,6 +59,14 @@ function escapeAttr(value) {
     })[char]);
 }
 
+function revealSectionContent(section) {
+    if (!section) return;
+    section.querySelectorAll('.reveal').forEach(el => {
+        el.style.transitionDelay = '0ms';
+        el.classList.add('is-visible');
+    });
+}
+
 function setupScrollReveal() {
     const targets = document.querySelectorAll('.reveal, .card, .timeline-item, .tag, .section-title, .subsection-title, .dataset-stat, .dataset-node, .dataset-mode-btn');
     targets.forEach(el => el.classList.add('reveal'));
@@ -79,6 +87,7 @@ function setupScrollReveal() {
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     targets.forEach(el => io.observe(el));
+    document.querySelectorAll('.section.active').forEach(revealSectionContent);
 }
 
 function setupMobileMenu() {
@@ -477,21 +486,25 @@ function setupNavigation() {
     const navLinks = document.querySelectorAll('.main-nav a');
     const sections = document.querySelectorAll('.section');
 
+    const activateSection = (targetId, activeLink) => {
+        navLinks.forEach(l => l.classList.remove('active'));
+        if (activeLink) activeLink.classList.add('active');
+
+        sections.forEach(section => {
+            section.classList.remove('active');
+            if (section.id === targetId) {
+                section.classList.add('active');
+                requestAnimationFrame(() => revealSectionContent(section));
+            }
+        });
+    };
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href').substring(1);
 
-            // Update UI
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-
-            sections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === targetId) {
-                    section.classList.add('active');
-                }
-            });
+            activateSection(targetId, link);
 
             // Scroll to top of content on mobile
             if (window.innerWidth <= 768) {
@@ -499,6 +512,12 @@ function setupNavigation() {
             }
         });
     });
+
+    const hashTarget = window.location.hash.substring(1);
+    const hashLink = Array.from(navLinks).find(link => link.getAttribute('href') === `#${hashTarget}`);
+    if (hashTarget && hashLink && document.getElementById(hashTarget)) {
+        activateSection(hashTarget, hashLink);
+    }
 }
 
 function setupThemeToggle() {

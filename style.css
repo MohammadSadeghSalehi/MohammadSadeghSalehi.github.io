@@ -509,6 +509,12 @@ body {
     margin: 2rem 0 1rem;
 }
 
+.bio-content,
+.bio-content p,
+.bio-content strong {
+    font-weight: 400;
+}
+
 /* Components */
 .tags-container {
     display: flex;
