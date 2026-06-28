@@ -102,6 +102,22 @@ const SITE_DATA = {
                   ],
     "news":  [
                  {
+                     "date":  "Jun-26",
+                     "title":  "Presented Amara at Plug and Play UK's Mobility & Physical AI Innovation Day",
+                     "description":  "<p>Shared an update from Plug and Play UK's Mobility &amp; Physical AI Innovation Day, where we presented <strong>Amara</strong>, Zero One Creative's agentic 3D creator for artist-led 3D prototyping and storytelling.</p>",
+                     "image":  {
+                                   "src":  "images/x-amara-innovation-day.jpg",
+                                   "alt":  "Zero One Creative team presenting Amara at Plug and Play UK's Mobility and Physical AI Innovation Day 2026",
+                                   "url":  "https://x.com/Sadegh_Salehi97/status/2070948864346214750?s=20"
+                               },
+                     "links":  [
+                                   {
+                                       "label":  "View post on X",
+                                       "url":  "https://x.com/Sadegh_Salehi97/status/2070948864346214750?s=20"
+                                   }
+                               ]
+                 },
+                 {
                      "date":  "May-26",
                      "title":  "Bilevel Learning with Inexact Hypergradients talk now available",
                      "description":  "\u003cp\u003eMy talk from \u003cstrong\u003e26 May 2026\u003c/strong\u003e on \u003cstrong\u003eBilevel Learning with Inexact Hypergradients\u003c/strong\u003e is now available on \u003ca href=\"https://www.youtube.com/watch?v=G1LUtJd8FDU\" target=\"_blank\" rel=\"noopener\"\u003eYouTube\u003c/a\u003e. The talk focuses on bilevel optimisation, inexact hypergradients, and scalable learning algorithms.\u003c/p\u003e"
@@ -197,6 +213,27 @@ const SITE_DATA = {
                      }
                  ],
     "publications":  [
+                         {
+                             "title":  "Continuous Neural Reparameterization as a Deep Geometric Prior for Robust Fixed-Chart UV Repair",
+                             "authors":  "M. S. Salehi",
+                             "year":  "2026",
+                             "journal":  "arXiv preprint",
+                             "links":  [
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/abs/2606.10050"
+                                           },
+                                           {
+                                               "label":  "DOI",
+                                               "url":  "https://doi.org/10.48550/arXiv.2606.10050"
+                                           },
+                                           {
+                                               "label":  "Google Scholar",
+                                               "url":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bunZmJsAAAAJ&citation_for_view=bunZmJsAAAAJ:Se3iqnhoufwC"
+                                           }
+                                       ],
+                             "id":  "uv-repair"
+                         },
                          {
                              "title":  "An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning",
                              "authors":  "M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt",
@@ -326,28 +363,34 @@ const SITE_DATA = {
                                 ]
                   },
                   {
-                      "title":  "Inexact Algorithms for Bilevel Learning",
-                      "event":  "ICIAM - Waseda University, Tokyo, Japan"
+                      "title":  "Inexact Stochastic Bilevel Learning",
+                      "event":  "Invited minisymposium - EUROPT 2025, University of Southampton, UK",
+                      "date":  "July 2025"
+                  },
+                  {
+                      "title":  "Learned Image Priors and How to Learn Them",
+                      "event":  "Workshop on Recent Advances in Learned Regularisation, UCL, London, UK",
+                      "date":  "February 2025"
+                  },
+                  {
+                      "title":  "Inexact First-Order Methods for Bilevel Learning",
+                      "event":  "Invited minisymposium - EUROPT 2024, Lund, Sweden",
+                      "date":  "June 2024"
+                  },
+                  {
+                      "title":  "An Adaptively Inexact First-Order Method for Bilevel Learning",
+                      "event":  "Invited talk - ICMS Workshop on Big Data Inverse Problems, Bayes Centre, Edinburgh, UK",
+                      "date":  "May 2024"
+                  },
+                  {
+                      "title":  "Scalable Methods for Bilevel Optimisation",
+                      "event":  "Invited minisymposium - EUCCO 2023, Heidelberg, Germany",
+                      "date":  "September 2023"
                   },
                   {
                       "title":  "Inexact Algorithms for Bilevel Learning",
-                      "event":  "International Conference on Bilevel Optimization - University of Southampton, UK"
-                  },
-                  {
-                      "title":  "Deep Data-Adaptive Regularisers for Inverse Problems",
-                      "event":  "Math4DL Seminars (Online)"
-                  },
-                  {
-                      "title":  "A Taste of Primal-Dual with Alternating Projections and Optimal Transport",
-                      "event":  "Post-Graduate Seminar Series - University of Bath, UK"
-                  },
-                  {
-                      "title":  "Derivative-Free vs. Gradient-Based Methods for Bilevel Learning",
-                      "event":  "SAMBa Conference - University of Bath, UK"
-                  },
-                  {
-                      "title":  "Mathematics of Deep Learning \u0026 ADMM Approach for Training the Neural Networks",
-                      "event":  "University of Tehran (Online)"
+                      "event":  "Invited minisymposium - ICIAM 2023, Tokyo, Japan",
+                      "date":  "August 2023"
                   }
               ],
     "theme":  {

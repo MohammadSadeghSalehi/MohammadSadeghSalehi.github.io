@@ -28,6 +28,7 @@ const LINK_ICON_MAP = {
     'slides': 'fas fa-rectangle-list',
     'project': 'fas fa-up-right-from-square',
     'more info': 'fas fa-up-right-from-square',
+    'scholar': 'fas fa-graduation-cap',
     'website': 'fas fa-globe',
     'preprint': 'fas fa-file-lines'
 };
@@ -37,6 +38,7 @@ function iconForLink(label, url) {
     const u = (url || '').toLowerCase();
     if (lbl.includes('arxiv') || u.includes('arxiv.org')) return { brand: 'arxiv' };
     if (lbl.includes('hugging') || u.includes('huggingface.co')) return { brand: 'huggingface' };
+    if (lbl === 'x' || lbl.includes(' on x') || u.includes('x.com/')) return { brand: 'x' };
     if (lbl.includes('youtube') || u.includes('youtube.com') || u.includes('youtu.be')) return { fa: 'fab fa-youtube' };
     for (const k in LINK_ICON_MAP) {
         if (lbl.includes(k)) return { fa: LINK_ICON_MAP[k] };
@@ -306,7 +308,19 @@ function renderData(data) {
                     <span class="card-date"><i class="far fa-calendar"></i>${item.date}</span>
                 </div>
                 <h3 class="card-title">${item.title}</h3>
+                ${item.image && item.image.src ? `
+                    ${item.image.url ? `<a class="news-image-link" href="${escapeAttr(item.image.url)}" target="_blank" rel="noopener">` : '<div class="news-image-frame">'}
+                        <img class="news-image" src="${escapeAttr(item.image.src)}" alt="${escapeAttr(item.image.alt || item.title)}" loading="lazy">
+                    ${item.image.url ? '</a>' : '</div>'}
+                ` : ''}
                 <div class="card-description">${item.description}</div>
+                ${item.links && Array.isArray(item.links) ? `
+                    <div class="card-links">
+                        ${item.links.map(link => `
+                            <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
+                        `).join('')}
+                    </div>
+                ` : ''}
             </div>
         `).join('');
     }

@@ -786,6 +786,36 @@ body {
     font-size: 0.95rem;
 }
 
+.news-image-link,
+.news-image-frame {
+    display: block;
+    margin: 0.85rem 0 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: var(--radius-md);
+    background: rgba(248, 250, 252, 0.62);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="dark"] .news-image-link,
+[data-theme="dark"] .news-image-frame {
+    border-color: rgba(148, 163, 184, 0.18);
+    background: rgba(15, 23, 42, 0.38);
+}
+
+.news-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: center 45%;
+    transition: transform 0.28s ease;
+}
+
+.news-image-link:hover .news-image {
+    transform: scale(1.025);
+}
+
 .card-links {
     margin-top: 1rem;
     display: flex;
