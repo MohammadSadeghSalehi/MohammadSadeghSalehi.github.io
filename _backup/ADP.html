@@ -21,35 +21,13 @@
         <link rel="stylesheet" href="css/css-wowchemy.042e26407c9e383d96a1f26d6787c686.css" />
         <link rel="stylesheet" href="css/chroma-github-light.min.css" title="hl-light" media="print" onload='this.media="all"' />
         <link rel="stylesheet" href="css/chroma-dracula.min.css" title="hl-dark" media="print" onload='this.media="all"' disabled />
-        <meta name="citation_title" content="An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning">
-        <meta name="citation_author" content="Salehi, Mohammad Sadegh">
-        <meta name="citation_author" content="Mukherjee, Subhadip">
-        <meta name="citation_author" content="Roberts, Lindon">
-        <meta name="citation_author" content="Ehrhardt, Matthias J.">
-        <meta name="citation_publication_date" content="2024">
-        <meta name="citation_arxiv_id" content="2308.10098">
-        <meta name="citation_primary_category" content="math.OC">
-        <meta name="citation_online_date" content="2023-08">
-        <meta name="citation_doi" content="10.48550/arXiv.2308.10098">
-        <meta name="citation_abstract_html_url" content="https://arxiv.org/abs/2308.10098">
-        <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2308.10098.pdf">
-        <meta name="citation_keywords" content="Mathematics - Optimization and Control, Computer Science - Machine Learning">
-        <meta name="citation_semanticscholar_url" content="https://api.semanticscholar.org/CorpusID:261049499">
-        <meta name="citation_ads_url" content="https://ui.adsabs.harvard.edu/abs/2023arXiv230810098S">
-        <meta name="citation_google_scholar_profile" content="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=bunZmJsAAAAJ">
-        <meta name="dc.title" content="An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning">
-        <meta name="dc.creator" content="Mohammad Sadegh Salehi, Subhadip Mukherjee, Lindon Roberts, Matthias J. Ehrhardt">
-        <meta name="dc.date" content="2024">
-        <meta name="dc.identifier" content="arXiv:2308.10098">
-        <meta name="dc.source" content="https://arxiv.org/abs/2308.10098">
-        <meta name="dc.type" content="Text"> 
-                <meta name="author" content="Mohammad Sadegh Salehi" />
+        <meta name="author" content="Mohammad Sadegh Salehi" />
         <meta
             name="description"
             content="Various tasks in data science are modeled utilizing the variational regularization approach, where manually selecting regularization parameters presents a challenge. The difficulty gets exacerbated when employing regularizers involving a large number of hyperparameters. To overcome this challenge, bilevel learning can be employed to learn such parameters from data. However, neither exact function values nor exact gradients with respect to the hyperparameters are attainable, necessitating methods that only rely on inexact evaluation of such quantities. State-of-the-art inexact gradient-based methods a priori select a sequence of the required accuracies and cannot identify an appropriate step size since the Lipschitz constant of the hypergradient is unknown. In this work, we propose an algorithm with backtracking line search that only relies on inexact function evaluations and hypergradients and show convergence to a stationary point. Furthermore, the proposed algorithm determines the required accuracy dynamically rather than manually selected before running it. Our numerical experiments demonstrate the efficiency and feasibility of our approach for hyperparameter estimation on a range of relevant problems in imaging and data science such as total variation and field of experts denoising and multinomial logistic regression. Particularly, the results show that the algorithm is robust to its own hyperparameters such as the initial accuracies and step size."
         />
-        <link rel="alternate" hreflang="en-us" href="https://sadeghsalehi.netlify.app/publication/MAID/" />
-        <link rel="canonical" href="https://sadeghsalehi.netlify.app/publication/MAID/" />
+        <link rel="alternate" hreflang="en-us" href="https://sadeghsalehi.netlify.app/publication/ISGD/" />
+        <link rel="canonical" href="https://sadeghsalehi.netlify.app/publication/ISGD/" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="icon" type="image/png" href="favicons/media-Icon_hu804981e25b7159c4eeb5f1560bf90bb6_50920_32x32_fill_lanczos_center_3.png" />
         <link rel="apple-touch-icon" type="image/png" href="favicons/media-Icon_hu804981e25b7159c4eeb5f1560bf90bb6_50920_180x180_fill_lanczos_center_3.png" />
@@ -57,8 +35,8 @@
         <meta property="twitter:card" content="summary" />
         <meta property="twitter:image" content="https://sadeghsalehi.netlify.app/media/Icon_hu804981e25b7159c4eeb5f1560bf90bb6_50920_512x512_fill_lanczos_center_3.png" />
         <meta property="og:site_name" content="Mohammad Sadegh Salehi" />
-        <meta property="og:url" content="https://sadeghsalehi.netlify.app/publication/MAID/" />
-        <meta property="og:title" content="An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning | Mohammad Sadegh Salehi" />
+        <meta property="og:url" content="https://sadeghsalehi.netlify.app/publication/ADP/" />
+        <meta property="og:title" content="Fast Inexact Bilevel Optimization for Analytical Deep Image Priors" />
         <meta
             property="og:description"
             content="In various domains within imaging and data science, particularly when addressing tasks modeled utilizing the variational regularization approach, manually configuring regularization parameters presents a formidable challenge. The difficulty intensifies when employing regularizers involving a large number of hyperparameters. To overcome this challenge, bilevel learning is employed to learn suitable hyperparameters. However, due to the use of numerical solvers, the exact gradient with respect to the hyperparameters is unattainable, necessitating the use of methods relying on approximate gradients. State-of-the-art inexact methods a priori select a decreasing summable sequence of the required accuracy and only assure convergence given a sufficiently small fixed step size. Despite this, challenges persist in determining the Lipschitz constant of the hypergradient and identifying an appropriate fixed step size. Conversely, computing exact function values is not feasible, impeding the use of line search. In this work, we introduce a provably convergent inexact backtracking line search involving inexact function evaluations and hypergradients. We show convergence to a stationary point of the loss with respect to hyperparameters. Additionally, we propose an algorithm to determine the required accuracy dynamically. Our numerical experiments demonstrate the efficiency and feasibility of our approach for hyperparameter estimation in variational regularization problems, alongside its robustness in terms of the initial accuracy and step size choices."
@@ -71,8 +49,8 @@
             {
                 "@context": "https://schema.org",
                 "@type": "Article",
-                "mainEntityOfPage": { "@type": "WebPage", "@id": "https://sadeghsalehi.netlify.app/publication/MAID/" },
-                "headline": "An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning",
+                "mainEntityOfPage": { "@type": "WebPage", "@id": "https://sadeghsalehi.netlify.app/publication/ISGD/" },
+                "headline": "Bilevel Learning with Inexact Stochastic Gradients",
                 "datePublished": "2023-08-19T15:40:00Z",
                 "dateModified": "2023-08-31T17:30:29+01:00",
                 "author": { "@type": "Person", "name": "M. S. Salehi" },
@@ -84,7 +62,7 @@
                 "description": "In various domains within imaging and data science, particularly when addressing tasks modeled utilizing the variational regularization approach, manually configuring regularization parameters presents a formidable challenge. The difficulty intensifies when employing regularizers involving a large number of hyperparameters. To overcome this challenge, bilevel learning is employed to learn suitable hyperparameters. However, due to the use of numerical solvers, the exact gradient with respect to the hyperparameters is unattainable, necessitating the use of methods relying on approximate gradients. State-of-the-art inexact methods a priori select a decreasing summable sequence of the required accuracy and only assure convergence given a sufficiently small fixed step size. Despite this, challenges persist in determining the Lipschitz constant of the hypergradient and identifying an appropriate fixed step size. Conversely, computing exact function values is not feasible, impeding the use of line search. In this work, we introduce a provably convergent inexact backtracking line search involving inexact function evaluations and hypergradients. We show convergence to a stationary point of the loss with respect to hyperparameters. Additionally, we propose an algorithm to determine the required accuracy dynamically. Our numerical experiments demonstrate the efficiency and feasibility of our approach for hyperparameter estimation in variational regularization problems, alongside its robustness in terms of the initial accuracy and step size choices."
             }
         </script>
-        <title>An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning</title>
+        <title>Bilevel Learning with Inexact Stochastic Gradients</title>
     </head>
     <body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper" data-wc-page-id="750f4d6559e1deba1e20e8f5c889b7a0">
         <script src="js/js-wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
@@ -163,24 +141,23 @@
         <div class="page-body">
             <div class="pub">
                 <div class="article-container pt-3">
-                    <h1>An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning</h1>
+                    <h1>Fast Inexact Bilevel Optimization for Analytical Deep Image Priors</h1>
                     <div class="article-metadata">
-                        <div><span>M. S. Salehi</span>, <span>S. Mukherjee</span>, <span>L. Roberts</span>, <span>M. J. Ehrhardt</span></div>
-                        <span class="article-date">August, 2023</span>
+                        <div><span>M. S. Salehi</span>, <span>T. A. Bubba</span>, <span>Y. Korolev</span></div>
+                        <span class="article-date">February, 2025</span>
                     </div>
-                    <div class="btn-links mb-3"><a class="btn btn-outline-primary btn-page-header" href="https://doi.org/10.48550/arXiv.2308.10098" target="_blank" rel="noopener">PDF</a></div>
+                    <div class="btn-links mb-3"><a class="btn btn-outline-primary btn-page-header" href="https://arxiv.org/abs/2502.09758" target="_blank" rel="noopener">PDF</a></div>
                 </div>
                 <div class="article-container">
                     <h3>Abstract</h3>
                     <p class="pub-abstract">
-                        Various tasks in data science are modeled utilizing the variational regularization approach, where manually selecting regularization parameters presents a challenge. The difficulty gets exacerbated when employing regularizers involving a large number of hyperparameters. To overcome this challenge, bilevel learning can be employed to learn such parameters from data. However, neither exact function values nor exact gradients with respect to the hyperparameters are attainable, necessitating methods that only rely on inexact evaluation of such quantities. State-of-the-art inexact gradient-based methods a priori select a sequence of the required accuracies and cannot identify an appropriate step size since the Lipschitz constant of the hypergradient is unknown. In this work, we propose an algorithm with backtracking line search that only relies on inexact function evaluations and hypergradients and show convergence to a stationary point. Furthermore, the proposed algorithm determines the required accuracy dynamically rather than manually selected before running it. Our numerical experiments demonstrate the efficiency and feasibility of our approach for hyperparameter estimation on a range of relevant problems in imaging and data science such as total variation and field of experts denoising and multinomial logistic regression. Particularly, the results show that the algorithm is robust to its own hyperparameters such as the initial accuracies and step size.
-                    </p>
+                        The analytical deep image prior (ADP) introduced by Dittmer et al. (2020) establishes a link between deep image priors and classical regularization theory via bilevel optimization. While this is an elegant construction, it involves expensive computations if the lower-level problem is to be solved accurately. To overcome this issue, we propose to use adaptive inexact bilevel optimization to solve ADP problems. We discuss an extension of a recent inexact bilevel method called the method of adaptive inexact descent of Salehi et al.(2024) to an infinite-dimensional setting required by the ADP framework. In our numerical experiments we demonstrate that the computational speed-up achieved by adaptive inexact bilevel optimization allows one to use ADP on larger-scale problems than in the previous literature, e.g. in deblurring of 2D color images.                    </p>
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <div class="row">
                                 <div class="col-12 col-md-3 pub-row-heading">Type</div>
-                                <div class="col-12 col-md-9"><a href="/publication/#3">Preprint</a></div>
+                                <div class="col-12 col-md-9"><a href="https://arxiv.org/abs/2502.09758">Preprint</a></div>
                             </div>
                         </div>
                         <div class="col-md-1"></div>
@@ -307,17 +284,6 @@
                 </div>
             </div>
         </div>
-        <article itemscope itemtype="http://schema.org/ScholarlyArticle">
-            <h1 itemprop="name">An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning</h1>
-            <p itemprop="author">
-              <span itemprop="name">Mohammad Sadegh Salehi</span>,
-              <span itemprop="name">Subhadip Mukherjee</span>,
-              <span itemprop="name">Lindon Roberts</span>,
-              <span itemprop="name">Matthias J. Ehrhardt</span>
-            </p>
-            <span itemprop="datePublished">2024</span>
-            <a href="https://arxiv.org/abs/2308.10098" itemprop="url">arXiv:2308.10098</a>
-          </article>
         <script src="js/js-wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
     </body>
 </html>

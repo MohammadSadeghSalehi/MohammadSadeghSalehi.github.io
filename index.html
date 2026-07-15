@@ -1,714 +1,183 @@
 <!DOCTYPE html>
-<!-- This site was created with Wowchemy. https://www.wowchemy.com --><!-- Last Published: August 31, 2023 -->
-<html lang="en-us">
-    <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3CRJ4J12N"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<html lang="en">
 
-        gtag('config', 'G-J3CRJ4J12N');
-        </script>
-        <!-- Google Analytics tracking code -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Sadegh Salehi | Machine Learning Research Engineer</title>
+    <meta name="description" content="Mohammad Sadegh Salehi is a machine learning research engineer working on generative 3D, computer vision, optimisation, inverse problems, and the AmaraSpatial-10K dataset.">
+    <meta name="author" content="Mohammad Sadegh Salehi">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://mohammadsadeghsalehi.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Mohammad Sadegh Salehi">
+    <meta property="og:title" content="Mohammad Sadegh Salehi | Machine Learning Research Engineer">
+    <meta property="og:description" content="Research in generative 3D, computer vision, optimisation, inverse problems, and spatial AI.">
+    <meta property="og:url" content="https://mohammadsadeghsalehi.github.io/">
+    <meta property="og:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@Sadegh_Salehi97">
+    <meta name="twitter:creator" content="@Sadegh_Salehi97">
+    <meta name="twitter:title" content="Mohammad Sadegh Salehi | Machine Learning Research Engineer">
+    <meta name="twitter:description" content="Generative 3D, computer vision, optimisation, inverse problems, and spatial AI research.">
+    <meta name="twitter:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#2563eb">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://mohammadsadeghsalehi.github.io/#person",
+          "name": "Mohammad Sadegh Salehi",
+          "url": "https://mohammadsadeghsalehi.github.io/",
+          "image": "https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg",
+          "jobTitle": "Machine Learning Research Engineer",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Zero One Creative",
+            "url": "https://01c.ai/"
+          },
+          "sameAs": [
+            "https://x.com/Sadegh_Salehi97",
+            "https://github.com/MohammadSadeghSalehi",
+            "https://scholar.google.com/citations?user=bunZmJsAAAAJ&hl=en",
+            "https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/"
+          ]
+        },
+        {
+          "@type": "Dataset",
+          "@id": "https://mohammadsadeghsalehi.github.io/#amara-spatial-10k",
+          "name": "AmaraSpatial-10K",
+          "description": "A spatially and semantically aligned synthetic 3D asset dataset for spatial computing and embodied AI.",
+          "url": "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k",
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "creator": {
+            "@id": "https://mohammadsadeghsalehi.github.io/#person"
+          },
+          "citation": "https://arxiv.org/abs/2604.23018"
+        },
+        {
+          "@type": "VideoObject",
+          "@id": "https://mohammadsadeghsalehi.github.io/#bilevel-learning-talk",
+          "name": "Bilevel Learning with Inexact Hypergradients",
+          "description": "Talk by Mohammad Sadegh Salehi about bilevel learning, inexact hypergradients, and scalable optimisation methods.",
+          "thumbnailUrl": "https://img.youtube.com/vi/G1LUtJd8FDU/hqdefault.jpg",
+          "uploadDate": "2026-05-26",
+          "embedUrl": "https://www.youtube.com/embed/G1LUtJd8FDU",
+          "publisher": {
+            "@id": "https://mohammadsadeghsalehi.github.io/#person"
+          }
         }
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-        </script>
+      ]
+    }
+    </script>
+</head>
 
-        <!-- Google Analytics -->
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+<body>
+    <div id="floating-container"></div>
+    <div class="app-container">
+        <header class="top-bar">
+            <div class="top-bar-content">
+                <div class="logo-container">
+                    <!-- Placeholder for user Logo -->
+                    <a href="#" class="site-logo-link">
+                        <img src="images/01c_logo.jpg" alt="MSS Logo" class="site-logo-img">
+                    </a>
+                </div>
 
-        ga('create', 'G-J3CRJ4J12N', 'auto');
-        ga('send', 'pageview');
-        </script>
-        <!-- End Google Analytics -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta http-equiv="x-ua-compatible" content="IE=edge" />
-        <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Roboto+Mono&amp;family=Roboto:wght@400;700&amp;display=swap" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;family=Roboto+Mono&amp;family=Roboto:wght@400;700&amp;display=swap" media="print" onload='this.media="all"' />
-        <link rel="stylesheet" href="css/css-vendor-bundle.min.047268c6dd09ad74ba54a0ba71837064.css" media="print" onload='this.media="all"' />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css"
-            integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg=="
-            crossorigin="anonymous"
-            media="print"
-            onload='this.media="all"'
-        />
-        <link rel="stylesheet" href="css/css-wowchemy.042e26407c9e383d96a1f26d6787c686.css" />
-        <link rel="stylesheet" href="css/chroma-github-light.min.css" title="hl-light" media="print" onload='this.media="all"' />
-        <link rel="stylesheet" href="css/chroma-dracula.min.css" title="hl-dark" media="print" onload='this.media="all"' disabled />
-        <meta name="author" content="Mohammad Sadegh Salehi" />
-        <meta name="description" content="Mohammad Sadegh Salehi University of Bath PhD Applied Mathematics">
-        <link rel="alternate" hreflang="en-us" href="https://sadeghsalehi.netlify.app/" />
-        <link rel="canonical" href="https://mohammadsadeghsalehi.github.io" />
-        <link rel="manifest" href="/manifest.webmanifest" />
-        <link rel="icon" type="image/png" href="favicons/media-Icon_hu804981e25b7159c4eeb5f1560bf90bb6_50920_32x32_fill_lanczos_center_3.png" />
-        <link rel="apple-touch-icon" type="image/png" href="favicons/media-Icon_hu804981e25b7159c4eeb5f1560bf90bb6_50920_180x180_fill_lanczos_center_3.png" />
-        <meta name="theme-color" content="#1565c0" />
-        <meta property="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@Sadegh_Salehi97" />
-        <meta property="twitter:image" content="https://pbs.twimg.com/profile_images/1452390582874251264/4p6maDi9_400x400.jpg" />
-        <meta property="og:site_name" content="Mohammad Sadegh Salehi" />
-        <meta property="og:url" content="https://mohammadsadeghsalehi.github.io" />
-        <meta property="og:title" content="Mohammad Sadegh Salehi" />
-        <meta property="og:description" content="The personal website of Mohammad Sadegh Salehi." />
-        <meta property="og:image" content="https://mohammadsadeghsalehi.github.io/images/admin-Avatar_huae8c6c791af52d8ef59ef9191a46750d_73274_270x270_fill_q75_lanczos_center.jpg" />
-        <meta property="og:locale" content="en-us" />
-        <meta property="og:updated_time" content="2022-10-24T00:00:00+00:00" />
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "potentialAction": { "@type": "SearchAction", "target": "https://sadeghsalehi.netlify.app?q={search_term_string}", "query-input": "required name=search_term_string" },
-                "url": "https://sadeghsalehi.netlify.app"
-            }
-        </script>
-        <script src="js/v1-netlify-identity-widget.js"></script>
-        <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Mohammad Sadegh Salehi" />
-        <title>Mohammad Sadegh Salehi</title>
-        <style>
-            /* CSS code here */
-            /* Initially hide the .hidden elements */
-            .expandable-list.hidden {
-                display: none;
-            }
-        </style>
-        <style>
-            /* CSS code here */
-            /* Initially hide the .hidden elements */
-            .expandable-list2.hidden {
-                display: none;
-            }
-        </style>
-        <style>
-            /* CSS code here */
-            /* Initially hide the .hidden elements */
-            .expandable-list3.hidden {
-                display: none;
-            }
-        </style>
-    </head>
-    <body id="top" data-spy="scroll" data-offset="70" data-target="#navbar-main" class="page-wrapper" data-wc-page-id="3976528693a0108357f4928017600865">
-        <script src="js/js-wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
-        <aside class="search-modal" id="search">
-            <div class="container">
-                <section class="search-header">
-                    <div class="row no-gutters justify-content-between mb-3">
-                        <div class="col-6"><h1>Search</h1></div>
-                        <div class="col-6 col-search-close">
-                            <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div id="search-box">
-                        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control" aria-label="Search..." />
-                    </div>
-                </section>
-                <section class="section-search-results"><div id="search-hits"></div></section>
-            </div>
-        </aside>
-        <div class="page-header header--fixed">
-            <header>
-                <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
-                    <div class="container-xl">
-                        <div class="d-none d-lg-inline-flex"><a class="navbar-brand" href="index.html">Mohammad Sadegh Salehi</a></div>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
-                            <span><i class="fas fa-bars"></i></span>
-                        </button>
-                        <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none"><a class="navbar-brand" href="index.html">Mohammad Sadegh Salehi</a></div>
-                        <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
-                            <ul class="navbar-nav d-md-inline-flex">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#about" data-target="#about"><span>Home</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#posts" data-target="#posts"><span>News</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#projects" data-target="#projects"><span>Projects</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#publications" data-target="#publications"><span>Publications</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#talks" data-target="#talks"><span>Talks</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#teaching" data-target="#teaching"><span>Teaching</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#contact" data-target="#contact"><span>Contact</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
-                            <li class="nav-item d-none d-lg-inline-flex">
-                                <a class="nav-link" href="https://twitter.com/Sadegh_Salehi97" data-toggle="tooltip" data-placement="bottom" title="Follow me on Twitter" target="_blank" rel="noopener" aria-label="Follow me on Twitter">
-                                    <i class="fab fa-twitter" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
-                            </li>
-                            <li class="nav-item dropdown theme-dropdown">
-                                <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences"><i class="fas fa-moon" aria-hidden="true"></i></a>
-                                <div class="dropdown-menu">
-                                    <a href="#" class="dropdown-item js-set-theme-light"><span>Light</span></a>
-                                    <a href="#" class="dropdown-item js-set-theme-dark"><span>Dark</span></a>
-                                    <a href="#" class="dropdown-item js-set-theme-auto"><span>Automatic</span></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <button class="menu-toggle" aria-label="Toggle Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li><a href="#about" class="active">About</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li hidden><a href="#projects">Projects</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#talks">Talks</a></li>
+                        <li><a href="#dataset">Dataset</a></li>
+                    </ul>
+                    <div class="social-links-header" id="social-links-nav"></div>
+                    <button id="theme-btn" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </nav>
-            </header>
-        </div>
-        <div class="page-body">
-            <span class="js-widget-page d-none"></span>
-            <section id="about" class="home-section wg-about-biography">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-lg-4">
-                            <div id="profile">
-                                <img class="avatar avatar-circle" width="270" height="270" src="images/admin-Avatar_huae8c6c791af52d8ef59ef9191a46750d_73274_270x270_fill_q75_lanczos_center.jpg" alt="Mohammad Sadegh Salehi" />
-                                <div class="portrait-title">
-                                    <h2>Mohammad Sadegh Salehi</h2>
-                                    <h3>PhD student in Applied Mathematics (<a href="https://samba.ac.uk/apply-to-samba/">SAMBa CDT</a>)</h3>
-                                    <h3>
-                                        <a href="https://www.bath.ac.uk/departments/department-of-mathematical-sciences/" target="_blank" rel="noopener"><span>Department of Mathematical Sciences University of Bath</span></a>
-                                    </h3>
-                                </div>
-                                <ul class="network-icon" aria-hidden="true">
-                                    <li>
-                                        <a href="/#contact" aria-label="envelope"><i class="fas fa-envelope big-icon"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://twitter.com/Sadegh_Salehi97" target="_blank" rel="noopener" aria-label="twitter"><i class="fab fa-twitter big-icon"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://scholar.google.com/citations?user=bunZmJsAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="graduation-cap"><i class="fas fa-graduation-cap big-icon"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://github.com/MohammadSadeghSalehi" target="_blank" rel="noopener" aria-label="github"><i class="fab fa-github big-icon"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/" target="_blank" rel="noopener" aria-label="linkedin"><i class="fab fa-linkedin big-icon"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-8">
-                            <h1>Biography</h1>
-                            <div class="article-style">
-                                <p>
-                                    I am a PhD student at the University of Bath and a part of the <a href="https://samba.ac.uk" target="_blank" rel="noopener">SAMBa CDT</a>, supervised by
-                                    <a href="https://mehrhardt.github.io/" target="_blank" rel="noopener">Dr. Matthias Ehrhardt</a> and <a href="https://sites.google.com/view/subhadip-mukherjee/home" target="_blank" rel="noopener">Dr. Subhadip Mukherjee</a>. I am also a member of the <a href="https://bath-numerical-analysis.github.io/" target="_blank" rel="noopener">Numerical Analysis group</a> and the <a href="https://mehrhardt.github.io/index.html#group" target="_blank" rel="noopener">Bath Imaging Group</a>. My interests span Optimization, Machine Learning, Imaging Inverse Problems, and Data Science. My research
-                                    revolves around algorithms for learning hyperparameters, particularly when the task is modeled using variational regularization approach. This approach is standard in fields like image
-                                    reconstruction, image processing, machine vision, and data science.
-                                </p>
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div class="section-subheading">Interests</div>
-                                    <ul class="ul-interests fa-ul mb-0">
-                                        <li><i class="fa-li fa-solid fa-book"></i> Scalable Methods for Bilevel Learning</li>
-                                        <li><i class="fa-li fa-solid fa-book"></i> Variational Methods &amp; Inverse Problems</li>
-                                        <li><i class="fa-li fa-solid fa-book"></i> Deep Image Priors</li>
-                                        <li><i class="fa-li fa-solid fa-book"></i> Neural Networks as the Regularizer</li>
-                                        <li><i class="fa-li fa-solid fa-book"></i> Convex Optimization</li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="section-subheading">Education</div>
-                                    <ul class="ul-edu fa-ul mb-0">
-                                        <li>
-                                            <i class="fa-li fa-solid fa-graduation-cap"></i>
-                                            <div class="description">
-                                                <p class="course">PhD in Statistical Applied Mathematics, October 2021&ndash; present</p>
-                                                <p class="institution">University of Bath, UK</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <i class="fa-li fa-solid fa-graduation-cap"></i>
-                                            <div class="description">
-                                                <p class="course">Master of Applied and Theoretical Mathematics, 2020&ndash; 2021</p>
-                                                <p class="institution">PSL Research University- Dauphine, Paris, France</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <i class="fa-li fa-solid fa-graduation-cap"></i>
-                                            <div class="description">
-                                                <p class="course">Bachelor of Mathematics and Applications, 2016&ndash; 2020</p>
-                                                <p class="institution">University of Tehran, Iran</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="posts" class="home-section wg-collection">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-                            <h1 class="mb-0">Recent News</h1>
-                        </div>
-                        <div class="col-12 col-lg-8">
-                            <ul class="expandable-list">
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Dec-24) New Research Preprint</strong>
-                                        <p> New preprint "Bilevel Learning with Inexact Stochastic Gradients" <a href="https://sites.google.com/view/subhadip-mukherjee/home" target="_blank" rel="noopener">Subhadip Mukherjee</a> (IIT Kharagpur), <a href="https://lindonroberts.github.io" target="_blank" rel="noopener">Lindon Roberts</a> (University of Sydney), and <a href="https://mehrhardt.github.io/" target="_blank" rel="noopener">Matthias Ehrhardt</a> (University of Bath).</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Dec-24) New Research Preprint</strong>
-                                        <p> New preprint "An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation" <a href="https://krauthammerlab.ch/authors/leabogensperger/" target="_blank" rel="noopener">Lea Bogensperger</a> (University of Zurich), <a href="https://mehrhardt.github.io/" target="_blank" rel="noopener">Matthias Ehrhardt</a> (University of Bath), <a href="https://www.tugraz.at/institute/icg/research/team-pock/people/pock/" target="_blank" rel="noopener">Thomas Pock</a> (Graz University of Technology), and <a href="https://maths4dl.ac.uk/team-member/hok-shing-wong" target="_blank" rel="noopener">Hok Shing Wong</a> (University of Bath). We proposed a posteriori error bounds for the hypergradients calculated through primal-dual style differentiation, combined it with adaptive line search algorithms and showed the application on learning data-adaptive regularisers like input-convex neural network (ICNN).</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Sep-24) Conference Presentation in <a href="https://ima.org.uk/23503/4th-ima-conference-on-inverse-problems-from-theory-to-application/" target="_blank" rel="noopener">4th IMA Conference on Inverse Problems</a></strong>
-                                        <p>I presented our research findings 4th IMA Conference on Inverse Problems from Theory to Application, Bath, UK.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Jun-24) Conference Presentation in <a href="https://europt2024.event.lu.se" target="_blank" rel="noopener">EUROPT 2024</a></strong>
-                                        <p>I presented our research findings in 21ST Conferenc on advances in
-                                            continuous optimization, Lund, Sweden.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(May-24) Conference Presentation in <a href="https://www.icms.org.uk/BigData" target="_blank" rel="noopener">ICMS Big Data Inverse Problems</a></strong>
-                                        <p>I presented our Algorithm Method of Adaptive Inexact Descent <a href="https://arxiv.org/abs/2308.10098v3" target="_blank" rel="noopener">(MAID)</a> in ICMS Workshop on <a href="https://www.icms.org.uk/BigData" target="_blank" rel="noopener">Big Data Inverse Problems</a> as an invited speaker, Edinburgh, UK.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Sep-23) Conference Presentation in <a href="https://scoop.iwr.uni-heidelberg.de/events/2023_eucco/" target="_blank" rel="noopener">EUCCO 2023</a></strong>
-                                        <p>I will be presenting our research findings in European Conference on Computational Optimization (EUCCO), Heidelberg, Germany.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <button id="expand-button3" class="btn btn-link">Show More</button>
-                            <ul class="expandable-list3 hidden">
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Aug-23) New Research Publication</strong>
-                                        <p> New preprint "An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning" <a href="https://sites.google.com/view/subhadip-mukherjee/home" target="_blank" rel="noopener">Subhadip Mukherjee</a> (IIT Kharagpur), <a href="https://lindonroberts.github.io" target="_blank" rel="noopener">Lindon Roberts</a> (University of Sydney), and <a href="https://mehrhardt.github.io/" target="_blank" rel="noopener">Matthias Ehrhardt</a> (University of Bath). We proposed an adaptive linesearch algorithm for bilevel learning based on controllable accuracy function and hypergradient evaluations.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Aug-23) Conference Presentation in <a href="https://iciam2023.org" target="_blank" rel="noopener">ICIAM 2023</a></strong>
-                                        <p>I will be presenting our research findings at the minisymposium <a href="https://iciam2023.org/registered_data?id=00632" target="_blank" rel="noopener">"From model-blind to model-aware learning of inverse problems in imaging"</a>, in ICIAM 2023, Tokyo, Japan.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(Aug-23) Conference Presentation in <a href="https://www.bilevelconference2023.org" target="_blank" rel="noopener">ICBO</a></strong>
-                                        <p>I will be presenting our research findings in International Conference on Bilevel Optimization, Southampton, UK.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(June-23) Poster Presentation</strong>
-                                        <p>I will be presenting a poster about my current research at <a href="https://hl785.github.io/SAMBa-Conf-2023.html">SAMBa</a> annual conference, Bath, UK.</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">(April-23) Travel Grant Awarded</strong>
-                                        <p>I have been awarded the travel grant <a href="https://ima.org.uk/support/grants/qjmam-fund/">QJMAM</a>. This grant will support my attendance in ICIAM 2023 in Japan.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="projects" class="home-section wg-portfolio">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="section-heading col-12 mb-3 text-left"><h1 class="mb-0">Research Projects</h1></div>
-                        <div class="col-12">
-                            <span class="d-none default-project-filter">*</span>
-                            <ul style="list-style-type: square; margin-left: 20px; padding-left: 10px;">
-                                <li>
-                                    <strong>Scalable Algorithms for Bilevel Learning</strong><br>
-                                    <em>Supervisors:</em> Dr. Matthias Ehrhardt, Dr. Subhadip Mukherjee
-                                  </li>
-                                <li>
-                                  <strong>Modified Analytical Deep Image Priors</strong><br>
-                                  <em>Supervisors:</em> <a href="https://sites.google.com/view/tatianabubba/home"> Dr. Tatiana Bubba</a>, <a href="https://yury-korolev.gitlab.io"> Dr. Yuri Korolev</a>
-                                </li>
-                                <li>
-                                  <strong>Gradient-Free Training of Neural Networks (ADMM Approach)</strong><br>
-                                  <em>Supervisor:</em> Dr. Matthias Ehrhardt
-                                </li>
-                                <li>
-                                  <strong>Impact of Neural Network Architecture and Initialization on Gradient Confusion and Stochastic Gradient Descent</strong><br>
-                                  <em>Supervisor:</em><a href="https://researchportal.bath.ac.uk/en/persons/sandipan-roy"> Dr. Sandipan Roy</a> 
-                                </li>
-                                <li>
-                                  <strong>Interdisciplinary Research Project on Portfolios Design for Clinical Trials</strong><br>
-                                  <em>Supervisor:</em><a href="https://people.bath.ac.uk/mapamgc/"> Dr. Alex Cox</a><br>
-                                  <em>Partnership with:</em><a href="https://www.roche.com"> Roche Company</a> 
-                                </li>
-                                <li>
-                                  <strong>Master Thesis: Linear and Non-linear Acceleration Methods for Alternating Projections and Dykstra's Algorithm</strong><br>
-                                  <em>Supervisor:</em> <a href="http://www.cmap.polytechnique.fr/~antonin/"> Prof. Antonin Chambolle</a> 
-                                </li>
-                              </ul>                              
-                            <div class="isotope projects-container row js-layout-row project-showcase"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="publications" class="home-section wg-collection">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start"><h1 class="mb-0">Publications</h1></div>
-                        <div class="col-12 col-lg-8">
-                            <div class="alert alert-note">
-                                <div>Quickly discover relevant content by <a href="publication.html">filtering publications</a>.</div>
-                            </div>
-                            <div class="pub-list-item view-citation" style="margin-bottom: 1rem;">
-                                <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-                                <span class="article-metadata li-cite-author"><span>M. S. Salehi</span>, <span>S. Mukherjee</span>, <span>L. Roberts</span>, <span>M. J. Ehrhardt</span></span>
-                                (2023).
-                                <a href="MAID.html">An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning</a>.
-                                <p><a class="btn btn-outline-primary btn-page-header btn-sm" href="https://doi.org/10.48550/arXiv.2308.10098" target="_blank" rel="noopener">Preprint</a></p>
-                            </div>
-                            <div class="pub-list-item view-citation" style="margin-bottom: 1rem;">
-                                <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-                                <span class="article-metadata li-cite-author"><span>L. Bogensperger</span>, <span>M. J. Ehrhardt</span>, <span>T. Pock</span>, <span>M. S. Salehi</span>, <span>H. S. Wong</span></span>
-                                (2024).
-                                <a href="Piggy.html">An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation</a>.
-                                <p><a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/pdf/2412.06436" target="_blank" rel="noopener">Preprint</a></p>
-                            </div>
-                            <div class="pub-list-item view-citation" style="margin-bottom: 1rem;">
-                                <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
-                                <span class="article-metadata li-cite-author"><span>M. S. Salehi</span>, <span>S. Mukherjee</span>, <span>L. Roberts</span>, <span>M. J. Ehrhardt</span></span>
-                                (2024).
-                                <a href="ISGD.html">Bilevel Learning with Inexact Stochastic Gradients</a>.
-                                <p><a class="btn btn-outline-primary btn-page-header btn-sm" href="https://arxiv.org/abs/2412.12049" target="_blank" rel="noopener">Preprint</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="talks" class="home-section wg-collection">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-                            <h1 class="mb-0">Talks</h1>
-                        </div>
-                        <div class="col-12 col-lg-8">
-                            <ul class="expandable-list">
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">Inexact Algorithms for Bilevel Learning</strong>
-                                        <p>International Congress on Industrial and Applied Mathematics (ICIAM) - Waseda University, Tokyo, Japan</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">Inexact Algorithms for Bilevel Learning</strong>
-                                        <p>International Conference on Bilevel Optimization - University of Southampton, UK</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">Deep Data-Adaptive Regularisers for Inverse Problems</strong>
-                                        <p>Online, Math4DL Seminars (Jointly by the University of Bath, University of Cambridge, and UCL)</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <button id="expand-button" class="btn btn-link">Show More</button>
-                            <ul class="expandable-list hidden">
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">A Taste of Primal-Dual with Alternating Projections and Optimal Transport</strong>
-                                        <p>Post-Graduate Seminar Series - University of Bath, UK</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">Derivative-Free vs. Gradient-Based Methods for Bilevel Learning</strong>
-                                        <p>SAMBa Conference - University of Bath, UK</p>
-                                    </div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <div class="item-details">
-                                        <strong class="list-item-title">Mathematics of Deep Learning & ADMM Approach for Training the Neural Networks</strong>
-                                        <p>Online - University of Tehran</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section id="teaching" class="home-section wg-tag-cloud">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start">
-                            <h1 class="mb-0">Teaching</h1>
-                        </div>
-                        <div class="col-12 col-lg-8">
-                            <ul class="expandable-list">
-                                <h3 class="left-aligned-title">University of Bath</h3>
-                                <!-- Initial list items -->
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">MA20278: Machine Learning 1 Tutor: Semester 2 2022-2023</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">MA10276: Programming Lab (Python) Tutor: Semester 2 2022-2023</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">MA10207 Analysis 1A Tutor: Semester 1 2021-2022</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">MA10207 Analysis 1B Tutor: Semester 2 2021-2022</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                <!-- Add more initial list items here -->
-                            </ul>
-                            <button id="expand-button2" class="btn btn-link">Show More</button>
-                            <ul class="expandable-list2 hidden">
-                                <!-- Additional list items (hidden by default) -->
-                                <h3 class="left-aligned-title">University of Tehran (Teaching assistant)</h3>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Nonlinear Optimization, Lecturer: Prof. Majid Soleimani-damaneh, Spring 2020</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Fundamental of Numerical Analysis, Lecturer: Dr. Alireza Hosseini, Spring 2020</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Mathematical Analysis 2, Lecturer: Prof. Mohammad Bagher Asadi, Spring 2020</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Linear Optimization 1, Lecturer: Prof. Majid Soleimani-damaneh, Autumn 2019</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Mathematical Analysis 1, Lecturer: Prof. Mohammad Bagher Asadi, Autumn 2019</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Mathematical Analysis 1, Lecturer: Prof. Mohammad Bagher Asadi, Spring 2019</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Calculus and Differential Equations for Biology, Lecturer: Dr. Arta Jamshidi, Autumn 2018</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Calculus 1, Lecturer: Dr. Hadi Zare, Autumn 2018</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                
-                                <li class="expandable-item">
-                                    <span class="expand-button"></span>
-                                    <span class="list-item-title">Advanced Programming (C++), Dr. Milad Mozafari, Autumn 2018</span>
-                                    <div class="item-details"></div>
-                                </li>
-                                <!-- Add the rest of the additional list items here -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>            
-            
-            <section id="contact" class="home-section wg-contact">
-                <div class="home-section-bg"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="section-heading col-12 col-lg-4 mb-3 mb-lg-0 d-flex flex-column align-items-center align-items-lg-start"><h1 class="mb-0">Contact</h1></div>
-                        <div class="col-12 col-lg-8">
-                            <ul class="fa-ul">
-                                <li>
-                                    <i class="fa-li fas fa-envelope fa-2x" aria-hidden="true"></i> <span id="person-email"><a href="mailto:mss226@bath.ac.uk">mss226@bath.ac.uk</a></span>
-                                </li>
-                                <li><i class="fa-li fas fa-map-marker fa-2x" aria-hidden="true"></i> <span id="person-address">Claverton Down, Bath, BA27AY</span></li>
-                                <li><i class="fa-li fas fa-compass fa-2x" aria-hidden="true"></i> <span>Office: University of Bath, 4 West, 5.8</span></li>
-                                <li><i class="fa-li fab fa-twitter fa-2x" aria-hidden="true"></i> <a href="https://twitter.com/Sadegh_Salehi97" target="_blank" rel="noopener">Twitter</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <div class="page-footer">
-            <div class="container">
-                <footer class="site-footer">
-                    <p class="powered-by">
-                        Powered by <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> &mdash;
-                        <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a>.
-                    </p>
-                </footer>
             </div>
-        </div>
-        <script src="js/js-vendor-bundle.min.1d4346c6f7d46c340dc0a9058dd85c13.js"></script>
-        <script src="js/imagesloaded@5.0.0-imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script>
-        <script src="js/dist-isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous"></script>
-        <script id="search-hit-fuse-template" type="text/x-template">
-            <div class="search-hit" id="summary-{{key}}">
-              <div class="search-hit-content">
-                <div class="search-hit-name">
-                  <a href="{{relpermalink}}">{{title}}
-                  <div class="article-metadata search-hit-type">{{type}}
-                  <p class="search-hit-description">{{snippet}}
-        </script>
-        <script src="js/dist-fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
-        <script src="js/dist-jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
-        <script id="page-data" type="application/json">
-            { "use_headroom": false }
-        </script>
-        <script src="js/js-wowchemy.min.d1a621ded99ecec8400cbe9bc8c34b21.js"></script>
-        <div id="modal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Cite</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <pre><code></code></pre>
-                    </div>
-                    <div class="modal-footer">
-                        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank"><i class="fas fa-copy"></i> Copy</a>
-                        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank"><i class="fas fa-download"></i> Download</a>
-                        <div id="modal-error"></div>
-                    </div>
+        </header>
+
+        <main class="content-area">
+            <section class="profile-header-section">
+                <img src="" alt="Profile" id="profile-image" class="profile-image-lg">
+                <div class="profile-intro">
+                    <h1 id="profile-name"></h1>
+                    <p id="profile-role"></p>
+                    <p id="profile-tagline" class="profile-tagline"></p>
+                    <div class="profile-badges" id="profile-badges"></div>
+                    <div class="social-links-main" id="social-links-main"></div>
                 </div>
-            </div>
-        </div>
-        <script src="js/js-wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const expandButton = document.getElementById("expand-button");
-                const hiddenList = document.querySelector(".expandable-list.hidden");
-        
-                expandButton.addEventListener("click", function () {
-                    // Toggle the hidden class on the list
-                    hiddenList.classList.toggle("hidden");
-        
-                    // Toggle the button text
-                    if (hiddenList.classList.contains("hidden")) {
-                        expandButton.textContent = "Show More";
-                    } else {
-                        expandButton.textContent = "Show Less";
-                    }
-                });
-            });
-        </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const expandButton = document.getElementById("expand-button2");
-                const hiddenList = document.querySelector(".expandable-list2.hidden");
-        
-                expandButton.addEventListener("click", function () {
-                    // Toggle the hidden class on the list
-                    hiddenList.classList.toggle("hidden");
-        
-                    // Toggle the button text
-                    if (hiddenList.classList.contains("hidden")) {
-                        expandButton.textContent = "Show More";
-                    } else {
-                        expandButton.textContent = "Show Less";
-                    }
-                });
-            });
-        </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const expandButton = document.getElementById("expand-button3");
-                const hiddenList = document.querySelector(".expandable-list3.hidden");
-        
-                expandButton.addEventListener("click", function () {
-                    // Toggle the hidden class on the list
-                    hiddenList.classList.toggle("hidden");
-        
-                    // Toggle the button text
-                    if (hiddenList.classList.contains("hidden")) {
-                        expandButton.textContent = "Show More";
-                    } else {
-                        expandButton.textContent = "Show Less";
-                    }
-                });
-            });
-        </script>
-    </body>
+            </section>
+            <section id="about" class="section active">
+                <h2 class="section-title">Biography</h2>
+                <div class="bio-content">
+                    <p id="bio-text"></p>
+                </div>
+
+                <h3 class="subsection-title">Interests</h3>
+                <div class="tags-container" id="interests-list"></div>
+
+                <h3 class="subsection-title">Education</h3>
+                <div class="timeline" id="education-list"></div>
+
+                <h3 class="subsection-title">Contact</h3>
+                <ul class="contact-list" id="contact-list"></ul>
+            </section>
+
+            <section id="news" class="section">
+                <h2 class="section-title">Recent News</h2>
+                <div class="news-grid" id="news-list"></div>
+            </section>
+
+            <section id="projects" class="section" hidden>
+                <h2 class="section-title">Research Projects</h2>
+                <div class="projects-grid" id="projects-list"></div>
+            </section>
+
+            <section id="publications" class="section">
+                <h2 class="section-title">Publications</h2>
+                <div class="publications-list" id="publications-list"></div>
+            </section>
+
+            <section id="talks" class="section">
+                <h2 class="section-title">Talks</h2>
+                <div class="talks-list" id="talks-list"></div>
+            </section>
+
+            <section id="dataset" class="section">
+                <h2 class="section-title">AmaraSpatial-10K</h2>
+                <div id="dataset-feature"></div>
+            </section>
+
+        </main>
+    </div>
+
+    <noscript>
+        <section class="noscript-content">
+            <h1>Mohammad Sadegh Salehi</h1>
+            <p>Machine learning research engineer working on generative 3D, computer vision, optimisation, inverse problems, and spatial AI.</p>
+            <p><a href="https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k">AmaraSpatial-10K dataset</a> | <a href="https://www.youtube.com/watch?v=G1LUtJd8FDU">Bilevel learning talk</a> | <a href="https://x.com/Sadegh_Salehi97">X profile</a></p>
+        </section>
+    </noscript>
+
+    <!-- Scripts -->
+    <script src="background.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>

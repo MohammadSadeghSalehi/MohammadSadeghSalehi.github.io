@@ -1,0 +1,473 @@
+{
+    "profile":  {
+                    "name":  "Mohammad Sadegh Salehi",
+                    "role":  "Machine Learning Research Engineer at Zero One Creative",
+                    "tagline":  "Generative Models - Computer Vision - Optimisation - Inverse Problems",
+                    "badges":  [
+                                   {
+                                       "icon":  "fas fa-wand-magic-sparkles",
+                                       "label":  "Generative Models"
+                                   },
+                                   {
+                                       "icon":  "fas fa-eye",
+                                       "label":  "Vision"
+                                   },
+                                   {
+                                       "icon":  "fas fa-wave-square",
+                                       "label":  "Optimisation"
+                                   },
+                                   {
+                                       "icon":  "fas fa-flask",
+                                       "label":  "Research"
+                                   }
+                               ],
+                    "image":  "images/Sadegh.jpg",
+                    "emailCodes":  [
+                                       115,
+                                       97,
+                                       100,
+                                       101,
+                                       103,
+                                       104,
+                                       115,
+                                       97,
+                                       108,
+                                       101,
+                                       104,
+                                       105,
+                                       49,
+                                       57,
+                                       57,
+                                       55,
+                                       64,
+                                       103,
+                                       109,
+                                       97,
+                                       105,
+                                       108,
+                                       46,
+                                       99,
+                                       111,
+                                       109
+                                   ],
+                    "location":  "London, UK",
+                    "socials":  [
+                                    {
+                                        "name":  "X",
+                                        "icon":  "brand-x",
+                                        "url":  "https://x.com/Sadegh_Salehi97"
+                                    },
+                                    {
+                                        "name":  "Google Scholar",
+                                        "icon":  "fas fa-graduation-cap",
+                                        "url":  "https://scholar.google.com/citations?user=bunZmJsAAAAJ\u0026hl=en"
+                                    },
+                                    {
+                                        "name":  "GitHub",
+                                        "icon":  "fab fa-github",
+                                        "url":  "https://github.com/MohammadSadeghSalehi"
+                                    },
+                                    {
+                                        "name":  "LinkedIn",
+                                        "icon":  "fab fa-linkedin",
+                                        "url":  "https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/"
+                                    }
+                                ]
+                },
+    "biography":  "<p>I am a machine learning researcher and engineer focused on generative 3D, computer vision, optimisation, inverse problems, and spatial AI. At <a href=\"https://amara.01c.ai/\" target=\"_blank\">Zero One Creative</a>, I work on Amara, an AI platform for generating and iterating 3D environments from simple prompts.\n\nMy research spans hyperparameter learning, vision-language and diffusion models, and test-time adaptation across academic and industrial R&amp;D. Academically, I undertook PhD studies and an MRes in Statistical Applied Mathematics under Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee, after earning an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris.</p>",
+    "interests":  [
+                      "Generative Models",
+                      "Computer Vision",
+                      "Optimisation",
+                      "Inverse Problems",
+                      "3D Modelling",
+                      "Vision-Language Models"
+                  ],
+    "education":  [
+                      {
+                          "degree":  "PhD studies in Statistical Applied Mathematics",
+                          "period":  "October 2021 - February 2025",
+                          "institution":  "University of Bath, UK"
+                      },
+                      {
+                          "degree":  "Master of Applied and Theoretical Mathematics",
+                          "period":  "2020 - 2021",
+                          "institution":  "PSL Research University - Dauphine, Paris, France"
+                      },
+                      {
+                          "degree":  "Bachelor of Mathematics and Applications",
+                          "period":  "2016 - 2020",
+                          "institution":  "University of Tehran, Iran"
+                      }
+                  ],
+    "news":  [
+                 {
+                     "date":  "May-26",
+                     "title":  "Bilevel Learning with Inexact Hypergradients talk now available",
+                     "description":  "\u003cp\u003eMy talk from \u003cstrong\u003e26 May 2026\u003c/strong\u003e on \u003cstrong\u003eBilevel Learning with Inexact Hypergradients\u003c/strong\u003e is now available on \u003ca href=\"https://www.youtube.com/watch?v=G1LUtJd8FDU\" target=\"_blank\" rel=\"noopener\"\u003eYouTube\u003c/a\u003e. The talk focuses on bilevel optimisation, inexact hypergradients, and scalable learning algorithms.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "May-26",
+                     "title":  "AmaraSpatial-10K dataset \u0026 preprint released",
+                     "description":  "\u003cp\u003eWe released \u003cstrong\u003eAmaraSpatial-10K\u003c/strong\u003e, a spatially and semantically aligned 3D dataset of 10,100 synthetic assets for spatial computing and embodied AI. Available on \u003ca href=\"https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k\" target=\"_blank\"\u003eHugging Face\u003c/a\u003e with the accompanying \u003ca href=\"https://arxiv.org/abs/2604.23018\" target=\"_blank\"\u003epreprint on arXiv\u003c/a\u003e.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Apr-26",
+                     "title":  "Book chapter published in Handbook of Numerical Analysis",
+                     "description":  "\u003cp\u003eOur chapter \"Learning regularization functionals for inverse problems: a comparative study\" was published in the \u003cem\u003eHandbook of Numerical Analysis\u003c/em\u003e (Elsevier). Available \u003ca href=\"https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub\" target=\"_blank\"\u003ehere\u003c/a\u003e (DOI: \u003ca href=\"https://doi.org/10.1016/bs.hna.2026.04.001\" target=\"_blank\"\u003e10.1016/bs.hna.2026.04.001\u003c/a\u003e).\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "May-25",
+                     "title":  "SSVM 2025: oral, poster \u0026 support grant",
+                     "description":  "\u003cp\u003eAttended \u003cstrong\u003eSSVM 2025\u003c/strong\u003e (Scale Space and Variational Methods in Computer Vision), where I gave an \u003cstrong\u003eoral presentation\u003c/strong\u003e of \u003cem\u003e\"Fast Inexact Bilevel Optimization for Analytical Deep Image Priors\"\u003c/em\u003e and presented a \u003cstrong\u003eposter\u003c/strong\u003e on \u003cem\u003e\"Bilevel Learning with Inexact Stochastic Gradients\"\u003c/em\u003e. Honoured to have received an \u003cstrong\u003eSSVM support grant\u003c/strong\u003e to attend the conference.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Apr-25",
+                     "title":  "Papers accepted to SIMODS",
+                     "description":  "\u003cp\u003eOur paper \"An Adaptively Inexact First-Order Method for Bilevel Optimization with Application to Hyperparameter Learning\" has been accepted to the SIAM Journal on Mathematics of Data Science (SIMODS).\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Feb-25",
+                     "title":  "Papers accepted to SSVM 2025",
+                     "description":  "\u003cp\u003eOur papers \"Bilevel Learning with Inexact Stochastic Gradients\" and \"Fast Inexact Bilevel Optimization for Analytical Deep Image Priors\" accepted to 10th International Conference on Scale Space and Variational Methods in Computer Vision (SSVM 2025).\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Dec-24",
+                     "title":  "New Research Preprint (ISGD)",
+                     "description":  "\u003cp\u003eNew preprint \"Bilevel Learning with Inexact Stochastic Gradients\" with Subhadip Mukherjee, Lindon Roberts, and Matthias Ehrhardt.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Dec-24",
+                     "title":  "New Research Preprint (Piggy)",
+                     "description":  "\u003cp\u003eNew preprint \"An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation\" with Lea Bogensperger, Matthias Ehrhardt, Thomas Pock, and Hok Shing Wong.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Sep-24",
+                     "title":  "Conference Presentation in 4th IMA Conference on Inverse Problems",
+                     "description":  "\u003cp\u003ePresented research findings at the 4th IMA Conference on Inverse Problems from Theory to Application, Bath, UK.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Jun-24",
+                     "title":  "Conference Presentation in EUROPT 2024",
+                     "description":  "\u003cp\u003ePresented research findings at the 21st Conference on Advances in Continuous Optimization, Lund, Sweden.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "May-24",
+                     "title":  "Conference Presentation in ICMS Big Data Inverse Problems",
+                     "description":  "\u003cp\u003eInvited speaker at the ICMS Workshop on Big Data Inverse Problems, Edinburgh, UK, presenting MAID.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Aug-23",
+                     "title":  "Conference Presentation in ICIAM 2023",
+                     "description":  "\u003cp\u003ePresented research findings at the minisymposium \"From model-blind to model-aware learning of inverse problems in imaging\", in ICIAM 2023, Tokyo, Japan.\u003c/p\u003e"
+                 },
+                 {
+                     "date":  "Feb-26",
+                     "title":  "We Launched Amara",
+                     "description":  "\u003cp\u003e\u003ca href=\"https://tech.eu/2026/02/02/01c-launches-amara-to-generate-full-3d-worlds-from-simple-prompts/\" target=\"_blank\" rel=\"noopener\"\u003e\u003cstrong\u003e01C launched Amara\u003c/strong\u003e\u003c/a\u003e, an AI platform for generating and iterating full 3D worlds from simple prompts for creative and production workflows.\u003c/p\u003e"
+                 }
+             ],
+    "projects":  [
+                     {
+                         "title":  "Scalable Algorithms for Bilevel Learning",
+                         "supervisors":  "Dr. Matthias Ehrhardt, Dr. Subhadip Mukherjee"
+                     },
+                     {
+                         "title":  "Modified Analytical Deep Image Priors",
+                         "supervisors":  "Dr. Tatiana Bubba, Dr. Yuri Korolev",
+                         "link":  "https://sites.google.com/view/tatianabubba/home"
+                     },
+                     {
+                         "title":  "Gradient-Free Training of Neural Networks (ADMM Approach)",
+                         "supervisors":  "Dr. Matthias Ehrhardt"
+                     },
+                     {
+                         "title":  "Impact of Neural Network Architecture and Initialization",
+                         "supervisors":  "Dr. Sandipan Roy",
+                         "link":  "https://researchportal.bath.ac.uk/en/persons/sandipan-roy"
+                     },
+                     {
+                         "title":  "Interdisciplinary Research Project on Portfolios Design",
+                         "supervisors":  "Dr. Alex Cox",
+                         "partnership":  "Roche Company"
+                     },
+                     {
+                         "title":  "Master Thesis: Linear and Non-linear Acceleration Methods",
+                         "supervisors":  "Prof. Antonin Chambolle"
+                     }
+                 ],
+    "publications":  [
+                         {
+                             "title":  "An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning",
+                             "authors":  "M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt",
+                             "year":  "2025",
+                             "journal":  "SIAM Journal on Mathematics of Data Science (SIMODS)",
+                             "links":  [
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://doi.org/10.48550/arXiv.2308.10098"
+                                           }
+                                       ],
+                             "id":  "maid"
+                         },
+                         {
+                             "title":  "An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation",
+                             "authors":  "L. Bogensperger, M. J. Ehrhardt, T. Pock, M. S. Salehi, H. S. Wong",
+                             "year":  "2025",
+                             "journal":  "Journal of Mathematical Imaging and Vision (JMIV)",
+                             "links":  [
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/pdf/2412.06436"
+                                           }
+                                       ],
+                             "id":  "piggy"
+                         },
+                         {
+                             "title":  "Bilevel Learning with Inexact Stochastic Gradients",
+                             "authors":  "M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt",
+                             "year":  "2025",
+                             "journal":  "SSVM 2025 (Scale Space and Variational Methods in Computer Vision)",
+                             "links":  [
+                                           {
+                                               "label":  "Chapter (Springer)",
+                                               "url":  "https://doi.org/10.1007/978-3-031-92366-1_27"
+                                           },
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/abs/2412.12049"
+                                           }
+                                       ],
+                             "id":  "isgd"
+                         },
+                         {
+                             "title":  "Fast Inexact Bilevel Optimization for Analytical Deep Image Priors",
+                             "authors":  "M. S. Salehi, T. A. Bubba, Y. Korolev",
+                             "year":  "2025",
+                             "journal":  "SSVM 2025 (Scale Space and Variational Methods in Computer Vision)",
+                             "links":  [
+                                           {
+                                               "label":  "Chapter (Springer)",
+                                               "url":  "https://doi.org/10.1007/978-3-031-92366-1_3"
+                                           },
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/abs/2502.09758"
+                                           }
+                                       ],
+                             "id":  "adp"
+                         },
+                         {
+                             "title":  "Learning regularization functionals for inverse problems: A comparative study",
+                            "authors":  "Johannes Hertrich, Hok Shing Wong, Alexander Denker, Stanislas Ducotterd, Zhenghan Fang, Markus Haltmeier, Zeljko Kereta, Erich Kobler, Oscar Leong, Mohammad Sadegh Salehi, Carola-Bibiane Schoenlieb, Johannes Schwab, Zakhar Shumaylov, Jeremias Sulam, German Shama Wache, Martin Zach, Yasi Zhang, Matthias J Ehrhardt, Sebastian Neumayer",
+                             "year":  "2026",
+                             "journal":  "Handbook of Numerical Analysis (Book Chapter, Elsevier)",
+                             "links":  [
+                                           {
+                                               "label":  "Chapter (Elsevier)",
+                                               "url":  "https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub"
+                                           },
+                                           {
+                                               "label":  "DOI",
+                                               "url":  "https://doi.org/10.1016/bs.hna.2026.04.001"
+                                           },
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/pdf/2510.01755"
+                                           }
+                                       ]
+                         },
+                         {
+                             "title":  "AmaraSpatial-10K: A Spatially and Semantically Aligned 3D Dataset for Spatial Computing and Embodied AI",
+                             "authors":  "M. S. Salehi, A. Perkins, I. Maurell, A. Dabbagh, R. Wong",
+                             "year":  "2026",
+                             "journal":  "arXiv preprint",
+                             "links":  [
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/abs/2604.23018"
+                                           },
+                                           {
+                                               "label":  "Dataset",
+                                               "url":  "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k"
+                                           }
+                                       ],
+                             "id":  "amara-spatial"
+                         },
+                         {
+                             "title":  "Bilevel Learning via Inexact Stochastic Gradient Descent",
+                             "authors":  "Mohammad Sadegh Salehi, Subhadip Mukherjee, Lindon Roberts, Matthias J Ehrhardt",
+                             "year":  "2025",
+                             "links":  [
+                                           {
+                                               "label":  "arXiv",
+                                               "url":  "https://arxiv.org/pdf/2511.06774"
+                                           },
+                                           {
+                                               "label":  "DOI",
+                                               "url":  "https://doi.org/10.48550/arXiv.2511.06774"
+                                           }
+                                       ]
+                         }
+                     ],
+    "talks":  [
+                  {
+                      "title":  "Bilevel Learning with Inexact Hypergradients",
+                      "event":  "Recorded talk",
+                      "date":  "26 May 2026",
+                      "description":  "A recorded talk on bilevel learning, inexact hypergradients, and scalable optimisation methods for hyperparameter learning.",
+                      "videoId":  "G1LUtJd8FDU",
+                      "videoUrl":  "https://www.youtube.com/watch?v=G1LUtJd8FDU",
+                      "links":  [
+                                    {
+                                        "label":  "Watch on YouTube",
+                                        "url":  "https://www.youtube.com/watch?v=G1LUtJd8FDU"
+                                    }
+                                ]
+                  },
+                  {
+                      "title":  "Inexact Algorithms for Bilevel Learning",
+                      "event":  "ICIAM - Waseda University, Tokyo, Japan"
+                  },
+                  {
+                      "title":  "Inexact Algorithms for Bilevel Learning",
+                      "event":  "International Conference on Bilevel Optimization - University of Southampton, UK"
+                  },
+                  {
+                      "title":  "Deep Data-Adaptive Regularisers for Inverse Problems",
+                      "event":  "Math4DL Seminars (Online)"
+                  },
+                  {
+                      "title":  "A Taste of Primal-Dual with Alternating Projections and Optimal Transport",
+                      "event":  "Post-Graduate Seminar Series - University of Bath, UK"
+                  },
+                  {
+                      "title":  "Derivative-Free vs. Gradient-Based Methods for Bilevel Learning",
+                      "event":  "SAMBa Conference - University of Bath, UK"
+                  },
+                  {
+                      "title":  "Mathematics of Deep Learning \u0026 ADMM Approach for Training the Neural Networks",
+                      "event":  "University of Tehran (Online)"
+                  }
+              ],
+    "theme":  {
+                  "primaryColor":  "#6366f1",
+                  "secondaryColor":  "#a5b4fc",
+                  "backgroundColor":  "#f8fafc",
+                  "textColor":  "#1e293b",
+                  "sidebarColor":  "rgba(255, 255, 255, 0.8)"
+              },
+    "datasetFeature":  {
+                           "eyebrow":  "AmaraSpatial-10K",
+                           "title":  "A spatial asset bank for embodied AI",
+                           "summary":  "An interactive snapshot of the AmaraSpatial-10K release: 10.1k synthetic 3D assets with semantic labels, rendered views, mesh and collision paths, metric anchors, geometry metrics, and text metadata.",
+                           "links":  [
+                                         {
+                                             "label":  "Hugging Face",
+                                             "url":  "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k"
+                                         },
+                                         {
+                                             "label":  "arXiv",
+                                             "url":  "https://arxiv.org/abs/2604.23018"
+                                         }
+                                     ],
+                           "preview":  {
+                                           "apiUrl":  "https://datasets-server.huggingface.co/rows?dataset=ZeroOneCreative%2Famara-spatial-10k&config=default&split=train&offset=0&length=1",
+                                           "localMeshUrl":  "assets/models/Animals_Basilisk_SM_MeshGen_AcidspitterMarshBasilisk.glb",
+                                           "meshSourceUrl":  "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k/resolve/main/meshes/shard-00000.tar",
+                                           "meshPath":  "Animals_Basilisk_SM_MeshGen_AcidspitterMarshBasilisk.glb",
+                                           "title":  "HF sample mesh",
+                                           "description":  "A live metadata preview from the first AmaraSpatial-10K row, paired with a GLB sample extracted from its Hugging Face mesh shard."
+                                       },
+                           "stats":  [
+                                         {
+                                             "value":  "10.1k",
+                                             "label":  "assets"
+                                         },
+                                         {
+                                             "value":  "22",
+                                             "label":  "top categories"
+                                         },
+                                         {
+                                             "value":  "159",
+                                             "label":  "subcategories"
+                                         },
+                                         {
+                                             "value":  "CC-BY-4.0",
+                                             "label":  "license"
+                                         }
+                                     ],
+                           "modes":  [
+                                         {
+                                             "id":  "coverage",
+                                             "label":  "Coverage",
+                                             "icon":  "fas fa-layer-group",
+                                             "heading":  "Semantic coverage",
+                                             "text":  "The release is organised around top-level and fine-grained classes, with natural-language descriptions and rendered views for discovery, retrieval, and downstream scene building.",
+                                             "points":  [
+                                                            "10.1k train rows",
+                                                            "22 top categories",
+                                                            "159 subcategories"
+                                                        ]
+                                         },
+                                         {
+                                             "id":  "geometry",
+                                             "label":  "Geometry",
+                                             "icon":  "fas fa-cube",
+                                             "heading":  "Geometry signals",
+                                             "text":  "Each asset includes geometry metadata such as vertices, decimated faces, bounding boxes, anchor origins, watertightness, manifoldness, UV availability, and collision-mesh statistics.",
+                                             "points":  [
+                                                            "Metric AABBs",
+                                                            "Anchor origins",
+                                                            "Mesh quality metrics"
+                                                        ]
+                                         },
+                                         {
+                                             "id":  "deployment",
+                                             "label":  "Deployment",
+                                             "icon":  "fas fa-vr-cardboard",
+                                             "heading":  "Deployment-ready assets",
+                                             "text":  "Assets are packaged for spatial computing pipelines with GLB mesh paths, collision hulls, PBR texture information, multiple render views, and paired text/image metadata.",
+                                             "points":  [
+                                                            "GLB asset paths",
+                                                            "Collision hulls",
+                                                            "PBR texture metadata"
+                                                        ]
+                                         },
+                                         {
+                                             "id":  "evaluation",
+                                             "label":  "Evaluation",
+                                             "icon":  "fas fa-chart-line",
+                                             "heading":  "Benchmarking protocol",
+                                             "text":  "The paper evaluates retrieval coherence, scale plausibility, anchor quality, geometry, and physics stability, comparing AmaraSpatial-10K with matched subsets of existing 3D asset banks.",
+                                             "points":  [
+                                                            "CLIP coherence",
+                                                            "Scale plausibility",
+                                                            "Physics stability"
+                                                        ]
+                                         }
+                                     ],
+                           "pipeline":  [
+                                            {
+                                                "label":  "Prompt",
+                                                "value":  "Text seed"
+                                            },
+                                            {
+                                                "label":  "Asset",
+                                                "value":  "GLB mesh"
+                                            },
+                                            {
+                                                "label":  "Anchor",
+                                                "value":  "Metric origin"
+                                            },
+                                            {
+                                                "label":  "Collision",
+                                                "value":  "Convex hull"
+                                            },
+                                            {
+                                                "label":  "Eval",
+                                                "value":  "Quality signals"
+                                            }
+                                        ]
+                       }
+}
