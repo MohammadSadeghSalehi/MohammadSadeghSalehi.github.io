@@ -52,6 +52,18 @@ function renderLinkIcon(label, url) {
     return `<i class="${r.fa}"></i>`;
 }
 
+function renderProfileBadge(badge) {
+    const className = badge.featured ? 'badge badge-erdos' : 'badge';
+    const icon = badge.icon ? `<i class="${escapeAttr(badge.icon)}" aria-hidden="true"></i>` : '';
+    const value = badge.value ? `<strong class="badge-value">${escapeAttr(badge.value)}</strong>` : '';
+    const content = `${icon}<span>${escapeAttr(badge.label)}</span>${value}`;
+
+    if (!badge.url) return `<span class="${className}">${content}</span>`;
+
+    const accessibleLabel = `${badge.label}${badge.value ? ` ${badge.value}` : ''} — view source`;
+    return `<a class="${className}" href="${escapeAttr(badge.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeAttr(accessibleLabel)}" title="View verification on X">${content}</a>`;
+}
+
 function isEmailSocial(link) {
     const name = ((link && link.name) || '').toLowerCase();
     const url = ((link && link.url) || '').toLowerCase();
@@ -256,9 +268,7 @@ function renderData(data) {
 
         const badgesEl = document.getElementById('profile-badges');
         if (badgesEl && Array.isArray(data.profile.badges)) {
-            badgesEl.innerHTML = data.profile.badges.map(b => `
-                <span class="badge"><i class="${b.icon}"></i>${b.label}</span>
-            `).join('');
+            badgesEl.innerHTML = data.profile.badges.map(renderProfileBadge).join('');
         }
 
         // Social Links (Main Section)

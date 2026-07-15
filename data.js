@@ -5,6 +5,13 @@ const SITE_DATA = {
                     "tagline":  "Generative Models - Computer Vision - Optimisation - Inverse Problems",
                     "badges":  [
                                    {
+                                       "icon":  "fas fa-diagram-project",
+                                       "label":  "Erdős number",
+                                       "value":  "4",
+                                       "url":  "https://x.com/Sadegh_Salehi97/status/2077000946006065299?s=20",
+                                       "featured":  true
+                                   },
+                                   {
                                        "icon":  "fas fa-wand-magic-sparkles",
                                        "label":  "Generative Models"
                                    },

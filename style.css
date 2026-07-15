@@ -216,6 +216,57 @@ body {
     margin-bottom: 1.25rem;
 }
 
+.profile-badges .badge {
+    text-decoration: none;
+}
+
+.profile-badges .badge-erdos {
+    padding: 0.3rem 0.42rem 0.3rem 0.72rem;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(37, 99, 235, 0.15));
+    border-color: rgba(217, 119, 6, 0.48);
+    color: #92400e;
+    box-shadow: 0 5px 18px rgba(180, 83, 9, 0.12);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.profile-badges .badge-erdos .badge-value {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.55rem;
+    height: 1.55rem;
+    margin-left: 0.08rem;
+    padding: 0 0.38rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #d97706, #2563eb);
+    color: #fff;
+    font-size: 0.82rem;
+    line-height: 1;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.24);
+}
+
+.profile-badges .badge-erdos:hover {
+    transform: translateY(-2px);
+    border-color: rgba(217, 119, 6, 0.75);
+    box-shadow: 0 8px 22px rgba(180, 83, 9, 0.2);
+}
+
+.profile-badges .badge-erdos:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.3);
+    outline-offset: 3px;
+}
+
+[data-theme="dark"] .profile-badges .badge-erdos {
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.19), rgba(96, 165, 250, 0.22));
+    border-color: rgba(251, 191, 36, 0.5);
+    color: #fde68a;
+    box-shadow: 0 5px 20px rgba(251, 191, 36, 0.1);
+}
+
+[data-theme="dark"] .profile-badges .badge-erdos:hover {
+    border-color: rgba(251, 191, 36, 0.78);
+    box-shadow: 0 8px 25px rgba(96, 165, 250, 0.2);
+}
+
 .profile-intro h1 {
     font-size: 2.5rem;
     font-weight: 800;
