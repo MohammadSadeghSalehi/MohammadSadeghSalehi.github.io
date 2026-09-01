@@ -81,7 +81,7 @@
                                     }
                                 ]
                 },
-    "biography":  "<p>I am a machine learning researcher and engineer focused on generative 3D, computer vision, optimisation, inverse problems, and spatial AI. At <a href=\"https://amara.01c.ai/\" target=\"_blank\">Zero One Creative</a>, I work on Amara, an AI platform for generating and iterating 3D environments from simple prompts.\n\nMy research spans hyperparameter learning, vision-language and diffusion models, and test-time adaptation across academic and industrial R&amp;D. Academically, I undertook PhD studies and an MRes in Statistical Applied Mathematics under Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee, after earning an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris.</p>",
+    "biography":  "<p>I am a machine learning researcher and engineer focused on generative 3D, computer vision, optimisation, inverse problems, and spatial AI. At <a href=\"https://amara.01c.ai/\" target=\"_blank\" rel=\"noopener\">Zero One Creative</a>, I work on Amara, an AI platform for generating and iterating 3D environments from simple prompts.</p><p>I built <a href=\"https://github.com/01C-Amara/EVIBIND\" target=\"_blank\" rel=\"noopener\">EviBind</a>, an evidence-binding layer for fail-closed LLM tool execution: the model can select policy-admissible evidence, but it cannot invent protected values at the release boundary.</p><p>My research spans hyperparameter learning, vision-language and diffusion models, and test-time adaptation across academic and industrial R&amp;D. Academically, I undertook PhD studies and an MRes in Statistical Applied Mathematics under Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee, after earning an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris.</p>",
     "interests":  [
                       "Generative Models",
                       "Computer Vision",
@@ -175,6 +175,59 @@
                  }
              ],
     "projects":  [
+                     {
+                         "title":  "EviBind",
+                         "featured":  true,
+                         "kind":  "software",
+                         "eyebrow":  "Evidence Bound Tool Calls",
+                         "description":  "<p>Authenticated evidence binding for fail-closed LLM tool execution. Trusted code authenticates model-selected evidence, replays derivations, validates the tool contract, and materializes the executable call atomically. The model can select policy-admissible evidence; it cannot invent or rewrite protected values at the release boundary.</p>",
+                         "partnership":  "01C-Amara",
+                         "link":  "https://github.com/01C-Amara/EVIBIND",
+                         "links":  [
+                                       {
+                                           "label":  "GitHub",
+                                           "url":  "https://github.com/01C-Amara/EVIBIND"
+                                       }
+                                   ],
+                         "stats":  [
+                                       {
+                                           "value":  "0/144",
+                                           "label":  "AgentDojo banking attacks after binding"
+                                       },
+                                       {
+                                           "value":  "ICLR 2027",
+                                           "label":  "research artifact"
+                                       },
+                                       {
+                                           "value":  "3.11–3.13",
+                                           "label":  "Python"
+                                       }
+                                   ]
+                     },
+                     {
+                         "title":  "Diffusion Inverse Problems",
+                         "kind":  "software",
+                         "description":  "<p>Diffusion-based image restoration and inverse problems, with implementations of DiffPIR, DPS, RePaint, and DDRM for inpainting, CT, and deblurring.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/diffusion-inverse-problems"
+                     },
+                     {
+                         "title":  "MAID",
+                         "kind":  "software",
+                         "description":  "<p>Method of Adaptive Inexact Descent for bilevel learning, with application to hyperparameter optimisation.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/MAID"
+                     },
+                     {
+                         "title":  "ISGD",
+                         "kind":  "software",
+                         "description":  "<p>Inexact stochastic bilevel learning: faster training and theoretical convergence guarantees for hyperparameter learning and imaging.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/ISGD"
+                     },
+                     {
+                         "title":  "Analytical Deep Priors",
+                         "kind":  "software",
+                         "description":  "<p>Fast inexact bilevel optimisation for analytical deep image priors.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/Analytical-Deep-Priors"
+                     },
                      {
                          "title":  "Scalable Algorithms for Bilevel Learning",
                          "supervisors":  "Dr. Matthias Ehrhardt, Dr. Subhadip Mukherjee"
@@ -358,11 +411,11 @@
                   }
               ],
     "theme":  {
-                  "primaryColor":  "#6366f1",
-                  "secondaryColor":  "#a5b4fc",
-                  "backgroundColor":  "#f8fafc",
-                  "textColor":  "#1e293b",
-                  "sidebarColor":  "rgba(255, 255, 255, 0.8)"
+                  "primaryColor":  "#0071e3",
+                  "secondaryColor":  "#64d2ff",
+                  "backgroundColor":  "#f5f5f7",
+                  "textColor":  "#1d1d1f",
+                  "sidebarColor":  "rgba(255, 255, 255, 0.72)"
               },
     "datasetFeature":  {
                            "eyebrow":  "AmaraSpatial-10K",

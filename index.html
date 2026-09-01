@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohammad Sadegh Salehi | Machine Learning Research Engineer</title>
-    <meta name="description" content="Mohammad Sadegh Salehi is a machine learning research engineer working on generative 3D, computer vision, optimisation, inverse problems, and the AmaraSpatial-10K dataset.">
+    <meta name="description" content="Mohammad Sadegh Salehi is a machine learning research engineer working on generative 3D, computer vision, optimisation, inverse problems, EviBind, and the AmaraSpatial-10K dataset.">
     <meta name="author" content="Mohammad Sadegh Salehi">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://mohammadsadeghsalehi.github.io/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Mohammad Sadegh Salehi">
     <meta property="og:title" content="Mohammad Sadegh Salehi | Machine Learning Research Engineer">
-    <meta property="og:description" content="Research in generative 3D, computer vision, optimisation, inverse problems, and spatial AI.">
+    <meta property="og:description" content="Research in generative 3D, computer vision, optimisation, inverse problems, EviBind, and spatial AI.">
     <meta property="og:url" content="https://mohammadsadeghsalehi.github.io/">
     <meta property="og:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Sadegh_Salehi97">
     <meta name="twitter:creator" content="@Sadegh_Salehi97">
     <meta name="twitter:title" content="Mohammad Sadegh Salehi | Machine Learning Research Engineer">
-    <meta name="twitter:description" content="Generative 3D, computer vision, optimisation, inverse problems, and spatial AI research.">
+    <meta name="twitter:description" content="Generative 3D, computer vision, optimisation, inverse problems, EviBind, and spatial AI research.">
     <meta name="twitter:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="apple-touch-icon" href="images/mss-logo-180.png">
+    <link rel="stylesheet" href="style.css?v=20260901b">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem('theme');
+                var queryTheme = new URLSearchParams(location.search).get('theme');
+                if (queryTheme === 'dark' || queryTheme === 'light') stored = queryTheme;
+                var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            } catch (e) {}
+        })();
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,15 +64,24 @@
           ]
         },
         {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://mohammadsadeghsalehi.github.io/#evibind",
+          "name": "EviBind",
+          "description": "Authenticated evidence binding for fail-closed LLM tool execution.",
+          "url": "https://github.com/01C-Amara/EVIBIND",
+          "codeRepository": "https://github.com/01C-Amara/EVIBIND",
+          "programmingLanguage": "Python",
+          "license": "https://opensource.org/licenses/MIT",
+          "author": { "@id": "https://mohammadsadeghsalehi.github.io/#person" }
+        },
+        {
           "@type": "Dataset",
           "@id": "https://mohammadsadeghsalehi.github.io/#amara-spatial-10k",
           "name": "AmaraSpatial-10K",
           "description": "A spatially and semantically aligned synthetic 3D asset dataset for spatial computing and embodied AI.",
           "url": "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k",
           "license": "https://creativecommons.org/licenses/by/4.0/",
-          "creator": {
-            "@id": "https://mohammadsadeghsalehi.github.io/#person"
-          },
+          "creator": { "@id": "https://mohammadsadeghsalehi.github.io/#person" },
           "citation": "https://arxiv.org/abs/2604.23018"
         },
         {
@@ -68,116 +92,362 @@
           "thumbnailUrl": "https://img.youtube.com/vi/G1LUtJd8FDU/hqdefault.jpg",
           "uploadDate": "2026-05-26",
           "embedUrl": "https://www.youtube.com/embed/G1LUtJd8FDU",
-          "publisher": {
-            "@id": "https://mohammadsadeghsalehi.github.io/#person"
-          }
+          "publisher": { "@id": "https://mohammadsadeghsalehi.github.io/#person" }
         }
       ]
     }
     </script>
 </head>
-
 <body>
+    <a class="skip-link" href="#about">Skip to content</a>
     <div id="floating-container"></div>
     <div class="app-container">
         <header class="top-bar">
             <div class="top-bar-content">
                 <div class="logo-container">
-                    <!-- Placeholder for user Logo -->
-                    <a href="#" class="site-logo-link">
-                        <img src="images/01c_logo.jpg" alt="MSS Logo" class="site-logo-img">
+                    <a href="#top" class="site-logo-link" aria-label="Mohammad Sadegh Salehi home">
+                        <img src="images/mss-logo.png" alt="MS monogram" class="site-logo-img" width="32" height="32">
+                        <span class="site-wordmark">Sadegh Salehi</span>
                     </a>
                 </div>
 
-                <button class="menu-toggle" aria-label="Toggle Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-
                 <nav class="main-nav" id="main-nav">
                     <ul>
-                        <li><a href="#about" class="active">About</a></li>
+                        <li><a href="#about">About</a></li>
                         <li><a href="#news">News</a></li>
-                        <li hidden><a href="#projects">Projects</a></li>
+                        <li><a href="#projects">Projects</a></li>
                         <li><a href="#publications">Publications</a></li>
                         <li><a href="#talks">Talks</a></li>
                         <li><a href="#dataset">Dataset</a></li>
                     </ul>
                     <div class="social-links-header" id="social-links-nav"></div>
-                    <button id="theme-btn" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
-                        <i class="fas fa-moon"></i>
-                    </button>
                 </nav>
+
+                <div class="header-actions">
+                    <button id="theme-btn" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
         </header>
 
-        <main class="content-area">
-            <section class="profile-header-section">
-                <img src="" alt="Profile" id="profile-image" class="profile-image-lg">
+        <main class="content-area" id="top">
+            <section class="profile-header-section" aria-label="Profile">
+                <img src="images/Sadegh.jpg" alt="Portrait of Mohammad Sadegh Salehi" id="profile-image" class="profile-image-lg" width="168" height="168">
                 <div class="profile-intro">
-                    <h1 id="profile-name"></h1>
-                    <p id="profile-role"></p>
-                    <p id="profile-tagline" class="profile-tagline"></p>
-                    <div class="profile-badges" id="profile-badges"></div>
-                    <div class="social-links-main" id="social-links-main"></div>
+                    <h1 id="profile-name">Mohammad Sadegh Salehi</h1>
+                    <p id="profile-role">Machine Learning Research Engineer at Zero One Creative</p>
+                    <p id="profile-tagline" class="profile-tagline">Generative Models - Computer Vision - Optimisation - Inverse Problems</p>
+                    <div class="profile-badges" id="profile-badges"><a class="badge badge-erdos" href="https://x.com/Sadegh_Salehi97/status/2077000946006065299?s=20" target="_blank" rel="noopener noreferrer"><i class="fas fa-diagram-project" aria-hidden="true"></i><span>Erdős number</span><strong class="badge-value">4</strong></a><span class="badge"><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i><span>Generative Models</span></span><span class="badge"><i class="fas fa-eye" aria-hidden="true"></i><span>Vision</span></span><span class="badge"><i class="fas fa-wave-square" aria-hidden="true"></i><span>Optimisation</span></span><span class="badge"><i class="fas fa-flask" aria-hidden="true"></i><span>Research</span></span></div>
+                    <div class="social-links-main" id="social-links-main"><a href="https://x.com/Sadegh_Salehi97" target="_blank" rel="noopener" aria-label="X" title="X"><i class="fab fa-x-twitter"></i></a><a href="https://scholar.google.com/citations?user=bunZmJsAAAAJ&amp;hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a><a href="https://github.com/MohammadSadeghSalehi" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a><a href="https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a><button type="button" class="social-email-btn" data-email-action aria-label="Email" title="Email"><i class="fas fa-envelope"></i></button></div>
                 </div>
             </section>
-            <section id="about" class="section active">
+
+            <section id="about" class="section">
                 <h2 class="section-title">Biography</h2>
-                <div class="bio-content">
-                    <p id="bio-text"></p>
-                </div>
+                <div class="bio-content" id="bio-text"><p>I am a machine learning researcher and engineer focused on generative 3D, computer vision, optimisation, inverse problems, and spatial AI. At <a href="https://amara.01c.ai/" target="_blank" rel="noopener">Zero One Creative</a>, I work on Amara, an AI platform for generating and iterating 3D environments from simple prompts.</p><p>I built <a href="https://github.com/01C-Amara/EVIBIND" target="_blank" rel="noopener">EviBind</a>, an evidence-binding layer for fail-closed LLM tool execution: the model can select policy-admissible evidence, but it cannot invent protected values at the release boundary.</p><p>My research spans hyperparameter learning, vision-language and diffusion models, and test-time adaptation across academic and industrial R&amp;D. Academically, I undertook PhD studies and an MRes in Statistical Applied Mathematics under Dr. Matthias Ehrhardt and Dr. Subhadip Mukherjee, after earning an MSc in Applied and Theoretical Mathematics from PSL Research University in Paris.</p></div>
 
                 <h3 class="subsection-title">Interests</h3>
-                <div class="tags-container" id="interests-list"></div>
+                <div class="tags-container" id="interests-list"><span class="tag">Generative Models</span><span class="tag">Computer Vision</span><span class="tag">Optimisation</span><span class="tag">Inverse Problems</span><span class="tag">3D Modelling</span><span class="tag">Vision-Language Models</span></div>
 
                 <h3 class="subsection-title">Education</h3>
-                <div class="timeline" id="education-list"></div>
+                <div class="timeline" id="education-list"><div class="timeline-item">
+                <div class="timeline-degree">PhD studies in Statistical Applied Mathematics</div>
+                <div class="timeline-institution">University of Bath, UK</div>
+                <div class="timeline-period">October 2021 - February 2025</div>
+            </div><div class="timeline-item">
+                <div class="timeline-degree">Master of Applied and Theoretical Mathematics</div>
+                <div class="timeline-institution">PSL Research University - Dauphine, Paris, France</div>
+                <div class="timeline-period">2020 - 2021</div>
+            </div><div class="timeline-item">
+                <div class="timeline-degree">Bachelor of Mathematics and Applications</div>
+                <div class="timeline-institution">University of Tehran, Iran</div>
+                <div class="timeline-period">2016 - 2020</div>
+            </div></div>
 
                 <h3 class="subsection-title">Contact</h3>
-                <ul class="contact-list" id="contact-list"></ul>
+                <ul class="contact-list" id="contact-list"><li><span><i class="fas fa-map-marker-alt"></i> London, UK</span></li><li><button type="button" class="contact-email-btn" data-email-action><i class="fas fa-envelope"></i> Email</button></li><li><a href="https://x.com/Sadegh_Salehi97" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a></li><li><a href="https://scholar.google.com/citations?user=bunZmJsAAAAJ&amp;hl=en" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i> Google Scholar</a></li><li><a href="https://github.com/MohammadSadeghSalehi" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></li><li><a href="https://www.linkedin.com/in/mohammad-sadegh-salehi-6b68511b5/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a></li></ul>
             </section>
 
             <section id="news" class="section">
-                <h2 class="section-title">Recent News</h2>
-                <div class="news-grid" id="news-list"></div>
+                <h2 class="section-title">News</h2>
+                <div class="news-grid" id="news-list"><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Sep-24</span></div>
+                <h3 class="card-title">Conference Presentation in 4th IMA Conference on Inverse Problems</h3>
+                
+                <div class="card-description"><p>Presented research findings at the 4th IMA Conference on Inverse Problems from Theory to Application, Bath, UK.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>May-26</span></div>
+                <h3 class="card-title">Bilevel Learning with Inexact Hypergradients talk now available</h3>
+                
+                <div class="card-description"><p>My talk from <strong>26 May 2026</strong> on <strong>Bilevel Learning with Inexact Hypergradients</strong> is now available on <a href="https://www.youtube.com/watch?v=G1LUtJd8FDU" target="_blank" rel="noopener">YouTube</a>. The talk focuses on bilevel optimisation, inexact hypergradients, and scalable learning algorithms.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>May-26</span></div>
+                <h3 class="card-title">AmaraSpatial-10K dataset &amp; preprint released</h3>
+                
+                <div class="card-description"><p>We released <strong>AmaraSpatial-10K</strong>, a spatially and semantically aligned 3D dataset of 10,100 synthetic assets for spatial computing and embodied AI. Available on <a href="https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k" target="_blank">Hugging Face</a> with the accompanying <a href="https://arxiv.org/abs/2604.23018" target="_blank">preprint on arXiv</a>.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>May-25</span></div>
+                <h3 class="card-title">SSVM 2025: oral, poster &amp; support grant</h3>
+                
+                <div class="card-description"><p>Attended <strong>SSVM 2025</strong> (Scale Space and Variational Methods in Computer Vision), where I gave an <strong>oral presentation</strong> of <em>"Fast Inexact Bilevel Optimization for Analytical Deep Image Priors"</em> and presented a <strong>poster</strong> on <em>"Bilevel Learning with Inexact Stochastic Gradients"</em>. Honoured to have received an <strong>SSVM support grant</strong> to attend the conference.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>May-24</span></div>
+                <h3 class="card-title">Conference Presentation in ICMS Big Data Inverse Problems</h3>
+                
+                <div class="card-description"><p>Invited speaker at the ICMS Workshop on Big Data Inverse Problems, Edinburgh, UK, presenting MAID.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Jun-26</span></div>
+                <h3 class="card-title">Presented Amara at Plug and Play UK&#x27;s Mobility &amp; Physical AI Innovation Day</h3>
+                <a class="news-image-link" href="https://x.com/Sadegh_Salehi97/status/2070948864346214750?s=20" target="_blank" rel="noopener"><img class="news-image" src="images/x-amara-innovation-day.jpg" alt="Zero One Creative team presenting Amara at Plug and Play UK&#x27;s Mobility and Physical AI Innovation Day 2026" loading="lazy"></a>
+                <div class="card-description"><p>Shared an update from Plug and Play UK's Mobility &amp; Physical AI Innovation Day, where we presented <strong>Amara</strong>, Zero One Creative's agentic 3D creator for artist-led 3D prototyping and storytelling.</p></div>
+                <div class="card-links"><a href="https://x.com/Sadegh_Salehi97/status/2070948864346214750?s=20" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-x-twitter"></i>View post on X</a></div>
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Jun-24</span></div>
+                <h3 class="card-title">Conference Presentation in EUROPT 2024</h3>
+                
+                <div class="card-description"><p>Presented research findings at the 21st Conference on Advances in Continuous Optimization, Lund, Sweden.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Feb-26</span></div>
+                <h3 class="card-title">We Launched Amara</h3>
+                
+                <div class="card-description"><p><a href="https://tech.eu/2026/02/02/01c-launches-amara-to-generate-full-3d-worlds-from-simple-prompts/" target="_blank" rel="noopener"><strong>01C launched Amara</strong></a>, an AI platform for generating and iterating full 3D worlds from simple prompts for creative and production workflows.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Feb-25</span></div>
+                <h3 class="card-title">Papers accepted to SSVM 2025</h3>
+                
+                <div class="card-description"><p>Our papers "Bilevel Learning with Inexact Stochastic Gradients" and "Fast Inexact Bilevel Optimization for Analytical Deep Image Priors" accepted to 10th International Conference on Scale Space and Variational Methods in Computer Vision (SSVM 2025).</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Dec-24</span></div>
+                <h3 class="card-title">New Research Preprint (ISGD)</h3>
+                
+                <div class="card-description"><p>New preprint "Bilevel Learning with Inexact Stochastic Gradients" with Subhadip Mukherjee, Lindon Roberts, and Matthias Ehrhardt.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Dec-24</span></div>
+                <h3 class="card-title">New Research Preprint (Piggy)</h3>
+                
+                <div class="card-description"><p>New preprint "An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation" with Lea Bogensperger, Matthias Ehrhardt, Thomas Pock, and Hok Shing Wong.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Aug-23</span></div>
+                <h3 class="card-title">Conference Presentation in ICIAM 2023</h3>
+                
+                <div class="card-description"><p>Presented research findings at the minisymposium "From model-blind to model-aware learning of inverse problems in imaging", in ICIAM 2023, Tokyo, Japan.</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Apr-26</span></div>
+                <h3 class="card-title">Book chapter published in Handbook of Numerical Analysis</h3>
+                
+                <div class="card-description"><p>Our chapter "Learning regularization functionals for inverse problems: a comparative study" was published in the <em>Handbook of Numerical Analysis</em> (Elsevier). Available <a href="https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub" target="_blank">here</a> (DOI: <a href="https://doi.org/10.1016/bs.hna.2026.04.001" target="_blank">10.1016/bs.hna.2026.04.001</a>).</p></div>
+                
+            </article><article class="card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>Apr-25</span></div>
+                <h3 class="card-title">Papers accepted to SIMODS</h3>
+                
+                <div class="card-description"><p>Our paper "An Adaptively Inexact First-Order Method for Bilevel Optimization with Application to Hyperparameter Learning" has been accepted to the SIAM Journal on Mathematics of Data Science (SIMODS).</p></div>
+                
+            </article></div>
             </section>
 
-            <section id="projects" class="section" hidden>
-                <h2 class="section-title">Research Projects</h2>
-                <div class="projects-grid" id="projects-list"></div>
+            <section id="projects" class="section">
+                <h2 class="section-title">Projects</h2>
+                <div id="featured-projects"><article class="project-feature">
+                <p class="eyebrow">Evidence Bound Tool Calls</p>
+                <h3>EviBind</h3>
+                <p class="lede">Authenticated evidence binding for fail-closed LLM tool execution.</p>
+                <p class="card-description"><span class="badge"><i class="fas fa-code-branch"></i>01C-Amara</span></p>
+                <div class="card-description"><p>Authenticated evidence binding for fail-closed LLM tool execution. Trusted code authenticates model-selected evidence, replays derivations, validates the tool contract, and materializes the executable call atomically. The model can select policy-admissible evidence; it cannot invent or rewrite protected values at the release boundary.</p></div>
+                <div class="project-feature-stats"><div><strong>0/144</strong><span>AgentDojo banking attacks after binding</span></div><div><strong>ICLR 2027</strong><span>research artifact</span></div><div><strong>3.11–3.13</strong><span>Python</span></div></div>
+                <div class="card-links"><a href="https://github.com/01C-Amara/EVIBIND" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a></div>
+            </article></div>
+                <h3 class="subsection-title">Open source</h3>
+                <div class="projects-grid" id="software-list"><article class="card">
+                <h3 class="card-title">Diffusion Inverse Problems</h3>
+                <div class="card-description"><p>Diffusion-based image restoration and inverse problems, with implementations of DiffPIR, DPS, RePaint, and DDRM for inpainting, CT, and deblurring.</p></div>
+                <div class="card-links"><a href="https://github.com/MohammadSadeghSalehi/diffusion-inverse-problems" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a></div>
+            </article><article class="card">
+                <h3 class="card-title">MAID</h3>
+                <div class="card-description"><p>Method of Adaptive Inexact Descent for bilevel learning, with application to hyperparameter optimisation.</p></div>
+                <div class="card-links"><a href="https://github.com/MohammadSadeghSalehi/MAID" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a></div>
+            </article><article class="card">
+                <h3 class="card-title">ISGD</h3>
+                <div class="card-description"><p>Inexact stochastic bilevel learning: faster training and theoretical convergence guarantees for hyperparameter learning and imaging.</p></div>
+                <div class="card-links"><a href="https://github.com/MohammadSadeghSalehi/ISGD" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a></div>
+            </article><article class="card">
+                <h3 class="card-title">Analytical Deep Priors</h3>
+                <div class="card-description"><p>Fast inexact bilevel optimisation for analytical deep image priors.</p></div>
+                <div class="card-links"><a href="https://github.com/MohammadSadeghSalehi/Analytical-Deep-Priors" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a></div>
+            </article></div>
+                <h3 class="subsection-title">Research</h3>
+                <div class="projects-grid" id="projects-list"><article class="card">
+                <h3 class="card-title">Scalable Algorithms for Bilevel Learning</h3>
+                <p class="card-description"><i class="fas fa-user-tie meta-icon"></i>Dr. Matthias Ehrhardt, Dr. Subhadip Mukherjee</p>
+                
+                
+            </article><article class="card">
+                <h3 class="card-title">Modified Analytical Deep Image Priors</h3>
+                <p class="card-description"><i class="fas fa-user-tie meta-icon"></i>Dr. Tatiana Bubba, Dr. Yuri Korolev</p>
+                
+                <div class="card-links"><a href="https://sites.google.com/view/tatianabubba/home" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-up-right-from-square"></i>More Info</a></div>
+            </article><article class="card">
+                <h3 class="card-title">Gradient-Free Training of Neural Networks (ADMM Approach)</h3>
+                <p class="card-description"><i class="fas fa-user-tie meta-icon"></i>Dr. Matthias Ehrhardt</p>
+                
+                
+            </article><article class="card">
+                <h3 class="card-title">Impact of Neural Network Architecture and Initialization</h3>
+                <p class="card-description"><i class="fas fa-user-tie meta-icon"></i>Dr. Sandipan Roy</p>
+                
+                <div class="card-links"><a href="https://researchportal.bath.ac.uk/en/persons/sandipan-roy" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-up-right-from-square"></i>More Info</a></div>
+            </article><article class="card">
+                <h3 class="card-title">Interdisciplinary Research Project on Portfolios Design</h3>
+                <p class="card-description"><i class="fas fa-user-tie meta-icon"></i>Dr. Alex Cox</p><p class="card-description"><span class="badge"><i class="fas fa-handshake"></i>Roche Company</span></p>
+                
+                
+            </article><article class="card">
+                <h3 class="card-title">Master Thesis: Linear and Non-linear Acceleration Methods</h3>
+                <p class="card-description"><i class="fas fa-user-tie meta-icon"></i>Prof. Antonin Chambolle</p>
+                
+                
+            </article></div>
             </section>
 
             <section id="publications" class="section">
                 <h2 class="section-title">Publications</h2>
-                <div class="publications-list" id="publications-list"></div>
+                <div class="publications-list" id="publications-list"><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>arXiv preprint</span><span class="badge badge-year"><i class="far fa-calendar"></i>2026</span></div></div>
+                <h3 class="card-title">Continuous Neural Reparameterization as a Deep Geometric Prior for Robust Fixed-Chart UV Repair</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>M. S. Salehi</p>
+                <div class="card-links"><a href="https://arxiv.org/abs/2606.10050" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a><a href="https://doi.org/10.48550/arXiv.2606.10050" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-link"></i>DOI</a><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=bunZmJsAAAAJ&amp;citation_for_view=bunZmJsAAAAJ:Se3iqnhoufwC" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-graduation-cap"></i>Google Scholar</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>Handbook of Numerical Analysis (Book Chapter, Elsevier)</span><span class="badge badge-year"><i class="far fa-calendar"></i>2026</span></div></div>
+                <h3 class="card-title">Learning regularization functionals for inverse problems: A comparative study</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>Johannes Hertrich, Hok Shing Wong, Alexander Denker, Stanislas Ducotterd, Zhenghan Fang, Markus Haltmeier, Zeljko Kereta, Erich Kobler, Oscar Leong, Mohammad Sadegh Salehi, Carola-Bibiane Schoenlieb, Johannes Schwab, Zakhar Shumaylov, Jeremias Sulam, German Shama Wache, Martin Zach, Yasi Zhang, Matthias J Ehrhardt, Sebastian Neumayer</p>
+                <div class="card-links"><a href="https://www.sciencedirect.com/science/chapter/handbook/abs/pii/S1570865926000128?via%3Dihub" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-book"></i>Chapter (Elsevier)</a><a href="https://doi.org/10.1016/bs.hna.2026.04.001" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-link"></i>DOI</a><a href="https://arxiv.org/pdf/2510.01755" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>arXiv preprint</span><span class="badge badge-year"><i class="far fa-calendar"></i>2026</span></div></div>
+                <h3 class="card-title">AmaraSpatial-10K: A Spatially and Semantically Aligned 3D Dataset for Spatial Computing and Embodied AI</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>M. S. Salehi, A. Perkins, I. Maurell, A. Dabbagh, R. Wong</p>
+                <div class="card-links"><a href="https://arxiv.org/abs/2604.23018" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a><a href="https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-database"></i>Dataset</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>SIAM Journal on Mathematics of Data Science (SIMODS)</span><span class="badge badge-year"><i class="far fa-calendar"></i>2025</span></div></div>
+                <h3 class="card-title">An adaptively inexact first-order method for bilevel optimization with application to hyperparameter learning</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt</p>
+                <div class="card-links"><a href="https://doi.org/10.48550/arXiv.2308.10098" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>Journal of Mathematical Imaging and Vision (JMIV)</span><span class="badge badge-year"><i class="far fa-calendar"></i>2025</span></div></div>
+                <h3 class="card-title">An Adaptively Inexact Method for Bilevel Learning Using Primal-Dual Style Differentiation</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>L. Bogensperger, M. J. Ehrhardt, T. Pock, M. S. Salehi, H. S. Wong</p>
+                <div class="card-links"><a href="https://arxiv.org/pdf/2412.06436" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>SSVM 2025 (Scale Space and Variational Methods in Computer Vision)</span><span class="badge badge-year"><i class="far fa-calendar"></i>2025</span></div></div>
+                <h3 class="card-title">Bilevel Learning with Inexact Stochastic Gradients</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>M. S. Salehi, S. Mukherjee, L. Roberts, M. J. Ehrhardt</p>
+                <div class="card-links"><a href="https://doi.org/10.1007/978-3-031-92366-1_27" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-book"></i>Chapter (Springer)</a><a href="https://arxiv.org/abs/2412.12049" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-venue"><i class="fas fa-bookmark"></i>SSVM 2025 (Scale Space and Variational Methods in Computer Vision)</span><span class="badge badge-year"><i class="far fa-calendar"></i>2025</span></div></div>
+                <h3 class="card-title">Fast Inexact Bilevel Optimization for Analytical Deep Image Priors</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>M. S. Salehi, T. A. Bubba, Y. Korolev</p>
+                <div class="card-links"><a href="https://doi.org/10.1007/978-3-031-92366-1_3" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-book"></i>Chapter (Springer)</a><a href="https://arxiv.org/abs/2502.09758" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a></div>
+            </article><article class="card">
+                <div class="card-header"><div class="pub-badges"><span class="badge badge-year"><i class="far fa-calendar"></i>2025</span></div></div>
+                <h3 class="card-title">Bilevel Learning via Inexact Stochastic Gradient Descent</h3>
+                <p class="card-description"><i class="fas fa-user-group meta-icon"></i>Mohammad Sadegh Salehi, Subhadip Mukherjee, Lindon Roberts, Matthias J Ehrhardt</p>
+                <div class="card-links"><a href="https://arxiv.org/pdf/2511.06774" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a><a href="https://doi.org/10.48550/arXiv.2511.06774" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-link"></i>DOI</a></div>
+            </article></div>
             </section>
 
             <section id="talks" class="section">
                 <h2 class="section-title">Talks</h2>
-                <div class="talks-list" id="talks-list"></div>
+                <div class="talks-list" id="talks-list"><article class="card talk-card talk-card-featured">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>26 May 2026</span></div>
+                <h3 class="card-title">Bilevel Learning with Inexact Hypergradients</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Recorded talk</p>
+                <p class="card-description talk-description">A recorded talk on bilevel learning, inexact hypergradients, and scalable optimisation methods for hyperparameter learning.</p>
+                <div class="video-embed"><iframe width="560" height="315" src="https://www.youtube.com/embed/G1LUtJd8FDU" title="Bilevel Learning with Inexact Hypergradients" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
+                <div class="card-links"><a href="https://www.youtube.com/watch?v=G1LUtJd8FDU" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-youtube"></i>Watch on YouTube</a></div>
+            </article><article class="card talk-card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>July 2025</span></div>
+                <h3 class="card-title">Inexact Stochastic Bilevel Learning</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Invited minisymposium - EUROPT 2025, University of Southampton, UK</p>
+                
+                
+                
+            </article><article class="card talk-card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>February 2025</span></div>
+                <h3 class="card-title">Learned Image Priors and How to Learn Them</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Workshop on Recent Advances in Learned Regularisation, UCL, London, UK</p>
+                
+                
+                
+            </article><article class="card talk-card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>June 2024</span></div>
+                <h3 class="card-title">Inexact First-Order Methods for Bilevel Learning</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Invited minisymposium - EUROPT 2024, Lund, Sweden</p>
+                
+                
+                
+            </article><article class="card talk-card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>May 2024</span></div>
+                <h3 class="card-title">An Adaptively Inexact First-Order Method for Bilevel Learning</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Invited talk - ICMS Workshop on Big Data Inverse Problems, Bayes Centre, Edinburgh, UK</p>
+                
+                
+                
+            </article><article class="card talk-card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>September 2023</span></div>
+                <h3 class="card-title">Scalable Methods for Bilevel Optimisation</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Invited minisymposium - EUCCO 2023, Heidelberg, Germany</p>
+                
+                
+                
+            </article><article class="card talk-card">
+                <div class="card-header"><span class="card-date"><i class="far fa-calendar"></i>August 2023</span></div>
+                <h3 class="card-title">Inexact Algorithms for Bilevel Learning</h3>
+                <p class="card-description"><i class="fas fa-microphone meta-icon"></i>Invited minisymposium - ICIAM 2023, Tokyo, Japan</p>
+                
+                
+                
+            </article></div>
             </section>
 
             <section id="dataset" class="section">
                 <h2 class="section-title">AmaraSpatial-10K</h2>
-                <div id="dataset-feature"></div>
+                <div id="dataset-feature">
+                    <div class="dataset-feature">
+                        <div class="dataset-hero">
+                            <div class="dataset-copy">
+                                <span class="dataset-eyebrow">AmaraSpatial-10K</span>
+                                <h3>A spatial asset bank for embodied AI</h3>
+                                <p>An interactive snapshot of the AmaraSpatial-10K release: 10.1k synthetic 3D assets with semantic labels, rendered views, mesh and collision paths, metric anchors, geometry metrics, and text metadata.</p>
+                                <div class="dataset-links"><div class="card-links"><a href="https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-database"></i>Hugging Face</a><a href="https://arxiv.org/abs/2604.23018" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-file-lines"></i>arXiv</a></div></div>
+                            </div>
+                            <div class="dataset-stats"><div class="dataset-stat"><strong>10.1k</strong><span>assets</span></div><div class="dataset-stat"><strong>22</strong><span>top categories</span></div><div class="dataset-stat"><strong>159</strong><span>subcategories</span></div><div class="dataset-stat"><strong>CC-BY-4.0</strong><span>license</span></div></div>
+                        </div>
+                    </div>
+                </div>
             </section>
-
         </main>
+        <footer class="site-footer">
+            <p>Mohammad Sadegh Salehi · London</p>
+        </footer>
     </div>
 
-    <noscript>
-        <section class="noscript-content">
-            <h1>Mohammad Sadegh Salehi</h1>
-            <p>Machine learning research engineer working on generative 3D, computer vision, optimisation, inverse problems, and spatial AI.</p>
-            <p><a href="https://x.com/Sadegh_Salehi97/status/2077000946006065299?s=20">Erdős number 4</a> | <a href="https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k">AmaraSpatial-10K dataset</a> | <a href="https://www.youtube.com/watch?v=G1LUtJd8FDU">Bilevel learning talk</a> | <a href="https://x.com/Sadegh_Salehi97">X profile</a></p>
-        </section>
-    </noscript>
-
-    <!-- Scripts -->
     <script src="background.js"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    setupThemeToggle();
     fetchData();
     setupNavigation();
-    setupThemeToggle();
     setupMobileMenu();
+    document.documentElement.classList.add('enhanced');
 });
 
 // Inline brand SVGs for venues that don't have FontAwesome icons
@@ -136,26 +137,12 @@ function revealSectionContent(section) {
 }
 
 function setupScrollReveal() {
-    const targets = document.querySelectorAll('.reveal, .card, .timeline-item, .tag, .section-title, .subsection-title, .dataset-stat, .dataset-node, .dataset-mode-btn');
-    targets.forEach(el => el.classList.add('reveal'));
-
-    if (!('IntersectionObserver' in window)) {
-        targets.forEach(el => el.classList.add('is-visible'));
-        return;
-    }
-
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-                entry.target.style.transitionDelay = `${Math.min(i * 40, 240)}ms`;
-                entry.target.classList.add('is-visible');
-                io.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    targets.forEach(el => io.observe(el));
-    document.querySelectorAll('.section.active').forEach(revealSectionContent);
+    // Content stays in the document for crawlers and innerText.
+    // Motion is a progressive enhancement only.
+    document.documentElement.classList.add('enhanced');
+    document.querySelectorAll('.card, .project-feature, .timeline-item').forEach(el => {
+        el.classList.add('reveal', 'is-visible');
+    });
 }
 
 function setupMobileMenu() {
@@ -163,25 +150,16 @@ function setupMobileMenu() {
     const nav = document.getElementById('main-nav');
 
     if (toggle && nav) {
-        toggle.addEventListener('click', () => {
-            nav.classList.toggle('open');
-            const icon = toggle.querySelector('i');
-            if (nav.classList.contains('open')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
+        const setOpen = (open) => {
+            nav.classList.toggle('open', open);
+            toggle.classList.toggle('is-open', open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        };
 
-        // Close menu when clicking a link
+        toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
         nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('open');
-                toggle.querySelector('i').classList.remove('fa-times');
-                toggle.querySelector('i').classList.add('fa-bars');
-            });
+            link.addEventListener('click', () => setOpen(false));
         });
     }
 }
@@ -205,10 +183,6 @@ async function fetchData() {
         }
     } catch (error) {
         console.error('Error loading data:', error);
-        document.querySelector('.content-area').innerHTML = `<div style="text-align:center; padding:2rem;">
-            <h2>Error Loading Content</h2>
-            <p>${error.message}</p>
-        </div>`;
     }
 }
 
@@ -336,23 +310,66 @@ function renderData(data) {
     }
 
     // Projects
-    const projectsContainer = document.getElementById('projects-list');
-    if (projectsContainer && data.projects) {
-        projectsContainer.innerHTML = data.projects.map(item => `
-            <div class="card">
-                <h3 class="card-title">${item.title}</h3>
-                <p class="card-description">
-                    ${item.supervisors ? `<i class="fas fa-user-tie meta-icon"></i>${item.supervisors}<br>` : ''}
-                    ${item.partnership ? `<span class="badge"><i class="fas fa-handshake"></i>${item.partnership}</span>` : ''}
-                </p>
-                ${item.description ? `<div class="card-description rich-text mt-2">${item.description}</div>` : ''}
-                ${item.link ? `
+    if (data.projects) {
+        const featured = data.projects.filter(item => item.featured);
+        const software = data.projects.filter(item => item.kind === 'software' && !item.featured);
+        const research = data.projects.filter(item => item.kind !== 'software');
+
+        const featuredContainer = document.getElementById('featured-projects');
+        if (featuredContainer) {
+            featuredContainer.innerHTML = featured.map(item => `
+                <article class="project-feature">
+                    <p class="eyebrow">${item.eyebrow || 'Software'}</p>
+                    <h3>${item.title}</h3>
+                    ${item.partnership ? `<p class="card-description"><span class="badge"><i class="fas fa-code-branch"></i>${item.partnership}</span></p>` : ''}
+                    ${item.description ? `<div class="card-description rich-text">${item.description}</div>` : ''}
+                    ${item.stats && item.stats.length ? `
+                        <div class="project-feature-stats">
+                            ${item.stats.map(stat => `<div><strong>${stat.value}</strong><span>${stat.label}</span></div>`).join('')}
+                        </div>
+                    ` : ''}
                     <div class="card-links">
-                        <a href="${item.link}" target="_blank" class="btn-sm"><i class="fas fa-up-right-from-square"></i>More Info</a>
+                        ${(item.links && item.links.length ? item.links : (item.link ? [{ label: 'GitHub', url: item.link }] : [])).map(link => `
+                            <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
+                        `).join('')}
                     </div>
-                ` : ''}
-            </div>
-        `).join('');
+                </article>
+            `).join('');
+        }
+
+        const softwareContainer = document.getElementById('software-list');
+        if (softwareContainer) {
+            softwareContainer.innerHTML = software.map(item => `
+                <article class="card">
+                    <h3 class="card-title">${item.title}</h3>
+                    ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+                    ${item.link ? `
+                        <div class="card-links">
+                            <a href="${item.link}" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a>
+                        </div>
+                    ` : ''}
+                </article>
+            `).join('');
+        }
+
+        const projectsContainer = document.getElementById('projects-list');
+        if (projectsContainer) {
+            projectsContainer.innerHTML = research.map(item => `
+                <article class="card">
+                    <h3 class="card-title">${item.title}</h3>
+                    <p class="card-description">
+                        ${item.supervisors ? `<i class="fas fa-user-tie meta-icon"></i>${item.supervisors}<br>` : ''}
+                        ${item.partnership ? `<span class="badge"><i class="fas fa-handshake"></i>${item.partnership}</span>` : ''}
+                    </p>
+                    ${item.description ? `<div class="card-description rich-text mt-2">${item.description}</div>` : ''}
+                    ${item.link ? `
+                        <div class="card-links">
+                            <a href="${item.link}" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-up-right-from-square"></i>More Info</a>
+                        </div>
+                    ` : ''}
+                </article>
+            `).join('');
+        }
     }
 
     // Publications
@@ -682,127 +699,109 @@ async function loadDatasetSample(feature) {
 }
 
 function setupNavigation() {
-    const navLinks = document.querySelectorAll('.main-nav a');
-    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+    const sections = document.querySelectorAll('main .section[id]');
 
-    const activateSection = (targetId, activeLink) => {
-        navLinks.forEach(l => l.classList.remove('active'));
-        if (activeLink) activeLink.classList.add('active');
-
-        sections.forEach(section => {
-            section.classList.remove('active');
-            if (section.id === targetId) {
-                section.classList.add('active');
-                requestAnimationFrame(() => revealSectionContent(section));
-            }
+    const setActive = (id) => {
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
     };
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            const target = document.querySelector(href);
+            if (!target) return;
             e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-
-            activateSection(targetId, link);
-
-            // Scroll to top of content on mobile
-            if (window.innerWidth <= 768) {
-                document.querySelector('.content-area').scrollIntoView({ behavior: 'smooth' });
-            }
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            history.replaceState(null, '', href);
+            setActive(href.slice(1));
         });
     });
 
+    if ('IntersectionObserver' in window) {
+        const spy = new IntersectionObserver((entries) => {
+            const visible = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+            if (visible) setActive(visible.target.id);
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.6, 1] });
+        sections.forEach(section => spy.observe(section));
+    }
+
     const hashTarget = window.location.hash.substring(1);
-    const hashLink = Array.from(navLinks).find(link => link.getAttribute('href') === `#${hashTarget}`);
-    if (hashTarget && hashLink && document.getElementById(hashTarget)) {
-        activateSection(hashTarget, hashLink);
+    if (hashTarget && document.getElementById(hashTarget)) {
+        setActive(hashTarget);
+        requestAnimationFrame(() => {
+            document.getElementById(hashTarget).scrollIntoView({ block: 'start' });
+        });
+    } else {
+        setActive('about');
     }
 }
 
 function setupThemeToggle() {
     const btn = document.getElementById('theme-btn');
+    if (!btn) return;
     const icon = btn.querySelector('i');
 
-    const darkColors = {
-        primary: '#60a5fa',
-        secondary: '#3b82f6',
-        bg: '#0f172a'
+    const palettes = {
+        light: { primary: '#0071e3', secondary: '#64d2ff', bg: '#f5f5f7', themeColor: '#f5f5f7' },
+        dark: { primary: '#2997ff', secondary: '#64d2ff', bg: '#000000', themeColor: '#000000' }
     };
 
-    // Helper to apply colors
-    const updateBg = (isDark) => {
-        if (window.updateFluidColors && typeof SITE_DATA !== 'undefined') {
-            if (isDark) {
-                window.updateFluidColors(darkColors.primary, darkColors.secondary, darkColors.bg);
-            } else {
-                // Use data.js values for light mode
-                window.updateFluidColors(
-                    SITE_DATA.theme.primaryColor,
-                    SITE_DATA.theme.secondaryColor,
-                    SITE_DATA.theme.backgroundColor
-                );
-            }
+    const currentMode = () => document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+
+    const syncFluid = (mode) => {
+        const palette = palettes[mode];
+        if (window.updateFluidColors) {
+            window.updateFluidColors(palette.primary, palette.secondary, palette.bg);
         }
+        const meta = document.querySelector('meta[name="theme-color"]:not([media])') || document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', palette.themeColor);
     };
 
-    // Check saved theme or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
-        document.body.setAttribute('data-theme', 'dark');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-        // Small timeout to ensure background.js is ready
-        setTimeout(() => updateBg(true), 100);
-    } else {
-        setTimeout(() => updateBg(false), 100);
-    }
-
-    const applyToggle = () => {
-        const currentTheme = document.body.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            document.body.removeAttribute('data-theme');
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'light');
-            updateBg(false);
-        } else {
-            document.body.setAttribute('data-theme', 'dark');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'dark');
-            updateBg(true);
+    const applyMode = (mode) => {
+        document.documentElement.setAttribute('data-theme', mode);
+        document.body.setAttribute('data-theme', mode);
+        localStorage.setItem('theme', mode);
+        if (icon) {
+            icon.classList.toggle('fa-sun', mode === 'dark');
+            icon.classList.toggle('fa-moon', mode === 'light');
         }
+        btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        syncFluid(mode);
     };
+
+    applyMode(currentMode());
+
+    const toggle = () => applyMode(currentMode() === 'dark' ? 'light' : 'dark');
 
     btn.addEventListener('click', () => {
-        // Use View Transitions API where supported for a buttery cross-fade
         if (document.startViewTransition) {
-            document.startViewTransition(() => applyToggle());
+            document.startViewTransition(toggle);
         } else {
             document.body.classList.add('theme-fading');
-            applyToggle();
-            setTimeout(() => document.body.classList.remove('theme-fading'), 320);
+            toggle();
+            setTimeout(() => document.body.classList.remove('theme-fading'), 280);
+        }
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+        if (!localStorage.getItem('theme')) {
+            applyMode(event.matches ? 'dark' : 'light');
         }
     });
 }
 
-function applyTheme(theme) {
-    const root = document.documentElement;
-
-    // Apply CSS Variables
-    if (theme.primaryColor) root.style.setProperty('--primary-color', theme.primaryColor);
-    if (theme.backgroundColor) root.style.setProperty('--bg-color', theme.backgroundColor);
-    if (theme.textColor) root.style.setProperty('--text-color', theme.textColor);
-    if (theme.sidebarColor) root.style.setProperty('--sidebar-bg', theme.sidebarColor);
-
-    // Update Fluid Background
+function applyTheme() {
+    const mode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const palettes = {
+        light: ['#0071e3', '#64d2ff', '#f5f5f7'],
+        dark: ['#2997ff', '#64d2ff', '#000000']
+    };
     if (window.updateFluidColors) {
-        window.updateFluidColors(
-            theme.primaryColor,
-            theme.secondaryColor || '#8b5cf6',
-            theme.backgroundColor
-        );
+        window.updateFluidColors(...palettes[mode]);
     }
 }

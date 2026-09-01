@@ -76,17 +76,17 @@ const SimplexNoise = (function () {
 })();
 
 // --- Configuration ---
+const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
 let CONFIG = {
-    gridSize: 35, // Distance between points
-    baseRadius: 2,
-    waveSpeed: 0.0003, // Slower for elegance
-    waveScale: 0.003,  // Zoom of noise
+    gridSize: 36,
+    baseRadius: 1.6,
+    waveSpeed: 0.00025,
+    waveScale: 0.0026,
     mouseInfluence: 0.05,
-    colors: {
-        c1: { r: 37, g: 99, b: 235 }, // Blue
-        c2: { r: 168, g: 85, b: 247 }, // Purple
-        bg: { r: 248, g: 250, b: 252 } // White/Slate
-    }
+    colors: isDark
+        ? { c1: { r: 41, g: 151, b: 255 }, c2: { r: 100, g: 210, b: 255 }, bg: { r: 0, g: 0, b: 0 } }
+        : { c1: { r: 0, g: 113, b: 227 }, c2: { r: 100, g: 210, b: 255 }, bg: { r: 245, g: 245, b: 247 } }
 };
 
 let width, height;
@@ -142,10 +142,9 @@ function animate(t) {
     mouse.x += (targetMouse.x - mouse.x) * 0.05;
     mouse.y += (targetMouse.y - mouse.y) * 0.05;
 
-    // Clear
-    ctx.clearRect(0, 0, width, height);
-    // Optional: Fill BG if canvas isn't transparent (we rely on transparent canvas + CSS bg for glass)
-    // But for points to look good, we can just leave it transparent or draw.
+    const bg = CONFIG.colors.bg;
+    ctx.fillStyle = `rgb(${bg.r}, ${bg.g}, ${bg.b})`;
+    ctx.fillRect(0, 0, width, height);
 
     // Draw Grid
     const cols = Math.ceil(width / CONFIG.gridSize);
@@ -190,8 +189,8 @@ function animate(t) {
             if (radius < 0) radius = 0;
 
             // Alpha also affected by size (smaller = fainter) for depth
-            let alpha = 0.3 + (n1 * 0.2) + (mouseEffect * 0.4);
-            if (alpha > 1) alpha = 1;
+            let alpha = 0.14 + (n1 * 0.12) + (mouseEffect * 0.28);
+            if (alpha > 0.7) alpha = 0.7;
 
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2);
