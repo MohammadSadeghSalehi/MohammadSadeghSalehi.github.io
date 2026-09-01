@@ -211,65 +211,169 @@ const SITE_DATA = {
                                            "label":  "AgentDojo banking attacks after binding"
                                        },
                                        {
-                                           "value":  "MIT",
-                                           "label":  "license"
+                                           "value":  "Fail-closed",
+                                           "label":  "release boundary"
                                        },
                                        {
                                            "value":  "3.11–3.13",
                                            "label":  "Python"
                                        }
                                    ]
-                     },
+                     }
+                 ],
+    "software":  [
                      {
-                         "title":  "Diffusion Inverse Problems",
-                         "kind":  "software",
+                         "title":  "diffusion-inverse-problems",
                          "description":  "<p>Diffusion-based image restoration and inverse problems, with implementations of DiffPIR, DPS, RePaint, and DDRM for inpainting, CT, and deblurring.</p>",
                          "link":  "https://github.com/MohammadSadeghSalehi/diffusion-inverse-problems"
                      },
                      {
+                         "title":  "NeuralUVAtlas",
+                         "description":  "<p>Official implementation of continuous neural reparameterization as a deep geometric prior for robust fixed-chart UV repair.</p>",
+                         "link":  "https://github.com/01C-Amara/NeuralUVAtlas"
+                     },
+                     {
+                         "title":  "GNN-PDE",
+                         "description":  "<p>Physics-informed graph neural networks for learning PDEs on 3D meshes.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/GNN-PDE"
+                     },
+                     {
                          "title":  "MAID",
-                         "kind":  "software",
-                         "description":  "<p>Method of Adaptive Inexact Descent for bilevel learning, with application to hyperparameter optimisation.</p>",
+                         "description":  "<p>Method of Adaptive Inexact Descent for bilevel learning and hyperparameter optimisation.</p>",
                          "link":  "https://github.com/MohammadSadeghSalehi/MAID"
                      },
                      {
                          "title":  "ISGD",
-                         "kind":  "software",
-                         "description":  "<p>Inexact stochastic bilevel learning: faster training and theoretical convergence guarantees for hyperparameter learning and imaging.</p>",
+                         "description":  "<p>Inexact stochastic bilevel learning, with code for the SSVM paper on inexact stochastic gradients.</p>",
                          "link":  "https://github.com/MohammadSadeghSalehi/ISGD"
                      },
                      {
-                         "title":  "Analytical Deep Priors",
-                         "kind":  "software",
+                         "title":  "Analytical-Deep-Priors",
                          "description":  "<p>Fast inexact bilevel optimisation for analytical deep image priors.</p>",
                          "link":  "https://github.com/MohammadSadeghSalehi/Analytical-Deep-Priors"
                      },
                      {
-                         "title":  "Scalable Algorithms for Bilevel Learning",
-                         "supervisors":  "Dr. Matthias Ehrhardt, Dr. Subhadip Mukherjee"
+                         "title":  "Deep_Learning_ADMM",
+                         "description":  "<p>ADMM approach to train neural networks without gradients.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/Deep_Learning_ADMM"
                      },
                      {
-                         "title":  "Modified Analytical Deep Image Priors",
-                         "supervisors":  "Dr. Tatiana Bubba, Dr. Yuri Korolev",
-                         "link":  "https://sites.google.com/view/tatianabubba/home"
+                         "title":  "Gradient_confusion",
+                         "description":  "<p>Impact of neural network architecture and initialisation on gradient confusion and stochastic gradient descent.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/Gradient_confusion"
                      },
                      {
-                         "title":  "Gradient-Free Training of Neural Networks (ADMM Approach)",
-                         "supervisors":  "Dr. Matthias Ehrhardt"
+                         "title":  "Amara-spatial-dataset",
+                         "description":  "<p>Scripts for reproducing AmaraSpatial-10K evaluations and benchmarks.</p>",
+                         "link":  "https://github.com/01C-Amara/Amara-spatial-dataset"
                      },
                      {
-                         "title":  "Impact of Neural Network Architecture and Initialization",
-                         "supervisors":  "Dr. Sandipan Roy",
-                         "link":  "https://researchportal.bath.ac.uk/en/persons/sandipan-roy"
+                         "title":  "LearnedRegularizers",
+                         "description":  "<p>Code for the comparative study of learning regularisation functionals for inverse problems.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/LearnedRegularizers"
                      },
                      {
-                         "title":  "Interdisciplinary Research Project on Portfolios Design",
-                         "supervisors":  "Dr. Alex Cox",
-                         "partnership":  "Roche Company"
+                         "title":  "text-to-3D",
+                         "description":  "<p>From prompt and LLM parsing to semantic understanding and 3D generation using diffusion models.</p>",
+                         "link":  "https://github.com/MohammadSadeghSalehi/text-to-3D"
+                     }
+                 ],
+    "research":  [
+                     {
+                         "title":  "Bilevel learning with inexact hypergradients",
+                         "description":  "<p>Adaptive inexact first-order methods for bilevel optimisation and hyperparameter learning, including MAID, ISGD, and primal-dual style differentiation. Published in SIMODS, JMIV, and SSVM 2025.</p>",
+                         "links":  [
+                                       {
+                                           "label":  "SIMODS",
+                                           "url":  "https://doi.org/10.48550/arXiv.2308.10098"
+                                       },
+                                       {
+                                           "label":  "MAID",
+                                           "url":  "https://github.com/MohammadSadeghSalehi/MAID"
+                                       },
+                                       {
+                                           "label":  "ISGD",
+                                           "url":  "https://github.com/MohammadSadeghSalehi/ISGD"
+                                       },
+                                       {
+                                           "label":  "Google Scholar",
+                                           "url":  "https://scholar.google.com/citations?user=bunZmJsAAAAJ&hl=en"
+                                       }
+                                   ]
                      },
                      {
-                         "title":  "Master Thesis: Linear and Non-linear Acceleration Methods",
-                         "supervisors":  "Prof. Antonin Chambolle"
+                         "title":  "Analytical deep image priors",
+                         "description":  "<p>Fast inexact bilevel optimisation for analytical deep image priors, with an SSVM 2025 paper and accompanying code.</p>",
+                         "links":  [
+                                       {
+                                           "label":  "arXiv",
+                                           "url":  "https://arxiv.org/abs/2502.09758"
+                                       },
+                                       {
+                                           "label":  "Code",
+                                           "url":  "https://github.com/MohammadSadeghSalehi/Analytical-Deep-Priors"
+                                       }
+                                   ]
+                     },
+                     {
+                         "title":  "Learned regularisation for inverse problems",
+                         "description":  "<p>Comparative study of learning regularisation functionals for inverse problems, published as a Handbook of Numerical Analysis chapter.</p>",
+                         "links":  [
+                                       {
+                                           "label":  "arXiv",
+                                           "url":  "https://arxiv.org/pdf/2510.01755"
+                                       },
+                                       {
+                                           "label":  "Code",
+                                           "url":  "https://github.com/MohammadSadeghSalehi/LearnedRegularizers"
+                                       },
+                                       {
+                                           "label":  "Google Scholar",
+                                           "url":  "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=bunZmJsAAAAJ&citation_for_view=bunZmJsAAAAJ:WF5omc3nYNoC"
+                                       }
+                                   ]
+                     },
+                     {
+                         "title":  "Spatial 3D assets for embodied AI",
+                         "description":  "<p>AmaraSpatial-10K, a spatially and semantically aligned 3D dataset of 10.1k synthetic assets for spatial computing and embodied AI.</p>",
+                         "links":  [
+                                       {
+                                           "label":  "arXiv",
+                                           "url":  "https://arxiv.org/abs/2604.23018"
+                                       },
+                                       {
+                                           "label":  "Dataset",
+                                           "url":  "https://huggingface.co/datasets/ZeroOneCreative/amara-spatial-10k"
+                                       },
+                                       {
+                                           "label":  "Code",
+                                           "url":  "https://github.com/01C-Amara/Amara-spatial-dataset"
+                                       }
+                                   ]
+                     },
+                     {
+                         "title":  "Neural geometric priors for UV repair",
+                         "description":  "<p>Continuous neural reparameterization as a deep geometric prior for robust fixed-chart UV repair.</p>",
+                         "links":  [
+                                       {
+                                           "label":  "arXiv",
+                                           "url":  "https://arxiv.org/abs/2606.10050"
+                                       },
+                                       {
+                                           "label":  "Code",
+                                           "url":  "https://github.com/01C-Amara/NeuralUVAtlas"
+                                       }
+                                   ]
+                     },
+                     {
+                         "title":  "Diffusion methods for inverse problems",
+                         "description":  "<p>Implementations of DiffPIR, DPS, RePaint, and DDRM for inpainting, CT, and deblurring.</p>",
+                         "links":  [
+                                       {
+                                           "label":  "GitHub",
+                                           "url":  "https://github.com/MohammadSadeghSalehi/diffusion-inverse-problems"
+                                       }
+                                   ]
                      }
                  ],
     "publications":  [

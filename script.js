@@ -310,66 +310,60 @@ function renderData(data) {
     }
 
     // Projects
-    if (data.projects) {
-        const featured = data.projects.filter(item => item.featured);
-        const software = data.projects.filter(item => item.kind === 'software' && !item.featured);
-        const research = data.projects.filter(item => item.kind !== 'software');
+    const featured = (data.projects || []).filter(item => item.featured);
+    const software = data.software || (data.projects || []).filter(item => item.kind === 'software' && !item.featured);
+    const research = data.research || [];
 
-        const featuredContainer = document.getElementById('featured-projects');
-        if (featuredContainer) {
-            featuredContainer.innerHTML = featured.map(item => `
-                <article class="project-feature">
-                    <p class="eyebrow">${item.eyebrow || 'Software'}</p>
-                    <h3>${item.title}</h3>
-                    ${item.partnership ? `<p class="card-description"><span class="badge"><i class="fas fa-code-branch"></i>${item.partnership}</span></p>` : ''}
-                    ${item.description ? `<div class="card-description rich-text">${item.description}</div>` : ''}
-                    ${item.stats && item.stats.length ? `
-                        <div class="project-feature-stats">
-                            ${item.stats.map(stat => `<div><strong>${stat.value}</strong><span>${stat.label}</span></div>`).join('')}
-                        </div>
-                    ` : ''}
-                    <div class="card-links">
-                        ${(item.links && item.links.length ? item.links : (item.link ? [{ label: 'GitHub', url: item.link }] : [])).map(link => `
-                            <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
-                        `).join('')}
+    const featuredContainer = document.getElementById('featured-projects');
+    if (featuredContainer) {
+        featuredContainer.innerHTML = featured.map(item => `
+            <article class="project-feature">
+                <p class="eyebrow">${item.eyebrow || 'Software'}</p>
+                <h3>${item.title}</h3>
+                ${item.partnership ? `<p class="card-description"><span class="badge"><i class="fas fa-code-branch"></i>${item.partnership}</span></p>` : ''}
+                ${item.description ? `<div class="card-description rich-text">${item.description}</div>` : ''}
+                ${item.stats && item.stats.length ? `
+                    <div class="project-feature-stats">
+                        ${item.stats.map(stat => `<div><strong>${stat.value}</strong><span>${stat.label}</span></div>`).join('')}
                     </div>
-                </article>
-            `).join('');
-        }
+                ` : ''}
+                <div class="card-links">
+                    ${(item.links && item.links.length ? item.links : (item.link ? [{ label: 'GitHub', url: item.link }] : [])).map(link => `
+                        <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
+                    `).join('')}
+                </div>
+            </article>
+        `).join('');
+    }
 
-        const softwareContainer = document.getElementById('software-list');
-        if (softwareContainer) {
-            softwareContainer.innerHTML = software.map(item => `
-                <article class="card">
-                    <h3 class="card-title">${item.title}</h3>
-                    ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
-                    ${item.link ? `
-                        <div class="card-links">
-                            <a href="${item.link}" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a>
-                        </div>
-                    ` : ''}
-                </article>
-            `).join('');
-        }
+    const softwareContainer = document.getElementById('software-list');
+    if (softwareContainer) {
+        softwareContainer.innerHTML = software.map(item => `
+            <article class="card">
+                <h3 class="card-title">${item.title}</h3>
+                ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+                ${item.link ? `
+                    <div class="card-links">
+                        <a href="${item.link}" target="_blank" rel="noopener" class="btn-sm"><i class="fab fa-github"></i>GitHub</a>
+                    </div>
+                ` : ''}
+            </article>
+        `).join('');
+    }
 
-        const projectsContainer = document.getElementById('projects-list');
-        if (projectsContainer) {
-            projectsContainer.innerHTML = research.map(item => `
-                <article class="card">
-                    <h3 class="card-title">${item.title}</h3>
-                    <p class="card-description">
-                        ${item.supervisors ? `<i class="fas fa-user-tie meta-icon"></i>${item.supervisors}<br>` : ''}
-                        ${item.partnership ? `<span class="badge"><i class="fas fa-handshake"></i>${item.partnership}</span>` : ''}
-                    </p>
-                    ${item.description ? `<div class="card-description rich-text mt-2">${item.description}</div>` : ''}
-                    ${item.link ? `
-                        <div class="card-links">
-                            <a href="${item.link}" target="_blank" rel="noopener" class="btn-sm"><i class="fas fa-up-right-from-square"></i>More Info</a>
-                        </div>
-                    ` : ''}
-                </article>
-            `).join('');
-        }
+    const researchContainer = document.getElementById('research-list');
+    if (researchContainer) {
+        researchContainer.innerHTML = research.map(item => `
+            <article class="card">
+                <h3 class="card-title">${item.title}</h3>
+                ${item.description ? `<div class="card-description">${item.description}</div>` : ''}
+                <div class="card-links">
+                    ${(item.links && item.links.length ? item.links : (item.link ? [{ label: 'More Info', url: item.link }] : [])).map(link => `
+                        <a href="${link.url}" target="_blank" rel="noopener" class="btn-sm">${renderLinkIcon(link.label, link.url)}${link.label}</a>
+                    `).join('')}
+                </div>
+            </article>
+        `).join('');
     }
 
     // Publications
