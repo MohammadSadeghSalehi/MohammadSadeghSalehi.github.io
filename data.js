@@ -211,8 +211,8 @@ const SITE_DATA = {
                                            "label":  "AgentDojo banking attacks after binding"
                                        },
                                        {
-                                           "value":  "ICLR 2027",
-                                           "label":  "research artifact"
+                                           "value":  "MIT",
+                                           "label":  "license"
                                        },
                                        {
                                            "value":  "3.11–3.13",
