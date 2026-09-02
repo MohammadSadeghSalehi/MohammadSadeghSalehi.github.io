@@ -86,7 +86,7 @@ let mouse = { x: 0, y: 0 };
 let targetMouse = { x: 0, y: 0 };
 let hero = { cx: 0, cy: 0, rx: 1, ry: 1, ready: false };
 let running = true;
-let lastTheme = '';
+let lastFrame = 0;
 
 function applyTheme(isDark) {
     CONFIG.dark = !!isDark;
@@ -103,6 +103,8 @@ function applyTheme(isDark) {
         CONFIG.colors.sheen = { r: 255, g: 255, b: 255 };
         CONFIG.colors.rim = { r: 120, g: 130, b: 142 };
     }
+    canvas.style.backgroundColor = isDark ? '#000000' : '#f5f5f7';
+    container.style.backgroundColor = isDark ? '#000000' : '#f5f5f7';
 }
 
 function isDarkMode() {
@@ -111,21 +113,14 @@ function isDarkMode() {
 
 function syncTheme() {
     const isDark = isDarkMode();
-    const key = isDark ? 'dark' : 'light';
-    if (key !== lastTheme) {
-        lastTheme = key;
-        applyTheme(isDark);
-        canvas.style.backgroundColor = isDark ? '#000000' : '#f5f5f7';
-    }
+    if (isDark !== CONFIG.dark) applyTheme(isDark);
 }
 
 applyTheme(isDarkMode());
-lastTheme = CONFIG.dark ? 'dark' : 'light';
-canvas.style.backgroundColor = CONFIG.dark ? '#000000' : '#f5f5f7';
 
 window.updateFluidColors = () => {
-    lastTheme = '';
-    syncTheme();
+    applyTheme(isDarkMode());
+    drawField(lastFrame || performance.now());
 };
 
 function resize() {
@@ -253,6 +248,7 @@ function drawField(timeMs) {
 }
 
 function animate(timeMs) {
+    lastFrame = timeMs;
     if (!width) resize();
     mouse.x += (targetMouse.x - mouse.x) * 0.07;
     mouse.y += (targetMouse.y - mouse.y) * 0.07;
@@ -267,17 +263,27 @@ document.addEventListener('mousemove', (e) => {
     targetMouse.y = e.clientY;
 });
 
+document.addEventListener('touchmove', (e) => {
+    if (!e.touches || !e.touches[0]) return;
+    targetMouse.x = e.touches[0].clientX;
+    targetMouse.y = e.touches[0].clientY;
+}, { passive: true });
+
 document.addEventListener('visibilitychange', () => {
-    running = document.visibilityState === 'visible';
+    running = document.visibilityState !== 'hidden';
     if (running) requestAnimationFrame(animate);
+    else {
+        applyTheme(isDarkMode());
+        drawField(lastFrame || performance.now());
+    }
 });
 
 new MutationObserver(() => {
-    lastTheme = '';
-    syncTheme();
+    applyTheme(isDarkMode());
+    drawField(lastFrame || performance.now());
 }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 resize();
-syncTheme();
+applyTheme(isDarkMode());
 drawField(0);
 requestAnimationFrame(animate);

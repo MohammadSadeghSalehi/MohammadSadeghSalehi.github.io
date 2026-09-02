@@ -22,13 +22,12 @@
     <meta name="twitter:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
     <link rel="apple-touch-icon" href="images/mss-logo-180.png">
-    <link rel="stylesheet" href="style.css?v=20260902j">
+    <link rel="stylesheet" href="style.css?v=20260902k">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" id="theme-color-meta" content="#f5f5f7">
     <script>
         (function () {
             var root = document.documentElement;
@@ -44,12 +43,16 @@
                 return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
             }
             function apply(mode, persist) {
-                root.setAttribute('data-theme', mode === 'dark' ? 'dark' : 'light');
+                var next = mode === 'dark' ? 'dark' : 'light';
+                root.setAttribute('data-theme', next);
+                root.style.colorScheme = next;
                 if (persist) {
-                    try { localStorage.setItem('site-theme', mode); } catch (e) {}
+                    try { localStorage.setItem('site-theme', next); } catch (e) {}
                 }
                 var btn = document.getElementById('theme-btn');
-                if (btn) btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+                if (btn) btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+                var meta = document.getElementById('theme-color-meta');
+                if (meta) meta.setAttribute('content', next === 'dark' ? '#000000' : '#f5f5f7');
                 if (window.updateFluidColors) window.updateFluidColors();
             }
             window.__setTheme = apply;
@@ -61,7 +64,43 @@
                 apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
                 return false;
             };
+            window.__toggleMenu = function (event) {
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                var nav = document.getElementById('main-nav');
+                var toggle = document.querySelector('.menu-toggle');
+                if (!nav || !toggle) return false;
+                var open = !nav.classList.contains('open');
+                nav.classList.toggle('open', open);
+                toggle.classList.toggle('is-open', open);
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                root.classList.toggle('nav-open', open);
+                return false;
+            };
+            window.__closeMenu = function () {
+                var nav = document.getElementById('main-nav');
+                var toggle = document.querySelector('.menu-toggle');
+                if (nav) nav.classList.remove('open');
+                if (toggle) {
+                    toggle.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    toggle.setAttribute('aria-label', 'Open menu');
+                }
+                root.classList.remove('nav-open');
+            };
             apply(preferred(), false);
+            try {
+                var mq = window.matchMedia('(prefers-color-scheme: dark)');
+                var onScheme = function (e) {
+                    if (stored()) return;
+                    apply(e.matches ? 'dark' : 'light', false);
+                };
+                if (mq.addEventListener) mq.addEventListener('change', onScheme);
+                else if (mq.addListener) mq.addListener(onScheme);
+            } catch (e) {}
         })();
     </script>
     <script type="application/ld+json">
@@ -148,7 +187,7 @@
                     <button id="theme-btn" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode" onclick="return window.__toggleTheme(event);">
                         <span class="theme-glyph" aria-hidden="true">◐</span>
                     </button>
-                    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false">
+                    <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false" onclick="return window.__toggleMenu(event);">
                         <span class="menu-glyph" aria-hidden="true">☰</span>
                     </button>
                 </div>
@@ -492,9 +531,9 @@
         </footer>
     </div>
 
-    <script src="background.js?v=20260902j"></script>
+    <script src="background.js?v=20260902k"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="data.js?v=20260901e"></script>
-    <script src="script.js?v=20260902j"></script>
+    <script src="script.js?v=20260902k"></script>
 </body>
 </html>

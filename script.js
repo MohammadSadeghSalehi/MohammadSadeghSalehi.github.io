@@ -146,22 +146,22 @@ function setupScrollReveal() {
 }
 
 function setupMobileMenu() {
-    const toggle = document.querySelector('.menu-toggle');
     const nav = document.getElementById('main-nav');
-
-    if (toggle && nav) {
-        const setOpen = (open) => {
-            nav.classList.toggle('open', open);
-            toggle.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-        };
-
-        toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+    if (nav) {
         nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => setOpen(false));
+            link.addEventListener('click', () => {
+                if (window.__closeMenu) window.__closeMenu();
+            });
         });
     }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && window.__closeMenu) window.__closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 960 && window.__closeMenu) window.__closeMenu();
+    });
 }
 
 async function fetchData() {
@@ -731,15 +731,4 @@ function setupNavigation() {
 
 function setupThemeToggle() {
     if (window.updateFluidColors) window.updateFluidColors();
-}
-
-function applyTheme() {
-    const mode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-    const palettes = {
-        light: ['#0071e3', '#64d2ff', '#f5f5f7'],
-        dark: ['#2997ff', '#64d2ff', '#000000']
-    };
-    if (window.updateFluidColors) {
-        window.updateFluidColors(...palettes[mode]);
-    }
 }
