@@ -759,6 +759,7 @@ function setupThemeToggle() {
     const applyMode = (mode) => {
         document.documentElement.setAttribute('data-theme', mode);
         document.body.setAttribute('data-theme', mode);
+        document.documentElement.style.colorScheme = mode;
         localStorage.setItem('theme', mode);
         if (icon) {
             icon.classList.toggle('fa-sun', mode === 'dark');
@@ -770,16 +771,8 @@ function setupThemeToggle() {
 
     applyMode(currentMode());
 
-    const toggle = () => applyMode(currentMode() === 'dark' ? 'light' : 'dark');
-
     btn.addEventListener('click', () => {
-        if (document.startViewTransition) {
-            document.startViewTransition(toggle);
-        } else {
-            document.body.classList.add('theme-fading');
-            toggle();
-            setTimeout(() => document.body.classList.remove('theme-fading'), 280);
-        }
+        applyMode(currentMode() === 'dark' ? 'light' : 'dark');
     });
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {

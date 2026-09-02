@@ -1,7 +1,7 @@
 /**
- * Reptile scale field
- * Hex-packed scutes with a slow traveling wave and a soft mask
- * behind the hero type so name, title, and expertise stay readable.
+ * Alive reptile scale field.
+ * Hex-packed scutes with a traveling wave, breath, and mouse ripple.
+ * Theme follows html[data-theme] every frame so night mode cannot desync.
  */
 
 const container = document.getElementById('floating-container');
@@ -64,22 +64,19 @@ const SimplexNoise = (function () {
     };
 })();
 
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const CONFIG = {
-    colW: 32,
-    baseRadius: 17.4,
-    waveSpeed: 0.00016,
-    waveScale: 0.0031,
+    colW: 30,
+    baseRadius: 16.6,
+    dark: false,
     colors: {
         c1: { r: 150, g: 158, b: 168 },
         c2: { r: 110, g: 150, b: 186 },
         sheen: { r: 255, g: 255, b: 255 },
         rim: { r: 90, g: 100, b: 112 },
         bg: { r: 245, g: 245, b: 247 }
-    },
-    ambient: 0.045,
-    amp: 0.07
+    }
 };
 
 let width = 0;
@@ -89,43 +86,41 @@ let mouse = { x: 0, y: 0 };
 let targetMouse = { x: 0, y: 0 };
 let hero = { cx: 0, cy: 0, rx: 1, ry: 1, ready: false };
 let running = true;
+let lastTheme = '';
 
-function hexToRgb(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
+function applyTheme(isDark) {
+    CONFIG.dark = !!isDark;
+    if (isDark) {
+        CONFIG.colors.bg = { r: 0, g: 0, b: 0 };
+        CONFIG.colors.c1 = { r: 26, g: 78, b: 104 };
+        CONFIG.colors.c2 = { r: 64, g: 168, b: 196 };
+        CONFIG.colors.sheen = { r: 186, g: 232, b: 248 };
+        CONFIG.colors.rim = { r: 10, g: 36, b: 50 };
+    } else {
+        CONFIG.colors.bg = { r: 245, g: 245, b: 247 };
+        CONFIG.colors.c1 = { r: 148, g: 156, b: 166 };
+        CONFIG.colors.c2 = { r: 86, g: 150, b: 214 };
+        CONFIG.colors.sheen = { r: 255, g: 255, b: 255 };
+        CONFIG.colors.rim = { r: 120, g: 130, b: 142 };
+    }
 }
 
-function applyTheme(isDark, bg) {
-    if (isDark) {
-        CONFIG.colors.bg = bg || { r: 0, g: 0, b: 0 };
-        CONFIG.colors.c1 = { r: 28, g: 72, b: 94 };
-        CONFIG.colors.c2 = { r: 46, g: 112, b: 138 };
-        CONFIG.colors.sheen = { r: 170, g: 214, b: 232 };
-        CONFIG.colors.rim = { r: 14, g: 40, b: 54 };
-        CONFIG.ambient = 0.07;
-        CONFIG.amp = 0.1;
-    } else {
-        CONFIG.colors.bg = bg || { r: 245, g: 245, b: 247 };
-        CONFIG.colors.c1 = { r: 156, g: 162, b: 170 };
-        CONFIG.colors.c2 = { r: 120, g: 152, b: 182 };
-        CONFIG.colors.sheen = { r: 255, g: 255, b: 255 };
-        CONFIG.colors.rim = { r: 128, g: 136, b: 146 };
-        CONFIG.ambient = 0.034;
-        CONFIG.amp = 0.05;
+function syncTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.getAttribute('data-theme') === 'dark';
+    const key = isDark ? 'dark' : 'light';
+    if (key !== lastTheme) {
+        lastTheme = key;
+        applyTheme(isDark);
     }
 }
 
 applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+lastTheme = CONFIG.dark ? 'dark' : 'light';
 
-window.updateFluidColors = (c1Hex, c2Hex, bgHex) => {
-    const bg = hexToRgb(bgHex);
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
-        (bg && bg.r + bg.g + bg.b < 80);
-    applyTheme(isDark, bg);
+window.updateFluidColors = () => {
+    lastTheme = '';
+    syncTheme();
 };
 
 function resize() {
@@ -138,8 +133,8 @@ function resize() {
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     if (!mouse.x && !mouse.y) {
-        mouse.x = width * 0.62;
-        mouse.y = height * 0.38;
+        mouse.x = width * 0.7;
+        mouse.y = height * 0.32;
         targetMouse.x = mouse.x;
         targetMouse.y = mouse.y;
     }
@@ -152,14 +147,14 @@ function refreshHero() {
         return;
     }
     const r = intro.getBoundingClientRect();
-    if (r.width < 8 || r.bottom < 0 || r.top > height) {
+    if (r.width < 8 || r.bottom < -40 || r.top > height + 40) {
         hero.ready = false;
         return;
     }
     hero.cx = r.left + r.width * 0.5;
-    hero.cy = r.top + r.height * 0.42;
-    hero.rx = r.width * 0.78 + 96;
-    hero.ry = r.height * 0.92 + 84;
+    hero.cy = r.top + r.height * 0.4;
+    hero.rx = r.width * 0.72 + 88;
+    hero.ry = r.height * 0.82 + 72;
     hero.ready = true;
 }
 
@@ -168,11 +163,11 @@ function textMask(x, y) {
     const dx = (x - hero.cx) / hero.rx;
     const dy = (y - hero.cy) / hero.ry;
     const d = Math.sqrt(dx * dx + dy * dy);
-    if (d >= 1.2) return 1;
-    if (d <= 0.28) return 0.03;
-    const t = (d - 0.28) / 0.92;
+    if (d >= 1.15) return 1;
+    if (d <= 0.3) return 0.08;
+    const t = (d - 0.3) / 0.85;
     const s = t * t * (3 - 2 * t);
-    return 0.03 + 0.97 * s;
+    return 0.08 + 0.92 * s;
 }
 
 function mix(a, b, t) {
@@ -188,6 +183,7 @@ function rgba(c, a) {
 }
 
 function drawField(timeMs) {
+    syncTheme();
     const bg = CONFIG.colors.bg;
     ctx.fillStyle = `rgb(${bg.r}, ${bg.g}, ${bg.b})`;
     ctx.fillRect(0, 0, width, height);
@@ -196,9 +192,13 @@ function drawField(timeMs) {
 
     const colW = CONFIG.colW;
     const rowH = colW * 0.86602540378;
-    const t = reducedMotion ? 0 : timeMs;
+    const seconds = timeMs * 0.001;
+    const speed = reduceMotion ? 0.45 : 1;
+    const t = seconds * speed;
     const rows = Math.ceil(height / rowH) + 2;
     const cols = Math.ceil(width / colW) + 2;
+    const ambient = CONFIG.dark ? 0.09 : 0.05;
+    const amp = CONFIG.dark ? 0.16 : 0.1;
 
     for (let row = -1; row < rows; row++) {
         const y = row * rowH;
@@ -206,30 +206,26 @@ function drawField(timeMs) {
         for (let col = -1; col < cols; col++) {
             const x = col * colW + xOff;
 
-            const n1 = SimplexNoise.noise(
-                x * CONFIG.waveScale,
-                y * CONFIG.waveScale + t * CONFIG.waveSpeed
-            );
-            const n2 = SimplexNoise.noise(
-                x * CONFIG.waveScale * 0.55 + 18,
-                y * CONFIG.waveScale * 0.55
-            );
+            const n1 = SimplexNoise.noise(x * 0.0044, y * 0.0044 + t * 0.42);
+            const n2 = SimplexNoise.noise(x * 0.0028 + 12, y * 0.0028 - t * 0.18);
+            const travel = Math.sin(x * 0.016 + y * 0.011 - t * 2.35);
+            const breath = 0.5 + 0.5 * Math.sin(t * 1.35 + n2);
 
             const dx = x - mouse.x;
             const dy = y - mouse.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            let mouseEffect = Math.max(0, (280 - dist) / 280);
-            mouseEffect *= mouseEffect;
+            let mouseEffect = Math.max(0, (320 - dist) / 320);
+            mouseEffect *= mouseEffect * (0.65 + 0.35 * Math.sin(dist * 0.045 - t * 6));
 
-            const lift = 0.5 + 0.5 * n1;
+            const lift = 0.5 + 0.28 * n1 + 0.22 * travel * breath;
             const mask = textMask(x, y);
-            if (mask < 0.04) continue;
+            if (mask < 0.06) continue;
 
-            const radius = CONFIG.baseRadius * (0.78 + 0.22 * lift) + mouseEffect * 2.4;
-            if (radius < 1) continue;
+            const radius = CONFIG.baseRadius * (0.62 + 0.4 * lift) + mouseEffect * 4.2;
+            if (radius < 1.2) continue;
 
-            let alpha = (CONFIG.ambient + lift * CONFIG.amp + mouseEffect * 0.1) * mask;
-            if (alpha > 0.22) alpha = 0.22;
+            let alpha = (ambient + lift * amp + mouseEffect * 0.18) * mask;
+            if (alpha > 0.38) alpha = 0.38;
 
             const tone = mix(CONFIG.colors.c1, CONFIG.colors.c2, 0.5 + 0.5 * n2);
             ctx.beginPath();
@@ -237,14 +233,14 @@ function drawField(timeMs) {
             ctx.fillStyle = rgba(tone, alpha);
             ctx.fill();
 
-            ctx.strokeStyle = rgba(CONFIG.colors.rim, alpha * 0.32);
-            ctx.lineWidth = 0.55;
+            ctx.strokeStyle = rgba(CONFIG.colors.rim, alpha * 0.4);
+            ctx.lineWidth = 0.6;
             ctx.stroke();
 
-            if (radius > 6 && mask > 0.18) {
+            if (lift > 0.58 && mask > 0.2) {
                 ctx.beginPath();
-                ctx.arc(x - radius * 0.22, y - radius * 0.28, radius * 0.26, 0, Math.PI * 2);
-                ctx.fillStyle = rgba(CONFIG.colors.sheen, alpha * 0.22);
+                ctx.arc(x - radius * 0.2, y - radius * 0.26, radius * 0.24, 0, Math.PI * 2);
+                ctx.fillStyle = rgba(CONFIG.colors.sheen, alpha * 0.28);
                 ctx.fill();
             }
         }
@@ -253,18 +249,13 @@ function drawField(timeMs) {
 
 function animate(timeMs) {
     if (!width) resize();
-    if (!reducedMotion) {
-        mouse.x += (targetMouse.x - mouse.x) * 0.035;
-        mouse.y += (targetMouse.y - mouse.y) * 0.035;
-    }
+    mouse.x += (targetMouse.x - mouse.x) * 0.07;
+    mouse.y += (targetMouse.y - mouse.y) * 0.07;
     drawField(timeMs);
-    if (running && !reducedMotion) requestAnimationFrame(animate);
+    if (running) requestAnimationFrame(animate);
 }
 
-window.addEventListener('resize', () => {
-    resize();
-    if (reducedMotion) drawField(0);
-});
+window.addEventListener('resize', resize);
 
 document.addEventListener('mousemove', (e) => {
     targetMouse.x = e.clientX;
@@ -273,16 +264,13 @@ document.addEventListener('mousemove', (e) => {
 
 document.addEventListener('visibilitychange', () => {
     running = document.visibilityState === 'visible';
-    if (running && !reducedMotion) requestAnimationFrame(animate);
+    if (running) requestAnimationFrame(animate);
 });
 
 new MutationObserver(() => {
-    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark', CONFIG.colors.bg);
+    lastTheme = '';
+    syncTheme();
 }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 resize();
-if (reducedMotion) {
-    drawField(0);
-} else {
-    requestAnimationFrame(animate);
-}
+requestAnimationFrame(animate);
