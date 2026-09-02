@@ -730,12 +730,7 @@ function setupNavigation() {
 }
 
 function setupThemeToggle() {
-    if (typeof window.__setTheme === 'function') {
-        const mode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        window.__setTheme(mode, false);
-        if (window.updateFluidColors) window.updateFluidColors();
-        return;
-    }
+    if (window.updateFluidColors) window.updateFluidColors();
 }
 
 function applyTheme() {

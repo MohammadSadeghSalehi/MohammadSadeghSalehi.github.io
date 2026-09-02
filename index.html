@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
     <meta name="twitter:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
     <link rel="apple-touch-icon" href="images/mss-logo-180.png">
-    <link rel="stylesheet" href="style.css?v=20260902h">
+    <link rel="stylesheet" href="style.css?v=20260902j">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,44 +32,36 @@
     <script>
         (function () {
             var root = document.documentElement;
-            function readStored() {
+            function stored() {
                 try { return localStorage.getItem('site-theme'); } catch (e) { return null; }
             }
-            function systemDark() {
-                return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            }
-            function current() {
-                var stored = readStored();
-                var query = '';
-                try { query = new URLSearchParams(location.search).get('theme') || ''; } catch (e) {}
-                if (query === 'dark' || query === 'light') return query;
-                if (stored === 'dark' || stored === 'light') return stored;
-                return systemDark() ? 'dark' : 'light';
+            function preferred() {
+                var q = '';
+                try { q = new URLSearchParams(location.search).get('theme') || ''; } catch (e) {}
+                if (q === 'dark' || q === 'light') return q;
+                var s = stored();
+                if (s === 'dark' || s === 'light') return s;
+                return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
             }
             function apply(mode, persist) {
-                var dark = mode === 'dark';
-                root.setAttribute('data-theme', dark ? 'dark' : 'light');
-                root.classList.toggle('dark', dark);
-                root.classList.toggle('light', !dark);
-                root.style.colorScheme = dark ? 'dark' : 'light';
-                if (document.body) {
-                    document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
-                    document.body.classList.toggle('dark', dark);
-                }
+                root.setAttribute('data-theme', mode === 'dark' ? 'dark' : 'light');
                 if (persist) {
-                    try { localStorage.setItem('site-theme', dark ? 'dark' : 'light'); } catch (e) {}
+                    try { localStorage.setItem('site-theme', mode); } catch (e) {}
                 }
                 var btn = document.getElementById('theme-btn');
-                if (btn) btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                if (btn) btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
                 if (window.updateFluidColors) window.updateFluidColors();
             }
             window.__setTheme = apply;
             window.__toggleTheme = function (event) {
-                if (event) event.preventDefault();
+                if (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
                 apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
                 return false;
             };
-            apply(current(), false);
+            apply(preferred(), false);
         })();
     </script>
     <script type="application/ld+json">
@@ -140,6 +132,18 @@
                     <img src="images/mss-logo.png" alt="MS monogram" class="site-logo-img" width="32" height="32">
                     <span class="site-wordmark">Sadegh Salehi</span>
                 </a>
+                <nav class="main-nav" id="main-nav">
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#news">News</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                        <li><a href="#research">Research</a></li>
+                        <li><a href="#talks">Talks</a></li>
+                        <li><a href="#dataset">Dataset</a></li>
+                    </ul>
+                    <div class="social-links-header" id="social-links-nav"></div>
+                </nav>
                 <div class="header-actions">
                     <button id="theme-btn" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode" onclick="return window.__toggleTheme(event);">
                         <span class="theme-glyph" aria-hidden="true">◐</span>
@@ -149,18 +153,6 @@
                     </button>
                 </div>
             </div>
-            <nav class="main-nav" id="main-nav">
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#talks">Talks</a></li>
-                    <li><a href="#dataset">Dataset</a></li>
-                </ul>
-                <div class="social-links-header" id="social-links-nav"></div>
-            </nav>
         </header>
 
         <main class="content-area" id="top">
@@ -500,9 +492,9 @@
         </footer>
     </div>
 
-    <script src="background.js?v=20260902f"></script>
+    <script src="background.js?v=20260902j"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="data.js?v=20260901e"></script>
-    <script src="script.js?v=20260902d"></script>
+    <script src="script.js?v=20260902j"></script>
 </body>
 </html>

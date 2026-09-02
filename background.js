@@ -106,9 +106,7 @@ function applyTheme(isDark) {
 }
 
 function isDarkMode() {
-    const theme = document.documentElement.getAttribute('data-theme');
-    if (theme === 'dark' || theme === 'light') return theme === 'dark';
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return document.documentElement.getAttribute('data-theme') === 'dark';
 }
 
 function syncTheme() {
