@@ -9,7 +9,7 @@ const canvas = document.createElement('canvas');
 container.innerHTML = '';
 container.appendChild(canvas);
 
-const ctx = canvas.getContext('2d', { alpha: false });
+const ctx = canvas.getContext('2d', { alpha: true });
 
 const SimplexNoise = (function () {
     const F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
@@ -105,20 +105,25 @@ function applyTheme(isDark) {
     }
 }
 
+function isDarkMode() {
+    const theme = document.documentElement.getAttribute('data-theme');
+    if (theme === 'dark' || theme === 'light') return theme === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 function syncTheme() {
-    const root = document.documentElement;
-    const isDark = root.classList.contains('dark') ||
-        root.getAttribute('data-theme') === 'dark' ||
-        (document.body && (document.body.classList.contains('dark') || document.body.getAttribute('data-theme') === 'dark'));
+    const isDark = isDarkMode();
     const key = isDark ? 'dark' : 'light';
     if (key !== lastTheme) {
         lastTheme = key;
         applyTheme(isDark);
+        canvas.style.backgroundColor = isDark ? '#000000' : '#f5f5f7';
     }
 }
 
-applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+applyTheme(isDarkMode());
 lastTheme = CONFIG.dark ? 'dark' : 'light';
+canvas.style.backgroundColor = CONFIG.dark ? '#000000' : '#f5f5f7';
 
 window.updateFluidColors = () => {
     lastTheme = '';
