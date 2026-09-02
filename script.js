@@ -174,13 +174,7 @@ async function fetchData() {
         const data = SITE_DATA;
         renderData(data);
 
-        if (data.theme) {
-            try {
-                applyTheme(data.theme);
-            } catch (themeErr) {
-                console.error('Error applying theme:', themeErr);
-            }
-        }
+        if (window.updateFluidColors) window.updateFluidColors();
     } catch (error) {
         console.error('Error loading data:', error);
     }
@@ -736,50 +730,12 @@ function setupNavigation() {
 }
 
 function setupThemeToggle() {
-    const btn = document.getElementById('theme-btn');
-    if (!btn) return;
-    const icon = btn.querySelector('i');
-
-    const palettes = {
-        light: { primary: '#0071e3', secondary: '#64d2ff', bg: '#f5f5f7', themeColor: '#f5f5f7' },
-        dark: { primary: '#2997ff', secondary: '#64d2ff', bg: '#000000', themeColor: '#000000' }
-    };
-
-    const currentMode = () => document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-
-    const syncFluid = (mode) => {
-        const palette = palettes[mode];
-        if (window.updateFluidColors) {
-            window.updateFluidColors(palette.primary, palette.secondary, palette.bg);
-        }
-        const meta = document.querySelector('meta[name="theme-color"]:not([media])') || document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', palette.themeColor);
-    };
-
-    const applyMode = (mode) => {
-        document.documentElement.setAttribute('data-theme', mode);
-        document.body.setAttribute('data-theme', mode);
-        document.documentElement.style.colorScheme = mode;
-        localStorage.setItem('theme', mode);
-        if (icon) {
-            icon.classList.toggle('fa-sun', mode === 'dark');
-            icon.classList.toggle('fa-moon', mode === 'light');
-        }
-        btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
-        syncFluid(mode);
-    };
-
-    applyMode(currentMode());
-
-    btn.addEventListener('click', () => {
-        applyMode(currentMode() === 'dark' ? 'light' : 'dark');
-    });
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-        if (!localStorage.getItem('theme')) {
-            applyMode(event.matches ? 'dark' : 'light');
-        }
-    });
+    if (typeof window.__setTheme === 'function') {
+        const mode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        window.__setTheme(mode, false);
+        if (window.updateFluidColors) window.updateFluidColors();
+        return;
+    }
 }
 
 function applyTheme() {

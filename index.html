@@ -22,7 +22,7 @@
     <meta name="twitter:image" content="https://mohammadsadeghsalehi.github.io/images/Sadegh.jpg">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
     <link rel="apple-touch-icon" href="images/mss-logo-180.png">
-    <link rel="stylesheet" href="style.css?v=20260902c">
+    <link rel="stylesheet" href="style.css?v=20260902d">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,13 +31,45 @@
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <script>
         (function () {
-            try {
-                var stored = localStorage.getItem('theme');
-                var queryTheme = new URLSearchParams(location.search).get('theme');
-                if (queryTheme === 'dark' || queryTheme === 'light') stored = queryTheme;
-                var dark = stored === 'dark' || (stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-                document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-            } catch (e) {}
+            var root = document.documentElement;
+            function readStored() {
+                try { return localStorage.getItem('site-theme'); } catch (e) { return null; }
+            }
+            function systemDark() {
+                return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            }
+            function current() {
+                var stored = readStored();
+                var query = '';
+                try { query = new URLSearchParams(location.search).get('theme') || ''; } catch (e) {}
+                if (query === 'dark' || query === 'light') return query;
+                if (stored === 'dark' || stored === 'light') return stored;
+                return systemDark() ? 'dark' : 'light';
+            }
+            function apply(mode, persist) {
+                var dark = mode === 'dark';
+                root.setAttribute('data-theme', dark ? 'dark' : 'light');
+                root.classList.toggle('dark', dark);
+                root.classList.toggle('light', !dark);
+                root.style.colorScheme = dark ? 'dark' : 'light';
+                if (document.body) {
+                    document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
+                    document.body.classList.toggle('dark', dark);
+                }
+                if (persist) {
+                    try { localStorage.setItem('site-theme', dark ? 'dark' : 'light'); } catch (e) {}
+                }
+                var btn = document.getElementById('theme-btn');
+                if (btn) btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+                if (window.updateFluidColors) window.updateFluidColors();
+            }
+            window.__setTheme = apply;
+            window.__toggleTheme = function (event) {
+                if (event) event.preventDefault();
+                apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+                return false;
+            };
+            apply(current(), false);
         })();
     </script>
     <script type="application/ld+json">
@@ -125,7 +157,7 @@
                 </nav>
 
                 <div class="header-actions">
-                    <button id="theme-btn" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode">
+                    <button id="theme-btn" class="theme-toggle-btn" type="button" aria-label="Toggle dark mode" onclick="return window.__toggleTheme(event);">
                         <i class="fas fa-moon" aria-hidden="true"></i>
                     </button>
                     <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="main-nav" aria-expanded="false">
@@ -472,9 +504,9 @@
         </footer>
     </div>
 
-    <script src="background.js?v=20260902c"></script>
+    <script src="background.js?v=20260902d"></script>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script src="data.js?v=20260901e"></script>
-    <script src="script.js?v=20260902c"></script>
+    <script src="script.js?v=20260902d"></script>
 </body>
 </html>

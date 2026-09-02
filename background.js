@@ -106,8 +106,10 @@ function applyTheme(isDark) {
 }
 
 function syncTheme() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
-        document.body.getAttribute('data-theme') === 'dark';
+    const root = document.documentElement;
+    const isDark = root.classList.contains('dark') ||
+        root.getAttribute('data-theme') === 'dark' ||
+        (document.body && (document.body.classList.contains('dark') || document.body.getAttribute('data-theme') === 'dark'));
     const key = isDark ? 'dark' : 'light';
     if (key !== lastTheme) {
         lastTheme = key;
@@ -273,4 +275,6 @@ new MutationObserver(() => {
 }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
 resize();
+syncTheme();
+drawField(0);
 requestAnimationFrame(animate);
