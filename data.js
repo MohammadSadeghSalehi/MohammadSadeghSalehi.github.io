@@ -28,7 +28,7 @@ const SITE_DATA = {
                                        "label":  "Research"
                                    }
                                ],
-                    "image":  "images/Sadegh.jpg",
+                    "image":  "images/Sadegh-480.jpg",
                     "emailCodes":  [
                                        115,
                                        97,
@@ -108,6 +108,27 @@ const SITE_DATA = {
                       }
                   ],
     "news":  [
+                 {
+                     "date":  "Sep-26",
+                     "title":  "First contribution to PyTorch landed on main",
+                     "description":  "<p>My first contribution to <strong>PyTorch</strong> has landed on main. The patch fixes the check that decides whether PyTorch builds its Metal 4 attention kernels on Apple Silicon: it now probes the actual MPP API rather than only the language standard, so unsupported Xcode toolchains skip those kernels cleanly.</p>",
+                     "embed":  {
+                                   "src":  "https://www.linkedin.com/embed/feed/update/urn:li:share:7504116045067005952?collapsed=1",
+                                   "width":  504,
+                                   "height":  584,
+                                   "title":  "Embedded post"
+                               },
+                     "links":  [
+                                   {
+                                       "label":  "View post on LinkedIn",
+                                       "url":  "https://www.linkedin.com/feed/update/urn:li:share:7504116045067005952/"
+                                   },
+                                   {
+                                       "label":  "Commit on GitHub",
+                                       "url":  "https://github.com/pytorch/pytorch/commit/f0eedb5"
+                                   }
+                               ]
+                 },
                  {
                      "date":  "Jun-26",
                      "title":  "Presented Amara at Plug and Play UK's Mobility & Physical AI Innovation Day",

@@ -31,8 +31,49 @@ const LINK_ICON_MAP = {
     'more info': 'fas fa-up-right-from-square',
     'scholar': 'fas fa-graduation-cap',
     'website': 'fas fa-globe',
-    'preprint': 'fas fa-file-lines'
+    'preprint': 'fas fa-file-lines',
+    'linkedin': 'fab fa-linkedin'
 };
+
+// model-viewer bundles three.js (~1 MB). Load it only when the dataset
+// section is about to scroll into view instead of on every page load.
+const MODEL_VIEWER_SRC = 'https://unpkg.com/@google/model-viewer@4.3.1/dist/model-viewer.min.js';
+let modelViewerRequested = false;
+
+function ensureModelViewer() {
+    if (modelViewerRequested) return;
+    if (window.customElements && customElements.get('model-viewer')) return;
+    modelViewerRequested = true;
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = MODEL_VIEWER_SRC;
+    document.head.appendChild(script);
+}
+
+function loadModelViewerWhenNear(target) {
+    if (!target) return;
+    if (!('IntersectionObserver' in window)) {
+        ensureModelViewer();
+        return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            observer.disconnect();
+            ensureModelViewer();
+        }
+    }, { rootMargin: '900px 0px' });
+    observer.observe(target);
+}
+
+function renderPostEmbed(embed, fallbackTitle) {
+    if (!embed || !embed.src) return '';
+    const width = parseInt(embed.width, 10) || 504;
+    const height = parseInt(embed.height, 10) || 584;
+    const title = embed.title || fallbackTitle || 'Embedded post';
+    return `<div class="post-embed" style="--embed-width:${width}px; --embed-height:${height}px">
+        <iframe src="${escapeAttr(embed.src)}" height="${height}" width="${width}" frameborder="0" allowfullscreen="" title="${escapeAttr(title)}" loading="lazy"></iframe>
+    </div>`;
+}
 
 function iconForLink(label, url) {
     const lbl = (label || '').toLowerCase();
@@ -291,6 +332,7 @@ function renderData(data) {
                         <img class="news-image" src="${escapeAttr(item.image.src)}" alt="${escapeAttr(item.image.alt || item.title)}" loading="lazy">
                     ${item.image.url ? '</a>' : '</div>'}
                 ` : ''}
+                ${renderPostEmbed(item.embed, item.title)}
                 <div class="card-description">${item.description}</div>
                 ${item.links && Array.isArray(item.links) ? `
                     <div class="card-links">
@@ -607,6 +649,7 @@ function renderDatasetFeature(feature) {
         button.addEventListener('click', () => setMode(button.dataset.mode));
     });
 
+    if (preview.localMeshUrl) loadModelViewerWhenNear(container);
     loadDatasetSample(feature);
 }
 

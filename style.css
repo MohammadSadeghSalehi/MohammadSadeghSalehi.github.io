@@ -711,6 +711,22 @@ html[data-theme="dark"] .badge {
     transform: scale(1.02);
 }
 
+.post-embed {
+    display: flex;
+    justify-content: center;
+    margin: 0.85rem 0 1rem;
+}
+
+.post-embed iframe {
+    display: block;
+    width: 100%;
+    max-width: var(--embed-width, 504px);
+    height: var(--embed-height, 584px);
+    border: 0;
+    border-radius: var(--radius-md);
+    background: var(--card-bg);
+}
+
 .card-links {
     margin-top: 1rem;
     display: flex;

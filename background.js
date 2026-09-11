@@ -87,6 +87,12 @@ let targetMouse = { x: 0, y: 0 };
 let hero = { cx: 0, cy: 0, rx: 1, ry: 1, ready: false };
 let running = true;
 let lastFrame = 0;
+let frameId = 0;
+let heroDirty = true;
+
+// Cap the field at ~60 draws/s. On 120 Hz displays this halves the CPU
+// cost of the animation and keeps the mouse easing frame-rate independent.
+const MIN_FRAME_MS = 15;
 
 function applyTheme(isDark) {
     CONFIG.dark = !!isDark;
@@ -132,6 +138,7 @@ function resize() {
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    heroDirty = true;
     if (!mouse.x && !mouse.y) {
         mouse.x = width * 0.7;
         mouse.y = height * 0.32;
@@ -140,7 +147,15 @@ function resize() {
     }
 }
 
+function markHeroDirty() {
+    heroDirty = true;
+}
+
 function refreshHero() {
+    // getBoundingClientRect can force a synchronous layout, so only
+    // re-measure the hero when scroll, resize, or content changed it.
+    if (!heroDirty) return;
+    heroDirty = false;
     const intro = document.querySelector('.profile-intro');
     if (!intro) {
         hero.ready = false;
@@ -247,16 +262,33 @@ function drawField(timeMs) {
     }
 }
 
+function scheduleFrame() {
+    // Only one animation loop may exist. Before this guard, every
+    // hide/show cycle of the tab queued an extra loop, so the field was
+    // redrawn 2, 4, 8... times per frame after switching tabs.
+    if (running && !frameId) frameId = requestAnimationFrame(animate);
+}
+
 function animate(timeMs) {
-    lastFrame = timeMs;
+    frameId = 0;
+    if (!running) return;
     if (!width) resize();
-    mouse.x += (targetMouse.x - mouse.x) * 0.07;
-    mouse.y += (targetMouse.y - mouse.y) * 0.07;
-    drawField(timeMs);
-    if (running) requestAnimationFrame(animate);
+    if (timeMs - lastFrame >= MIN_FRAME_MS) {
+        lastFrame = timeMs;
+        mouse.x += (targetMouse.x - mouse.x) * 0.07;
+        mouse.y += (targetMouse.y - mouse.y) * 0.07;
+        drawField(timeMs);
+    }
+    scheduleFrame();
 }
 
 window.addEventListener('resize', resize);
+window.addEventListener('scroll', markHeroDirty, { passive: true });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(markHeroDirty);
+if ('ResizeObserver' in window) {
+    const intro = document.querySelector('.profile-intro');
+    if (intro) new ResizeObserver(markHeroDirty).observe(intro);
+}
 
 document.addEventListener('mousemove', (e) => {
     targetMouse.x = e.clientX;
@@ -271,10 +303,9 @@ document.addEventListener('touchmove', (e) => {
 
 document.addEventListener('visibilitychange', () => {
     running = document.visibilityState !== 'hidden';
-    if (running) requestAnimationFrame(animate);
-    else {
-        applyTheme(isDarkMode());
-        drawField(lastFrame || performance.now());
+    if (running) {
+        markHeroDirty();
+        scheduleFrame();
     }
 });
 
@@ -286,4 +317,4 @@ new MutationObserver(() => {
 resize();
 applyTheme(isDarkMode());
 drawField(0);
-requestAnimationFrame(animate);
+scheduleFrame();
