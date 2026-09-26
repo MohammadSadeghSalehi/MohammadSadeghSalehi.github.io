@@ -28,7 +28,7 @@ const SITE_DATA = {
                                        "label":  "Research"
                                    }
                                ],
-                    "image":  "images/Sadegh-480.jpg",
+                    "image":  "images/Sadegh-480.jpg?v=20260926a",
                     "emailCodes":  [
                                        115,
                                        97,
